@@ -17,7 +17,7 @@ class GetPojo{
     var timeStamp : String?;
     var taskType: TaskType?;
     var DepartmentId: String? ;
-    var activityIndicator: UIActivityIndicatorView? ; 
+    var activityIndicator: UIView? ; 
     
   
 

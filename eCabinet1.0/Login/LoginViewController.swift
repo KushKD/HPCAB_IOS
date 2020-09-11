@@ -21,7 +21,8 @@ class LoginViewController: UIViewController {
 //    }
      var window: UIWindow?
         
-        @IBOutlet weak var RolesTextView: UITextField!
+   
+    @IBOutlet weak var RolesTextView: UITextField!
         @IBOutlet weak var UsersTextView: UITextField!
         @IBOutlet weak var DepartmentsTextView: UITextField!
         
@@ -29,7 +30,7 @@ class LoginViewController: UIViewController {
         @IBOutlet weak var MobileNumber: UITextField!
         @IBOutlet weak var OTP: UITextField!
         
-        var activirtIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
+    
         var appUtilities = UtilitiesApp();
         var roles = [Roles]()
         var usersViaRoles = [UserViaRoles]()
@@ -64,6 +65,9 @@ class LoginViewController: UIViewController {
         override func viewDidLoad() {
             super.viewDidLoad()
             
+          
+            
+            
             pickerViewRoles.dataSource = self
             pickerViewRoles.delegate = self
             pickerViewUsers.dataSource = self
@@ -88,13 +92,14 @@ class LoginViewController: UIViewController {
              Get Roles via Token on Screen Load
              */
             
+            
             let object = GetPojo();
             object.url = Constants.url
             object.methord = Constants.methordGetRoles
             object.methordHash = (Constants.methordGetRolesToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
             object.taskType = TaskType.GET_ROLES
             object.timeStamp = appUtilities.getDate()
-            object.activityIndicator = activirtIndicator
+            object.activityIndicator = self.view
             
             //ViewControllerUtils().showActivityIndicator(uiView: object.viewController!)
             
@@ -164,7 +169,7 @@ class LoginViewController: UIViewController {
             params.append(globalRoleId)
             
             loginObject.parametersList = params
-            loginObject.activityIndicator = self.activirtIndicator
+            loginObject.activityIndicator = self.view
             
             
             networkUtility.getDataDialog(GetDataPojo: loginObject) { response in
@@ -273,7 +278,7 @@ class LoginViewController: UIViewController {
                 params.append(globalRoleId)
                 
                 objectUsers.parametersList = params
-                objectUsers.activityIndicator = self.activirtIndicator
+                objectUsers.activityIndicator = self.view
                 
                 networkUtility.getDataDialog(GetDataPojo: objectUsers) { response in
                     if let response = response {
@@ -378,7 +383,7 @@ class LoginViewController: UIViewController {
                     params.append(globalRoleId)
                     
                     objectUsers.parametersList = params
-                    objectUsers.activityIndicator = self.activirtIndicator
+                    objectUsers.activityIndicator = self.view
                     
                     networkUtility.getDataDialog(GetDataPojo: objectUsers) { response in
                         if let response = response {
@@ -417,7 +422,7 @@ class LoginViewController: UIViewController {
                     params.append(globalRoleId)
                     
                     objectUserDepartments.parametersList = params
-                    objectUserDepartments.activityIndicator = self.activirtIndicator
+                    objectUserDepartments.activityIndicator = self.view
                     
                     networkUtility.getDataDialog(GetDataPojo: objectUserDepartments) { response in
                         if let response = response {
@@ -472,7 +477,7 @@ class LoginViewController: UIViewController {
                     params.append(globalRoleId)
                     
                     objectUsers.parametersList = params
-                    objectUsers.activityIndicator = self.activirtIndicator
+                    objectUsers.activityIndicator = self.view
                     
                     networkUtility.getDataDialog(GetDataPojo: objectUsers) { response in
                         if let response = response {
@@ -509,7 +514,7 @@ class LoginViewController: UIViewController {
                     params.append(globalUserDepartmentId)
                     
                     objectBranches.parametersList = params
-                    objectBranches.activityIndicator = self.activirtIndicator
+                    objectBranches.activityIndicator = self.view
                     
                     networkUtility.getDataDialog(GetDataPojo: objectBranches) { response in
                         if let response = response {
@@ -554,7 +559,7 @@ class LoginViewController: UIViewController {
                 params.append(globalRoleId)
                 
                 objectUsers.parametersList = params
-                objectUsers.activityIndicator = self.activirtIndicator
+                objectUsers.activityIndicator = self.view
                 
                 networkUtility.getDataDialog(GetDataPojo: objectUsers) { response in
                     if let response = response {

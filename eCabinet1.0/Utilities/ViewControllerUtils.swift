@@ -36,6 +36,7 @@ class ViewControllerUtils {
         activityIndicator.frame = CGRect(x: 0.0, y: 0.0, width: 40.0, height: 40.0);
         activityIndicator.style = UIActivityIndicatorView.Style.whiteLarge
         activityIndicator.center = CGPoint(x: loadingView.frame.size.width / 2, y: loadingView.frame.size.height / 2);
+        
 
         loadingView.addSubview(activityIndicator)
         container.addSubview(loadingView)
@@ -50,9 +51,13 @@ class ViewControllerUtils {
         @param uiView - remove activity indicator from this view
     */
     func hideActivityIndicator(uiView: UIView) {
-        print("We are Here. We need to close")
+        
+        
         activityIndicator.stopAnimating()
         container.removeFromSuperview()
+        print("We are Here. We need to close")
+        uiView.subviews.last?.removeFromSuperview()
+        //uiView.removeFromSuperview();
     }
 
     /*
