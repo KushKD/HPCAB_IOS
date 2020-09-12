@@ -7,11 +7,18 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MainViewController: UIViewController {
     
+    @IBOutlet weak var imageView: UIImageView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        let url = URL(string: "https://www.encodedna.com/images/theme/angularjs.png")
+        
+        imageView.kf.setImage(with: url)
     }
     
     @IBAction func clearLoginTapped(_ sender: UIButton) {
