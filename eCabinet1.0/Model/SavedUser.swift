@@ -19,6 +19,7 @@ class SavedUser{
     var RoleId : String?
     var departmentsId : String?
     var departmentsName : String?
+    var Photo : String?
     
   
 

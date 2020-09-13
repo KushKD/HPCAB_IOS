@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD59B308250E0DC500A304E8 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BD59B307250E0DC500A304E8 /* Poppins-SemiBold.ttf */; };
+		BD59B309250E0DC500A304E8 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BD59B307250E0DC500A304E8 /* Poppins-SemiBold.ttf */; };
+		BD59B30A250E0DC500A304E8 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BD59B307250E0DC500A304E8 /* Poppins-SemiBold.ttf */; };
+		BD59B311250E2BE300A304E8 /* UIView+Bordor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD59B310250E2BE300A304E8 /* UIView+Bordor.swift */; };
+		BD59B312250E2BE300A304E8 /* UIView+Bordor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD59B310250E2BE300A304E8 /* UIView+Bordor.swift */; };
+		BD59B313250E2BE300A304E8 /* UIView+Bordor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD59B310250E2BE300A304E8 /* UIView+Bordor.swift */; };
 		BD671F8A250B8943002A9639 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD671F89250B8943002A9639 /* Assets.xcassets */; };
 		BD671F98250B8944002A9639 /* eCabinet1_0Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD671F97250B8944002A9639 /* eCabinet1_0Tests.swift */; };
 		BD671FA3250B8945002A9639 /* eCabinet1_0UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD671FA2250B8945002A9639 /* eCabinet1_0UITests.swift */; };
@@ -65,6 +71,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BD59B307250E0DC500A304E8 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		BD59B310250E2BE300A304E8 /* UIView+Bordor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Bordor.swift"; sourceTree = "<group>"; };
 		BD671F7D250B893B002A9639 /* eCabinet1.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eCabinet1.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD671F89250B8943002A9639 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BD671F8E250B8943002A9639 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -136,6 +144,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BD59B306250E0DA900A304E8 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				BD59B307250E0DC500A304E8 /* Poppins-SemiBold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		BD671F74250B893B002A9639 = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +175,7 @@
 		BD671F7F250B893B002A9639 /* eCabinet1.0 */ = {
 			isa = PBXGroup;
 			children = (
+				BD59B306250E0DA900A304E8 /* Fonts */,
 				BD671F8E250B8943002A9639 /* Info.plist */,
 				BD671FF2250B8ED3002A9639 /* views */,
 				BD671FEB250B8EB2002A9639 /* Utilities */,
@@ -200,6 +217,7 @@
 				BD671FB2250B8A55002A9639 /* UIApplication.swift */,
 				BD671FB1250B8A55002A9639 /* UIViewController.swift */,
 				BDFB341D250C76920044BE8D /* ImageView+URL.swift */,
+				BD59B310250E2BE300A304E8 /* UIView+Bordor.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -416,6 +434,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD671FBB250B8B40002A9639 /* Login.storyboard in Resources */,
+				BD59B308250E0DC500A304E8 /* Poppins-SemiBold.ttf in Resources */,
 				BD671FC5250B8C04002A9639 /* LaunchScreen.storyboard in Resources */,
 				BDFB3427250CE73A0044BE8D /* CollectionViewCell.xib in Resources */,
 				BD671FC3250B8BA5002A9639 /* Main.storyboard in Resources */,
@@ -428,6 +447,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD59B309250E0DC500A304E8 /* Poppins-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +455,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD59B30A250E0DC500A304E8 /* Poppins-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +478,7 @@
 				BDFB341E250C76920044BE8D /* ImageView+URL.swift in Sources */,
 				BD671FE3250B8E30002A9639 /* RsponseObject.swift in Sources */,
 				BD671FDE250B8E30002A9639 /* GetPojo.swift in Sources */,
+				BD59B311250E2BE300A304E8 /* UIView+Bordor.swift in Sources */,
 				BD671FE0250B8E30002A9639 /* StatusMessage.swift in Sources */,
 				BD671FB4250B8A55002A9639 /* UIApplication.swift in Sources */,
 				BD671FDD250B8E30002A9639 /* Departments.swift in Sources */,
@@ -480,6 +502,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD59B312250E2BE300A304E8 /* UIView+Bordor.swift in Sources */,
 				BD671F98250B8944002A9639 /* eCabinet1_0Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -488,6 +511,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD59B313250E2BE300A304E8 /* UIView+Bordor.swift in Sources */,
 				BD671FA3250B8945002A9639 /* eCabinet1_0UITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

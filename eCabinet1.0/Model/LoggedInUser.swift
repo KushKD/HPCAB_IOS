@@ -39,6 +39,7 @@ struct LoggedInUser{
     var RoleId : String
     //var StatusCode : Int
     var StatusMessage : String
+    var Photo: String
     
     
        
@@ -52,6 +53,7 @@ struct LoggedInUser{
              self.RoleId = dictionary["RoleId"] as? String ?? ""
           //  self.StatusCode = dictionary["StatusCode"] as? String ?? ""
              self.StatusMessage = dictionary["StatusMessage"] as? String ?? ""
+             self.Photo = dictionary["Photo"] as? String ?? ""
             
        
        }

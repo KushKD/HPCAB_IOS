@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class UtilitiesApp{
     
@@ -52,6 +53,7 @@ class UtilitiesApp{
         saveUser.Name = data.Name.base64Decoded!
         saveUser.RoleId = data.RoleId
         saveUser.UserID = data.UserID.base64Decoded!
+        saveUser.Photo = data.Photo
         
         for x in user_server {
             departmentsId += x.Departmentmapped.base64Decoded!
@@ -84,6 +86,7 @@ class UtilitiesApp{
         let userRoleIdKey_ = "ROLE_ID"
         let mapped_departments_id_key  = "DEPARTMENTS_MAPPED"
         let mapped_loggedin_key = "IS_LOGGED_IN"
+         //  let photo_key = "PHOTO"
         
 
         let branchMappedLevel = user_details.Branchmapped
@@ -94,6 +97,7 @@ class UtilitiesApp{
           let mobileLevel = user_details.MobileNumber
         let mapped_departments_id_Level = user_details.departmentsId
            let userRoleIdLevel = user_details.RoleId
+        // let PhotoLevel = user_details.Photo
         
        
         
@@ -106,6 +110,7 @@ class UtilitiesApp{
         preferences.set(userIdLevel, forKey: userIdKey_)
          preferences.set(userRoleIdLevel, forKey: userRoleIdKey_)
         preferences.set(mapped_departments_id_Level, forKey: mapped_departments_id_key)
+        // preferences.set(PhotoLevel, forKey: photo_key)
         
          preferences.set(true, forKey: mapped_loggedin_key)
        
@@ -120,5 +125,28 @@ class UtilitiesApp{
             return true
         }
         
+    }
+    
+    
+    func  hexStringToUIColor (hex:String) -> UIColor {
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+
+        if ((cString.count) != 6) {
+            return UIColor.gray
+        }
+
+        var rgbValue:UInt64 = 0
+        Scanner(string: cString).scanHexInt64(&rgbValue)
+
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
     }
 }

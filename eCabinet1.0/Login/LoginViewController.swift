@@ -54,6 +54,7 @@ class LoginViewController: UIViewController {
         var globalBranches = ""
         var globalMobile: String = ""
         var serverLoggedInUserDepartemnts = ""
+    var globalPhoto = ""
         
         let alertService = AlertService();
         
@@ -199,6 +200,7 @@ class LoginViewController: UIViewController {
                         
                         if self.userData[0].StatusMessage.base64Decoded!.caseInsensitiveCompare("Record Found") == .orderedSame{
                             self.userData[0].RoleId = self.globalRoleId
+                           // self.userData[0].Photo = self.globalPhoto
                             self.userServer =  self.appUtilities.saveUserDetails(data_user: self.userData[0] , user_server: self.LoggedUserDepartments);
                             //Save Data Saved Prefrences TODO
                             let isAllowed: Bool = self.appUtilities.writeUserData(data: self.userServer)
@@ -400,6 +402,7 @@ class LoginViewController: UIViewController {
                                         model.append(UserViaRoles(dic))
                                     }
                                     self.usersViaRoles = model;
+                                    //self.globalPhoto = model[0].Photo.base64Decoded!
                                     // print(model[0].RoleName.base64Decoded!) // 1211
                                 }
                             } catch let parsingError {

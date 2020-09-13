@@ -15,14 +15,16 @@ class MainViewController: UIViewController {
     var activirtIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     
     @IBOutlet weak var imageView: UIImageView!
-    
     @IBOutlet weak var selectDepartment: UITextView!
-    
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var designation: UILabel!
+    
     
     var pickerViewDepartments = UIPickerView()
     var globalRoleID: String = ""
     var globalUserID: String = ""
+    var globalPhoto: String = ""
     var deptIDPickerView: String = "0"
     
     var departments = [Departments]()
@@ -30,13 +32,25 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let url = URL(string: "https://www.encodedna.com/images/theme/angularjs.png")
-        
-        imageView.kf.setImage(with: url)
+//        let url = URL(string: "https://www.encodedna.com/images/theme/angularjs.png")
+//
+//        imageView.kf.setImage(with: url)
+        let yourWidth = collectionView.bounds.width/3.0
+        let yourHeight = yourWidth
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 100, height: 100)
+        layout.itemSize = CGSize(width: yourWidth-5, height: yourHeight)
         collectionView.collectionViewLayout = layout
         collectionView.register(CollectionViewCell.NIB(), forCellWithReuseIdentifier: "CollectionViewCell")
+      // collectionView.layer.borderColor = UIColor.red.cgColor
+       //collectionView.layer.borderWidth = 3.0
+        selectDepartment.addBorder(toSide: .Top, withColor: UIColor.red.cgColor, andThickness: 1.0)
+         selectDepartment.addBorder(toSide: .Bottom, withColor: UIColor.red.cgColor, andThickness: 1.0)
+         selectDepartment.addBorder(toSide: .Left, withColor: UIColor.red.cgColor, andThickness: 1.0)
+         selectDepartment.addBorder(toSide: .Right, withColor: UIColor.red.cgColor, andThickness: 1.0)
+          
+       collectionView.layer.cornerRadius = 3.0
+        collectionView.backgroundColor = UIColor.red
+       // self.collectionView.backgroundColor = appUtilities.hexStringToUIColor(hex: "#F2F2F2")
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = .white
@@ -53,6 +67,7 @@ class MainViewController: UIViewController {
         let userIdKey_ = "USER_ID"
         let userRoleIdKey_ = "ROLE_ID"
         let mapped_departments_id_key  = "DEPARTMENTS_MAPPED"
+          let photo_key = "PHOTO"
         print(UserDefaults.standard.bool(forKey: mapped_loggedin_key))
         print(UserDefaults.standard.string(forKey: mobileNumberKey_)!)
         print(UserDefaults.standard.string(forKey: nameKey_)!)
@@ -60,8 +75,20 @@ class MainViewController: UIViewController {
         print(UserDefaults.standard.string(forKey: designationKey_)!)
         print(UserDefaults.standard.string(forKey: userRoleIdKey_)!)
         print(UserDefaults.standard.string(forKey: mapped_departments_id_key)!)
+       // print(UserDefaults.standard.string(forKey: photo_key)!)
         globalRoleID = UserDefaults.standard.string(forKey: userRoleIdKey_)!
         globalUserID = UserDefaults.standard.string(forKey: userIdKey_)!
+//        globalPhoto = UserDefaults.standard.string(forKey: photo_key)! 
+        
+       // let url = URL(string: globalPhoto)
+        // imageView.kf.setImage(with: url)
+        
+        name.text = UserDefaults.standard.string(forKey: nameKey_)!
+        designation.text = UserDefaults.standard.string(forKey: designationKey_)!
+        
+       // department.text = UserDefaults.standard.string(forKey: mapped_departments_id_key)!
+       // department.isHidden = true
+        
         
         
         let objectMenu = GetPojo();
@@ -208,8 +235,22 @@ extension MainViewController: UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // let square = (collectionView.frame.width-8)/3
+        let yourWidth = collectionView.bounds.width/3.0
+        let yourHeight = yourWidth
         
-        return CGSize(width: 100, height: 100)
+        return CGSize(width: yourWidth-5, height: yourHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets.zero
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 5
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
     }
     
 }
@@ -227,8 +268,17 @@ extension MainViewController : UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
-        //  cell.backgroundColor = .brown
-        //cell.configure(with: "https://www.encodedna.com/images/theme/angularjs.png",  within: "Server Image")
+        cell.backgroundColor = appUtilities.hexStringToUIColor(hex: "#F2F2F2")
+        cell.layer.cornerRadius = 10
+        cell.layer.borderWidth = 1.0
+        cell.layer.borderColor = UIColor.lightGray.cgColor
+
+        cell.layer.backgroundColor = UIColor.white.cgColor
+        cell.layer.shadowColor = UIColor.gray.cgColor
+        cell.layer.shadowOffset = CGSize(width: 2.0, height: 4.0)
+        cell.layer.shadowRadius = 3.0
+        cell.layer.shadowOpacity = 1.0
+        cell.layer.masksToBounds = false
         cell.configure(with: menu[indexPath.row].MenuIcon.base64Decoded!, within:  menu[indexPath.row].MenuName.base64Decoded!)
         return cell
     }
