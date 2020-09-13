@@ -198,6 +198,7 @@ class LoginViewController: UIViewController {
                         }
                         
                         if self.userData[0].StatusMessage.base64Decoded!.caseInsensitiveCompare("Record Found") == .orderedSame{
+                            self.userData[0].RoleId = self.globalRoleId
                             self.userServer =  self.appUtilities.saveUserDetails(data_user: self.userData[0] , user_server: self.LoggedUserDepartments);
                             //Save Data Saved Prefrences TODO
                             let isAllowed: Bool = self.appUtilities.writeUserData(data: self.userServer)

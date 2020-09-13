@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -15,11 +15,11 @@
             <objects>
                 <viewController storyboardIdentifier="SplashViewController" id="BYZ-38-t0r" customClass="SplashViewController" customModule="eCabinet1_0" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="eCabinet" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xqe-Kx-nr3">
-                                <rect key="frame" x="-4.5" y="233" width="329" height="102.5"/>
+                                <rect key="frame" x="43" y="397" width="328.5" height="102.5"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="75"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="highlightedColor" name="Secondary"/>
@@ -50,7 +50,7 @@
                                 <subviews>
                                     <view contentMode="top" translatesAutoresizingMaskIntoConstraints="NO" id="Olf-pN-Uhb" userLabel="view1">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="46"/>
-                                        <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TVa-uY-LrA" userLabel="view2">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="227"/>
@@ -59,7 +59,6 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="227"/>
                                             </imageView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="QpL-Wm-xlI" secondAttribute="bottom" id="9Ph-ao-hv7"/>
                                             <constraint firstItem="QpL-Wm-xlI" firstAttribute="leading" secondItem="TVa-uY-LrA" secondAttribute="leading" id="U6R-0D-59b"/>
@@ -81,14 +80,12 @@
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Department" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lNm-pP-KSA">
                                                                         <rect key="frame" x="0.0" y="0.0" width="144.5" height="34.5"/>
-                                                                        <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem ipsum dolor s" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="IFb-k3-D8h">
+                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="All" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="IFb-k3-D8h">
                                                                         <rect key="frame" x="144.5" y="0.0" width="175.5" height="34.5"/>
-                                                                        <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -96,7 +93,6 @@
                                                                 </subviews>
                                                             </stackView>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstItem="qji-qT-EOL" firstAttribute="top" secondItem="unu-Ne-rtl" secondAttribute="top" id="Jcb-3H-d1Z"/>
                                                             <constraint firstAttribute="bottom" secondItem="qji-qT-EOL" secondAttribute="bottom" id="UOl-Mq-00o"/>
@@ -109,6 +105,7 @@
                                                     </view>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jpM-RJ-6mE">
                                                         <rect key="frame" x="0.0" y="34.5" width="320" height="306.5"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="IJv-ef-Pl3">
                                                             <size key="itemSize" width="128" height="128"/>
                                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -127,7 +124,6 @@
                                                         </cells>
                                                     </collectionView>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="jpM-RJ-6mE" firstAttribute="width" secondItem="a4b-tJ-SEY" secondAttribute="width" id="5Ko-cG-dXG"/>
                                                     <constraint firstItem="jpM-RJ-6mE" firstAttribute="height" secondItem="a4b-tJ-SEY" secondAttribute="height" multiplier="0.9" id="TCU-uC-KEe"/>
@@ -136,7 +132,6 @@
                                                 </constraints>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="a4b-tJ-SEY" secondAttribute="bottom" id="Abb-XB-rbO"/>
                                             <constraint firstAttribute="trailing" secondItem="a4b-tJ-SEY" secondAttribute="trailing" id="Euf-cI-9Bk"/>
@@ -145,7 +140,6 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.66799789669999998" green="0.47512125970000002" blue="0.25860109930000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="Olf-pN-Uhb" firstAttribute="height" secondItem="3dH-RZ-bQo" secondAttribute="height" multiplier="0.1" id="88V-RH-TtI"/>
                                     <constraint firstItem="Olf-pN-Uhb" firstAttribute="width" secondItem="3dH-RZ-bQo" secondAttribute="width" id="Gms-td-4kk"/>
@@ -168,6 +162,7 @@
                     <connections>
                         <outlet property="collectionView" destination="jpM-RJ-6mE" id="rZP-2z-VjJ"/>
                         <outlet property="imageView" destination="QpL-Wm-xlI" id="uAs-BI-3Gr"/>
+                        <outlet property="selectDepartment" destination="IFb-k3-D8h" id="r6x-A1-JPO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="McY-sT-w2Q" userLabel="First Responder" sceneMemberID="firstResponder"/>

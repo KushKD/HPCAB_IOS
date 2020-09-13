@@ -13,14 +13,15 @@ class CollectionViewCell: UICollectionViewCell {
 
     
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet var label :UILabel!
     
+    @IBOutlet weak var name: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
     public func configure(with imageURL: String, within title: String ){
         imageView.kf.setImage(with: URL(string:imageURL))
+        name.text = title
         
     }
     

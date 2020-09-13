@@ -50,7 +50,7 @@ class UtilitiesApp{
         saveUser.IsCabinetMinister = data.IsCabinetMinister.base64Decoded!
         saveUser.MobileNumber = data.MobileNumber.base64Decoded!
         saveUser.Name = data.Name.base64Decoded!
-        saveUser.RoleId = data.RoleId.base64Decoded!
+        saveUser.RoleId = data.RoleId
         saveUser.UserID = data.UserID.base64Decoded!
         
         for x in user_server {
@@ -81,6 +81,7 @@ class UtilitiesApp{
           let mobileNumberKey_ = "MOBILE_NUMBER"
           let nameKey_ = "NAME"
         let userIdKey_ = "USER_ID"
+        let userRoleIdKey_ = "ROLE_ID"
         let mapped_departments_id_key  = "DEPARTMENTS_MAPPED"
         let mapped_loggedin_key = "IS_LOGGED_IN"
         
@@ -92,6 +93,7 @@ class UtilitiesApp{
         let userIdLevel = user_details.UserID
           let mobileLevel = user_details.MobileNumber
         let mapped_departments_id_Level = user_details.departmentsId
+           let userRoleIdLevel = user_details.RoleId
         
        
         
@@ -102,7 +104,9 @@ class UtilitiesApp{
         preferences.set(mobileLevel, forKey: mobileNumberKey_)
         preferences.set(nameLevel, forKey: nameKey_)
         preferences.set(userIdLevel, forKey: userIdKey_)
+         preferences.set(userRoleIdLevel, forKey: userRoleIdKey_)
         preferences.set(mapped_departments_id_Level, forKey: mapped_departments_id_key)
+        
          preferences.set(true, forKey: mapped_loggedin_key)
        
         print(UserDefaults.standard.bool(forKey: mapped_loggedin_key))
