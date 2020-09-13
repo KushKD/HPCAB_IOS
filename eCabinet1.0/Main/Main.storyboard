@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -20,11 +20,11 @@
             <objects>
                 <viewController storyboardIdentifier="SplashViewController" id="BYZ-38-t0r" customClass="SplashViewController" customModule="eCabinet1_0" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="eCabinet" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xqe-Kx-nr3">
-                                <rect key="frame" x="23.333333333333343" y="354.66666666666669" width="328.66666666666663" height="102.66666666666669"/>
+                                <rect key="frame" x="23.5" y="282.5" width="328.5" height="102.5"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="75"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="highlightedColor" name="Secondary"/>
@@ -47,20 +47,20 @@
             <objects>
                 <viewController storyboardIdentifier="MainViewController" id="jvS-lB-Cmk" customClass="MainViewController" customModule="eCabinet1_0" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CJl-72-aG0">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="3dH-RZ-bQo">
-                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                                 <subviews>
                                     <view contentMode="top" translatesAutoresizingMaskIntoConstraints="NO" id="Olf-pN-Uhb" userLabel="view1">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="293.66666666666669"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zhc-ej-SX0">
-                                                <rect key="frame" x="0.0" y="0.0" width="370" height="293.66666666666669"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="370" height="0.0"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9kB-1W-ns0">
-                                                        <rect key="frame" x="0.0" y="0.0" width="128.66666666666666" height="293.66666666666669"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="120" height="0.0"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hp_logo" translatesAutoresizingMaskIntoConstraints="NO" id="BPq-ED-QUM">
                                                                 <rect key="frame" x="0.0" y="5" width="100" height="100"/>
@@ -85,16 +85,16 @@
                                                         </constraints>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="center" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="KnI-Hs-RHU">
-                                                        <rect key="frame" x="138.66666666666663" y="0.0" width="231.33333333333337" height="293.66666666666669"/>
+                                                        <rect key="frame" x="130" y="0.0" width="240" height="0.0"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="eCabinet" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7u4-LJ-FtJ">
-                                                                <rect key="frame" x="0.0" y="0.0" width="231.33333333333334" height="146.66666666666666"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="240" height="0.0"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="20"/>
                                                                 <color key="textColor" name="darkRed"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Government of Himachal Pradesh" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUg-tG-8aS">
-                                                                <rect key="frame" x="0.0" y="146.66666666666666" width="231.33333333333334" height="146.99999999999997"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="240" height="0.0"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -120,7 +120,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TVa-uY-LrA" userLabel="view2">
-                                        <rect key="frame" x="0.0" y="293.66666666666669" width="375" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="R79-HR-xcS" userLabel="stackV2">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
@@ -129,7 +129,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="128" height="0.0"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userIcon" translatesAutoresizingMaskIntoConstraints="NO" id="QpL-Wm-xlI" userLabel="userImage">
-                                                                <rect key="frame" x="5" y="35" width="203" height="204"/>
+                                                                <rect key="frame" x="5" y="35" width="118" height="204"/>
                                                                 <color key="backgroundColor" name="Maroon"/>
                                                             </imageView>
                                                         </subviews>
@@ -145,17 +145,17 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Hp-vJ-ecN" userLabel="RightView">
                                                         <rect key="frame" x="133" y="0.0" width="242" height="0.0"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" distribution="fillProportionally" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Wrr-if-uRE" userLabel="rightStackView">
-                                                                <rect key="frame" x="246.00000000000003" y="-21" width="79.666666666666671" height="50.333333333333336"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="Wrr-if-uRE" userLabel="rightStackView">
+                                                                <rect key="frame" x="0.0" y="0.0" width="242" height="0.0"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xR5-zu-s9B" userLabel="name">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="79.666666666666671" height="17.666666666666668"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="242" height="0.0"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
                                                                         <color key="textColor" name="Blue"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Designation" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zky-F3-Fch" userLabel="Designation">
-                                                                        <rect key="frame" x="0.0" y="32.666666666666671" width="79.666666666666671" height="17.666666666666671"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="242" height="0.0"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
                                                                         <color key="textColor" name="Blue"/>
                                                                         <nil key="highlightedColor"/>
@@ -163,9 +163,17 @@
                                                                 </subviews>
                                                             </stackView>
                                                         </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="Wrr-if-uRE" secondAttribute="trailing" id="dcI-AA-ijX"/>
+                                                            <constraint firstItem="Wrr-if-uRE" firstAttribute="top" secondItem="6Hp-vJ-ecN" secondAttribute="top" id="fgs-AM-FVb"/>
+                                                            <constraint firstItem="Wrr-if-uRE" firstAttribute="leading" secondItem="6Hp-vJ-ecN" secondAttribute="leading" id="hFK-Uf-Opy"/>
+                                                            <constraint firstAttribute="bottom" secondItem="Wrr-if-uRE" secondAttribute="bottom" id="yuf-w2-WmS"/>
+                                                        </constraints>
                                                     </view>
                                                 </subviews>
                                                 <constraints>
+                                                    <constraint firstItem="6Hp-vJ-ecN" firstAttribute="centerY" secondItem="R79-HR-xcS" secondAttribute="centerY" id="64i-I4-G8p"/>
+                                                    <constraint firstItem="6Hp-vJ-ecN" firstAttribute="centerX" secondItem="R79-HR-xcS" secondAttribute="centerX" id="8uu-dD-fsW"/>
                                                     <constraint firstItem="PS7-dP-Ycj" firstAttribute="width" secondItem="R79-HR-xcS" secondAttribute="width" multiplier="0.3" id="llg-x7-XHl"/>
                                                     <constraint firstItem="6Hp-vJ-ecN" firstAttribute="width" secondItem="R79-HR-xcS" secondAttribute="width" multiplier="0.7" id="oz4-4B-xrE"/>
                                                 </constraints>
@@ -188,25 +196,25 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ezB-ml-nNI" userLabel="view3">
-                                        <rect key="frame" x="0.0" y="293.66666666666674" width="375" height="440.33333333333326"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="a4b-tJ-SEY" userLabel="svv3">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="440.33333333333331"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="unu-Ne-rtl">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="qji-qT-EOL">
-                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Department" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lNm-pP-KSA">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="187.66666666666666" height="44"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="0.0"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="17"/>
                                                                         <color key="textColor" name="RedMaroon"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="All" translatesAutoresizingMaskIntoConstraints="NO" id="IFb-k3-D8h">
-                                                                        <rect key="frame" x="187.66666666666663" y="0.0" width="187.33333333333337" height="44"/>
+                                                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="0.0"/>
                                                                         <color key="textColor" name="Blue"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="17"/>
                                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -225,7 +233,7 @@
                                                         </constraints>
                                                     </view>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jpM-RJ-6mE">
-                                                        <rect key="frame" x="0.0" y="44" width="375" height="396.33333333333331"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="2" minimumInteritemSpacing="2" id="IJv-ef-Pl3">
                                                             <size key="itemSize" width="128" height="128"/>
                                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
