@@ -149,4 +149,32 @@ class UtilitiesApp{
             alpha: CGFloat(1.0)
         )
     }
+    
+    
+    func setHorizontalGradientColor(view: UIView) {
+        let gradientLayer = CAGradientLayer()
+        var updatedFrame = view.bounds
+        updatedFrame.size.height += 30
+        updatedFrame.size.width += 40
+        gradientLayer.frame = updatedFrame
+        gradientLayer.colors = [UIColor(named: "darkRed")?.cgColor, UIColor(named: "RedMaroon")?.cgColor, UIColor(named: "Maroon")?.cgColor]
+      //  gradientLayer.colors = [UIColor(named: "darkRed"), UIColor(named: "RedMaroon")]
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
+        view.layer.insertSublayer(gradientLayer, at: 0)
+    }
+    
+    //setHorizontalGradientColor(view: self.bgView)  topView
+    func setHorizontalGradientColorPopUp(view: UIView) {
+        let gradientLayer = CAGradientLayer()
+        var updatedFrame = view.bounds
+        updatedFrame.size.height += 10
+        //updatedFrame.size.width += 10
+        gradientLayer.frame = updatedFrame
+        gradientLayer.colors = [UIColor(named: "darkRed")?.cgColor, UIColor(named: "RedMaroon")?.cgColor, UIColor(named: "Maroon")?.cgColor]
+      //  gradientLayer.colors = [UIColor(named: "darkRed"), UIColor(named: "RedMaroon")]
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
+        view.layer.insertSublayer(gradientLayer, at: 0)
+    }
 }

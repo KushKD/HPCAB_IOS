@@ -32,9 +32,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let url = URL(string: "https://www.encodedna.com/images/theme/angularjs.png")
-//
-//        imageView.kf.setImage(with: url)
+        
         let yourWidth = collectionView.bounds.width/3.0
         let yourHeight = yourWidth
         let layout = UICollectionViewFlowLayout()
@@ -43,10 +41,10 @@ class MainViewController: UIViewController {
         collectionView.register(CollectionViewCell.NIB(), forCellWithReuseIdentifier: "CollectionViewCell")
       // collectionView.layer.borderColor = UIColor.red.cgColor
        //collectionView.layer.borderWidth = 3.0
-        selectDepartment.addBorder(toSide: .Top, withColor: UIColor.red.cgColor, andThickness: 1.0)
-         selectDepartment.addBorder(toSide: .Bottom, withColor: UIColor.red.cgColor, andThickness: 1.0)
-         selectDepartment.addBorder(toSide: .Left, withColor: UIColor.red.cgColor, andThickness: 1.0)
-         selectDepartment.addBorder(toSide: .Right, withColor: UIColor.red.cgColor, andThickness: 1.0)
+        selectDepartment.addBorder(toSide: .Top, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+         selectDepartment.addBorder(toSide: .Bottom, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+         selectDepartment.addBorder(toSide: .Left, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+         selectDepartment.addBorder(toSide: .Right, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
           
        collectionView.layer.cornerRadius = 3.0
         collectionView.backgroundColor = UIColor.red

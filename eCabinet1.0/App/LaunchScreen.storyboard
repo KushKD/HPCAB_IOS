@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -8,27 +8,113 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-SemiBold.ttf">
+            <string>Poppins-SemiBold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="eCabinet" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MMB-77-i6E">
-                                <rect key="frame" x="23.5" y="282.5" width="328.5" height="102.5"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="75"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="highlightedColor" name="Secondary"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="UyB-fb-dhH">
+                                <rect key="frame" x="0.0" y="44" width="414" height="0.0"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EUm-WN-O38" userLabel="view1">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="hp_logo" translatesAutoresizingMaskIntoConstraints="NO" id="FaN-TS-n8g">
+                                                <rect key="frame" x="290" y="5" width="60" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="80" id="03R-TC-Oa9"/>
+                                                    <constraint firstAttribute="height" constant="80" id="4Jw-u7-Gbl"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="FaN-TS-n8g" secondAttribute="bottom" id="RxA-pb-aLb"/>
+                                            <constraint firstItem="FaN-TS-n8g" firstAttribute="top" secondItem="EUm-WN-O38" secondAttribute="top" id="iRH-Ma-0Km"/>
+                                            <constraint firstAttribute="trailing" secondItem="FaN-TS-n8g" secondAttribute="trailing" constant="5" id="xXa-Ku-Iwu"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v6k-Js-Jmo" userLabel="View2">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="W8b-yX-NgT">
+                                                <rect key="frame" x="10" y="-70" width="394" height="140"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cabinet_icon" translatesAutoresizingMaskIntoConstraints="NO" id="IxO-9k-lSM">
+                                                        <rect key="frame" x="0.0" y="0.0" width="394" height="100"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="100" id="3T5-1S-fxp"/>
+                                                            <constraint firstAttribute="height" constant="100" id="s3f-at-cKa"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="eCabinet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MMB-77-i6E">
+                                                        <rect key="frame" x="0.0" y="100" width="394" height="20"/>
+                                                        <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="17"/>
+                                                        <color key="textColor" name="darkRed"/>
+                                                        <color key="highlightedColor" name="Secondary"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Government of Himachal Pradesh" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jf0-Al-ye9">
+                                                        <rect key="frame" x="0.0" y="120" width="394" height="20"/>
+                                                        <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="17"/>
+                                                        <color key="textColor" name="RedMaroon"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="W8b-yX-NgT" secondAttribute="trailing" constant="10" id="4wY-ES-y04"/>
+                                            <constraint firstItem="W8b-yX-NgT" firstAttribute="centerY" secondItem="v6k-Js-Jmo" secondAttribute="centerY" id="NNH-AD-CST"/>
+                                            <constraint firstItem="W8b-yX-NgT" firstAttribute="centerX" secondItem="v6k-Js-Jmo" secondAttribute="centerX" id="fyu-Vw-LzD"/>
+                                            <constraint firstItem="W8b-yX-NgT" firstAttribute="leading" secondItem="v6k-Js-Jmo" secondAttribute="leading" constant="10" id="osB-Wn-5FP"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zSf-1N-ciC" userLabel="View3">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Department of Information Technology" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L7u-Ks-M04">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
+                                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="17"/>
+                                                <color key="textColor" name="Blue"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="L7u-Ks-M04" firstAttribute="leading" secondItem="zSf-1N-ciC" secondAttribute="leading" id="4XC-0g-YaW"/>
+                                            <constraint firstAttribute="bottom" secondItem="L7u-Ks-M04" secondAttribute="bottom" id="V9z-ay-E95"/>
+                                            <constraint firstAttribute="trailing" secondItem="L7u-Ks-M04" secondAttribute="trailing" id="k0c-Fq-w5m"/>
+                                            <constraint firstItem="L7u-Ks-M04" firstAttribute="top" secondItem="zSf-1N-ciC" secondAttribute="top" id="pbj-Pg-snG"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="zSf-1N-ciC" firstAttribute="width" secondItem="UyB-fb-dhH" secondAttribute="width" id="b60-ws-g5h"/>
+                                    <constraint firstItem="zSf-1N-ciC" firstAttribute="height" secondItem="UyB-fb-dhH" secondAttribute="height" multiplier="0.1" id="cpP-1C-Pla"/>
+                                    <constraint firstItem="v6k-Js-Jmo" firstAttribute="height" secondItem="UyB-fb-dhH" secondAttribute="height" multiplier="0.8" id="drf-Lg-IeA"/>
+                                    <constraint firstItem="EUm-WN-O38" firstAttribute="width" secondItem="UyB-fb-dhH" secondAttribute="width" id="j1v-uP-lBK"/>
+                                    <constraint firstItem="EUm-WN-O38" firstAttribute="height" secondItem="UyB-fb-dhH" secondAttribute="height" multiplier="0.1" id="tc2-jg-WjN"/>
+                                    <constraint firstItem="v6k-Js-Jmo" firstAttribute="width" secondItem="UyB-fb-dhH" secondAttribute="width" id="vNd-1z-GWN"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
-                        <color key="backgroundColor" name="MAroonTop"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="MMB-77-i6E" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ObL-Cf-Grl"/>
-                            <constraint firstItem="MMB-77-i6E" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Rn5-Ut-c2y"/>
+                            <constraint firstItem="UyB-fb-dhH" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="KFA-2n-F53"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="UyB-fb-dhH" secondAttribute="bottom" id="Vbc-XX-HDo"/>
+                            <constraint firstItem="UyB-fb-dhH" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="diN-US-BHC"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="UyB-fb-dhH" secondAttribute="trailing" id="ljX-XE-Omz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -39,11 +125,19 @@
         </scene>
     </scenes>
     <resources>
-        <namedColor name="MAroonTop">
-            <color red="0.24699999392032623" green="0.17599999904632568" blue="0.23899999260902405" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <image name="cabinet_icon" width="185" height="185"/>
+        <image name="hp_logo" width="200" height="142"/>
+        <namedColor name="Blue">
+            <color red="0.27799999713897705" green="0.36899998784065247" blue="0.67100000381469727" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="RedMaroon">
+            <color red="0.69800001382827759" green="0.19599999487400055" blue="0.36500000953674316" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Secondary">
             <color red="0.95300000905990601" green="0.016000000759959221" blue="0.125" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="darkRed">
+            <color red="0.84700000286102295" green="0.14499999582767487" blue="0.20399999618530273" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

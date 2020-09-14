@@ -10,7 +10,10 @@ import UIKit
 
 class AlertViewController: UIViewController {
 
+    var appUtilities = UtilitiesApp()
+    
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var TopView: UIView!
     
     @IBOutlet weak var bodyLabel: UILabel!
     
@@ -32,6 +35,7 @@ class AlertViewController: UIViewController {
 
     func setupView() {
         
+        appUtilities.setHorizontalGradientColorPopUp(view: self.TopView)
         titleLabel.text = alertTitle
         
         bodyLabel.text = alertBody
