@@ -14,9 +14,9 @@ extension UIApplication {
     static var logoutAnimation: UIView.AnimationOptions = .transitionCrossDissolve
     
     public static func setRootView(_ viewController: UIViewController,
-                                   options: UIView.AnimationOptions = .transitionFlipFromRight,
+                                   options: UIView.AnimationOptions = .transitionCurlUp,
                                    animated: Bool = true,
-                                   duration: TimeInterval = 0.5,
+                                   duration: TimeInterval = 1,
                                    completion: (() -> Void)? = nil) {
         guard animated else {
             UIApplication.shared.keyWindow?.rootViewController = viewController
@@ -31,5 +31,10 @@ extension UIApplication {
         }) { _ in
             completion?()
         }
+        
+        return 
     }
+    
+    
+    
 }

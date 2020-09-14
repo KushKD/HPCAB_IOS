@@ -13,6 +13,7 @@ enum AppStoryboard: String {
     
     case Login = "Login"
     case Main = "Main"
+    case CabinetMemos = "CabinetMemosStoryBoard"
     
     var instance: UIStoryboard {
         return UIStoryboard(name: self.rawValue, bundle: Bundle.main)

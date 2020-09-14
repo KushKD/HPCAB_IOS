@@ -29,6 +29,7 @@ class MainViewController: UIViewController {
     
     var departments = [Departments]()
     var menu = [Menu]()
+    var window:UIWindow?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,16 +40,16 @@ class MainViewController: UIViewController {
         layout.itemSize = CGSize(width: yourWidth-5, height: yourHeight)
         collectionView.collectionViewLayout = layout
         collectionView.register(CollectionViewCell.NIB(), forCellWithReuseIdentifier: "CollectionViewCell")
-      // collectionView.layer.borderColor = UIColor.red.cgColor
-       //collectionView.layer.borderWidth = 3.0
+        // collectionView.layer.borderColor = UIColor.red.cgColor
+        //collectionView.layer.borderWidth = 3.0
         selectDepartment.addBorder(toSide: .Top, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
-         selectDepartment.addBorder(toSide: .Bottom, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
-         selectDepartment.addBorder(toSide: .Left, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
-         selectDepartment.addBorder(toSide: .Right, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
-          
-       collectionView.layer.cornerRadius = 3.0
+        selectDepartment.addBorder(toSide: .Bottom, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+        selectDepartment.addBorder(toSide: .Left, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+        selectDepartment.addBorder(toSide: .Right, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+        
+        collectionView.layer.cornerRadius = 3.0
         collectionView.backgroundColor = UIColor.red
-       // self.collectionView.backgroundColor = appUtilities.hexStringToUIColor(hex: "#F2F2F2")
+        // self.collectionView.backgroundColor = appUtilities.hexStringToUIColor(hex: "#F2F2F2")
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = .white
@@ -65,7 +66,7 @@ class MainViewController: UIViewController {
         let userIdKey_ = "USER_ID"
         let userRoleIdKey_ = "ROLE_ID"
         let mapped_departments_id_key  = "DEPARTMENTS_MAPPED"
-          let photo_key = "PHOTO"
+        let photo_key = "PHOTO"
         print(UserDefaults.standard.bool(forKey: mapped_loggedin_key))
         print(UserDefaults.standard.string(forKey: mobileNumberKey_)!)
         print(UserDefaults.standard.string(forKey: nameKey_)!)
@@ -73,19 +74,19 @@ class MainViewController: UIViewController {
         print(UserDefaults.standard.string(forKey: designationKey_)!)
         print(UserDefaults.standard.string(forKey: userRoleIdKey_)!)
         print(UserDefaults.standard.string(forKey: mapped_departments_id_key)!)
-       // print(UserDefaults.standard.string(forKey: photo_key)!)
+        // print(UserDefaults.standard.string(forKey: photo_key)!)
         globalRoleID = UserDefaults.standard.string(forKey: userRoleIdKey_)!
         globalUserID = UserDefaults.standard.string(forKey: userIdKey_)!
-//        globalPhoto = UserDefaults.standard.string(forKey: photo_key)! 
+        //        globalPhoto = UserDefaults.standard.string(forKey: photo_key)!
         
-       // let url = URL(string: globalPhoto)
+        // let url = URL(string: globalPhoto)
         // imageView.kf.setImage(with: url)
         
         name.text = UserDefaults.standard.string(forKey: nameKey_)!
         designation.text = UserDefaults.standard.string(forKey: designationKey_)!
         
-       // department.text = UserDefaults.standard.string(forKey: mapped_departments_id_key)!
-       // department.isHidden = true
+        // department.text = UserDefaults.standard.string(forKey: mapped_departments_id_key)!
+        // department.isHidden = true
         
         
         
@@ -242,11 +243,11 @@ extension MainViewController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets.zero
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 5
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10
     }
@@ -270,7 +271,6 @@ extension MainViewController : UICollectionViewDataSource{
         cell.layer.cornerRadius = 10
         cell.layer.borderWidth = 1.0
         cell.layer.borderColor = UIColor.lightGray.cgColor
-
         cell.layer.backgroundColor = UIColor.white.cgColor
         cell.layer.shadowColor = UIColor.gray.cgColor
         cell.layer.shadowOffset = CGSize(width: 2.0, height: 4.0)
@@ -300,7 +300,23 @@ extension MainViewController :UICollectionViewDelegate{
             print(UserDefaults.standard.bool(forKey: mapped_loggedin_key))
             UIApplication.setRootView(LoginViewController.instantiate(from: .Login), options: UIApplication.logoutAnimation)
             
+        }else if menu[indexPath.row].Menuid.base64Decoded!.caseInsensitiveCompare("1") == .orderedSame{
+
+            
+            let cabinetViewController = CabinetMemosController.instantiate(from: .CabinetMemos)
+            cabinetViewController.dept_id = deptIDPickerView
+            cabinetViewController.param = "Current"
+          
+            UIApplication.setRootView(cabinetViewController)
+          
         }
+            
+                
+              
+            
+            
+            
+        
     }
 }
 
