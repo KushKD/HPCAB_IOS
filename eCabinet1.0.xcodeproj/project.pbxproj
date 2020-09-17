@@ -8,7 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		BD2BD0AB250F850000C6798C /* CabinetMemosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2BD0AA250F850000C6798C /* CabinetMemosController.swift */; };
-		BD2BD0AD250F852200C6798C /* CabinetMemosStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD2BD0AC250F852200C6798C /* CabinetMemosStoryBoard.storyboard */; };
+		BD57AA2425137B5F008ED65C /* CabinetMemosStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD57AA2325137B5F008ED65C /* CabinetMemosStoryBoard.storyboard */; };
+		BD591AA3251322BA00880A25 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD591AA1251322BA00880A25 /* CustomTableViewCell.swift */; };
+		BD591AA4251322BA00880A25 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD591AA2251322BA00880A25 /* CustomTableViewCell.xib */; };
+		BD591AA62513456000880A25 /* CabinetMemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD591AA52513456000880A25 /* CabinetMemo.swift */; };
 		BD59B308250E0DC500A304E8 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BD59B307250E0DC500A304E8 /* Poppins-SemiBold.ttf */; };
 		BD59B309250E0DC500A304E8 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BD59B307250E0DC500A304E8 /* Poppins-SemiBold.ttf */; };
 		BD59B30A250E0DC500A304E8 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BD59B307250E0DC500A304E8 /* Poppins-SemiBold.ttf */; };
@@ -74,7 +77,10 @@
 
 /* Begin PBXFileReference section */
 		BD2BD0AA250F850000C6798C /* CabinetMemosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinetMemosController.swift; sourceTree = "<group>"; };
-		BD2BD0AC250F852200C6798C /* CabinetMemosStoryBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CabinetMemosStoryBoard.storyboard; sourceTree = "<group>"; };
+		BD57AA2325137B5F008ED65C /* CabinetMemosStoryBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CabinetMemosStoryBoard.storyboard; sourceTree = "<group>"; };
+		BD591AA1251322BA00880A25 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		BD591AA2251322BA00880A25 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
+		BD591AA52513456000880A25 /* CabinetMemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinetMemo.swift; sourceTree = "<group>"; };
 		BD59B307250E0DC500A304E8 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		BD59B310250E2BE300A304E8 /* UIView+Bordor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Bordor.swift"; sourceTree = "<group>"; };
 		BD671F7D250B893B002A9639 /* eCabinet1.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eCabinet1.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,7 +158,9 @@
 			isa = PBXGroup;
 			children = (
 				BD2BD0AA250F850000C6798C /* CabinetMemosController.swift */,
-				BD2BD0AC250F852200C6798C /* CabinetMemosStoryBoard.storyboard */,
+				BD591AA1251322BA00880A25 /* CustomTableViewCell.swift */,
+				BD591AA2251322BA00880A25 /* CustomTableViewCell.xib */,
+				BD57AA2325137B5F008ED65C /* CabinetMemosStoryBoard.storyboard */,
 			);
 			path = cabinetMemos;
 			sourceTree = "<group>";
@@ -296,6 +304,7 @@
 				BD671FD6250B8E2F002A9639 /* StatusMessage.swift */,
 				BD671FDA250B8E30002A9639 /* UserViaRoles.swift */,
 				BDADE126250DDC34006244FB /* Menu.swift */,
+				BD591AA52513456000880A25 /* CabinetMemo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -447,13 +456,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD2BD0AD250F852200C6798C /* CabinetMemosStoryBoard.storyboard in Resources */,
 				BD671FBB250B8B40002A9639 /* Login.storyboard in Resources */,
 				BD59B308250E0DC500A304E8 /* Poppins-SemiBold.ttf in Resources */,
 				BD671FC5250B8C04002A9639 /* LaunchScreen.storyboard in Resources */,
 				BDFB3427250CE73A0044BE8D /* CollectionViewCell.xib in Resources */,
+				BD591AA4251322BA00880A25 /* CustomTableViewCell.xib in Resources */,
 				BD671FC3250B8BA5002A9639 /* Main.storyboard in Resources */,
 				BD671F8A250B8943002A9639 /* Assets.xcassets in Resources */,
+				BD57AA2425137B5F008ED65C /* CabinetMemosStoryBoard.storyboard in Resources */,
 				BD671FF4250B8EE5002A9639 /* AlertStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -497,9 +507,11 @@
 				BD671FE0250B8E30002A9639 /* StatusMessage.swift in Sources */,
 				BD671FB4250B8A55002A9639 /* UIApplication.swift in Sources */,
 				BD671FDD250B8E30002A9639 /* Departments.swift in Sources */,
+				BD591AA62513456000880A25 /* CabinetMemo.swift in Sources */,
 				BD671FF1250B8EC3002A9639 /* UtilitiesApp.swift in Sources */,
 				BD671FC7250B8CFD002A9639 /* AppDelegate.swift in Sources */,
 				BD2BD0AB250F850000C6798C /* CabinetMemosController.swift in Sources */,
+				BD591AA3251322BA00880A25 /* CustomTableViewCell.swift in Sources */,
 				BD671FE7250B8E5C002A9639 /* NetworkUtility.swift in Sources */,
 				BD671FEF250B8EC3002A9639 /* ViewControllerUtils.swift in Sources */,
 				BD671FDC250B8E30002A9639 /* SavedUser.swift in Sources */,

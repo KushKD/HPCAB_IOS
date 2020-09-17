@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        
         // Let's initiliaze window
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.backgroundColor = #colorLiteral(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 1)
+        self.window?.backgroundColor = #colorLiteral(red: 0.3098039329, green: 0.01568627544, blue: 0.1294117719, alpha: 1)
         
        
          let mapped_loggedin_key = "IS_LOGGED_IN"
