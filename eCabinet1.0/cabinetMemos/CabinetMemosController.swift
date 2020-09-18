@@ -339,6 +339,9 @@
         
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             print(cabinetMemos[indexPath.row])
+            let cabinetMemoDetailsController = CabinetMemoDetailsController.instantiate(from: .CabinetMemoDetials)
+            cabinetMemoDetailsController.cellData = cabinetMemos[indexPath.row]
+         UIApplication.setRootView(cabinetMemoDetailsController)
         }
         
     }
