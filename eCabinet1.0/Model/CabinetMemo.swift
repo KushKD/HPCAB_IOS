@@ -27,6 +27,7 @@ struct CabinetMemo{
     var Subject: String
     var Date: String
     var StatusMessage: String
+    var CabinetMemoType: String
     
        
          init(_ dictionary: [String: Any]) {
@@ -47,6 +48,7 @@ struct CabinetMemo{
               self.Subject = dictionary["Subject"] as? String ?? ""
               self.Date = dictionary["Date"] as? String ?? ""
               self.StatusMessage = dictionary["StatusMessage"] as? String ?? ""
+            self.CabinetMemoType = ""
        
        }
     

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		BD2BD0AB250F850000C6798C /* CabinetMemosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2BD0AA250F850000C6798C /* CabinetMemosController.swift */; };
+		BD41D2FE25189B9B007B4EE6 /* CabinetMemoDetailsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD41D2FD25189B9B007B4EE6 /* CabinetMemoDetailsObject.swift */; };
+		BD41D3002518B58B007B4EE6 /* String+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD41D2FF2518B58B007B4EE6 /* String+HTML.swift */; };
 		BD57AA2425137B5F008ED65C /* CabinetMemosStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD57AA2325137B5F008ED65C /* CabinetMemosStoryBoard.storyboard */; };
 		BD591AA3251322BA00880A25 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD591AA1251322BA00880A25 /* CustomTableViewCell.swift */; };
 		BD591AA4251322BA00880A25 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD591AA2251322BA00880A25 /* CustomTableViewCell.xib */; };
@@ -79,6 +81,8 @@
 
 /* Begin PBXFileReference section */
 		BD2BD0AA250F850000C6798C /* CabinetMemosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinetMemosController.swift; sourceTree = "<group>"; };
+		BD41D2FD25189B9B007B4EE6 /* CabinetMemoDetailsObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinetMemoDetailsObject.swift; sourceTree = "<group>"; };
+		BD41D2FF2518B58B007B4EE6 /* String+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+HTML.swift"; sourceTree = "<group>"; };
 		BD57AA2325137B5F008ED65C /* CabinetMemosStoryBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CabinetMemosStoryBoard.storyboard; sourceTree = "<group>"; };
 		BD591AA1251322BA00880A25 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		BD591AA2251322BA00880A25 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
@@ -245,6 +249,7 @@
 				BD671FB1250B8A55002A9639 /* UIViewController.swift */,
 				BDFB341D250C76920044BE8D /* ImageView+URL.swift */,
 				BD59B310250E2BE300A304E8 /* UIView+Bordor.swift */,
+				BD41D2FF2518B58B007B4EE6 /* String+HTML.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -310,6 +315,7 @@
 				BD671FDA250B8E30002A9639 /* UserViaRoles.swift */,
 				BDADE126250DDC34006244FB /* Menu.swift */,
 				BD591AA52513456000880A25 /* CabinetMemo.swift */,
+				BD41D2FD25189B9B007B4EE6 /* CabinetMemoDetailsObject.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -508,6 +514,7 @@
 			files = (
 				BD671FEA250B8E8E002A9639 /* AlertService.swift in Sources */,
 				BD671FC0250B8B87002A9639 /* MainViewController.swift in Sources */,
+				BD41D2FE25189B9B007B4EE6 /* CabinetMemoDetailsObject.swift in Sources */,
 				BDADE127250DDC34006244FB /* Menu.swift in Sources */,
 				BD671FE4250B8E30002A9639 /* UserViaRoles.swift in Sources */,
 				BD671FDB250B8E30002A9639 /* LoggedInUser.swift in Sources */,
@@ -516,6 +523,7 @@
 				BD671FB7250B8A91002A9639 /* AppStoryboard.swift in Sources */,
 				BD671FCA250B8DAA002A9639 /* AlertViewController.swift in Sources */,
 				BDFB341E250C76920044BE8D /* ImageView+URL.swift in Sources */,
+				BD41D3002518B58B007B4EE6 /* String+HTML.swift in Sources */,
 				BD671FE3250B8E30002A9639 /* RsponseObject.swift in Sources */,
 				BD671FDE250B8E30002A9639 /* GetPojo.swift in Sources */,
 				BD59B311250E2BE300A304E8 /* UIView+Bordor.swift in Sources */,

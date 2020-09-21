@@ -22,7 +22,6 @@
         @IBOutlet weak var heading: UILabel!
         var dept_id: String = ""
         var param: String = ""
-        var nameArray = ["Luv","Kush","Minki"]
         var appUtilities = UtilitiesApp()
         var networkUtility = NetworkUtility()
         
@@ -101,7 +100,10 @@
                             do {
                                 var model = [CabinetMemo]()
                                 for dic in jsonArray{
+                                   
                                     model.append(CabinetMemo(dic))
+                                    
+                                   
                                 }
                                 
                                 if model[0].StatusMessage.base64Decoded!.caseInsensitiveCompare("No Record Found") == .orderedSame{
@@ -341,6 +343,7 @@
             print(cabinetMemos[indexPath.row])
             let cabinetMemoDetailsController = CabinetMemoDetailsController.instantiate(from: .CabinetMemoDetials)
             cabinetMemoDetailsController.cellData = cabinetMemos[indexPath.row]
+            cabinetMemoDetailsController.memoType = param
          UIApplication.setRootView(cabinetMemoDetailsController)
         }
         
