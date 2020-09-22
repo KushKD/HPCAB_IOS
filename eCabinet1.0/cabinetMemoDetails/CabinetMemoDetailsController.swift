@@ -16,6 +16,9 @@ class CabinetMemoDetailsController: UIViewController {
     //CabinetMemo
     var cabinetMemos = [CabinetMemo]()
     var cabinetMemoDetailsObject = CabinetMemoDetailsObject();
+    var listAnnuxtures = [ListAnnuxtures]()
+    var listCabinetMemoTrackingHistoryLists = [ListCabinetMemoTrackingHistoryLists]()
+    var considerationPoints = [ListConsiderationPoints]()
     
     var appUtilities = UtilitiesApp()
     var networkUtility = NetworkUtility()
@@ -36,6 +39,7 @@ class CabinetMemoDetailsController: UIViewController {
     let mapped_departments_id_key  = "DEPARTMENTS_MAPPED"
     let photo_key = "PHOTO"
     let branchMappedkey_ = "BRANCH_MAPPED"
+    var pointsconsiderationServer: String = ""
     
     @IBOutlet weak var pointsOfConsideration: UILabel!
     @IBOutlet weak var additionalInformation: UILabel!
@@ -45,6 +49,11 @@ class CabinetMemoDetailsController: UIViewController {
     @IBOutlet weak var proposed_Details: UILabel!
     @IBOutlet weak var subject: UILabel!
     @IBOutlet weak var secIncharge: UILabel!
+    @IBOutlet weak var buttonOne: UIStackView!
+    @IBOutlet weak var buttonTwo: UIStackView!
+    
+    var tapGesture = UITapGestureRecognizer()
+    var tapGestureAttachments = UITapGestureRecognizer()
     
     
     override func viewDidLoad() {
@@ -62,7 +71,17 @@ class CabinetMemoDetailsController: UIViewController {
         print(globalRoleId)
         print(globalMappedDepartments)
         
-    
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(CabinetMemoDetailsController.history(_:)))
+        tapGestureAttachments = UITapGestureRecognizer(target: self, action: #selector(CabinetMemoDetailsController.attachments(_:)))
+        tapGesture.numberOfTapsRequired = 1
+        tapGestureAttachments.numberOfTapsRequired = 1
+        tapGesture.numberOfTouchesRequired = 1
+        tapGestureAttachments.numberOfTouchesRequired = 1
+        buttonOne.addGestureRecognizer(tapGesture)
+        buttonTwo.addGestureRecognizer(tapGestureAttachments)
+        buttonOne.isUserInteractionEnabled = true
+        buttonTwo.isUserInteractionEnabled = true
+        
         
         
         if memoType.caseInsensitiveCompare("Current") == .orderedSame {
@@ -79,21 +98,54 @@ class CabinetMemoDetailsController: UIViewController {
             params2.append((cellData?.Deptid.base64Decoded)!);
             params2.append(globalUserId);
             params2.append(globalRoleId);
-
+            
             objectMenu.parametersList = params2
             objectMenu.activityIndicator = self.view
-
+            
             networkUtility.getDataDialog(GetDataPojo: objectMenu) { response in
                 if let response = response {
                     print("are We here")
                     print(response.respnse!)
-
+                    
                     do{
                         //here dataResponse received from a network request
-
+                        
                         let jsonResponse = try  JSONSerialization.jsonObject(with: response.respnse!, options: []) as? [String:AnyObject]
-                        print("jsonResponse")
-
+                        self.cabinetMemoDetailsObject.AdditionalInformation = jsonResponse!["AdditionalInformation"]! as? String
+                        self.cabinetMemoDetailsObject.ApprovalStatus = jsonResponse!["ApprovalStatus"]! as? String
+                        self.cabinetMemoDetailsObject.CabinetMemoID = jsonResponse!["CabinetMemoID"]! as? String
+                        self.cabinetMemoDetailsObject.DeptName = jsonResponse!["DeptName"]! as? String
+                        self.cabinetMemoDetailsObject.Deptid = jsonResponse!["Deptid"]! as? String
+                        self.cabinetMemoDetailsObject.FileNo = jsonResponse!["FileNo"]! as? String
+                        self.cabinetMemoDetailsObject.MinisterIncharge = jsonResponse!["MinisterIncharge"]! as? String
+                        self.cabinetMemoDetailsObject.ProposalDetails = jsonResponse!["ProposalDetails"]! as? String
+                        self.cabinetMemoDetailsObject.SecIncharge = jsonResponse!["SecIncharge"]! as? String
+                        self.cabinetMemoDetailsObject.StatusCode = jsonResponse!["StatusCode"]! as? Int
+                        self.cabinetMemoDetailsObject.Subject = jsonResponse!["Subject"]! as? String
+                        self.cabinetMemoDetailsObject.Title = jsonResponse!["Title"]! as? String
+                        
+                        
+                        DispatchQueue.main.async(execute: {
+                            //pointsOfConsideration.text =
+                            //                            self.additionalInformation.attributedText = self.cabinetMemoDetailsObject.AdditionalInformation!.htmlAttributedString()
+                            
+                            self.additionalInformation.attributedText = self.cabinetMemoDetailsObject.AdditionalInformation!.convertHtmlToAttributedStringWithCSS(font: UIFont(name: "Poppins", size: 16), csscolor: "#475EAB", lineheight: 3, csstextalign: "left")
+                            
+                            //myUILabel.attributedText = "Swift is awesome!!!".convertHtmlToAttributedStringWithCSS(font: UIFont(name: "Arial", size: 16), csscolor: "black", lineheight: 5, csstextalign: "center")
+                            
+                            
+                            self.ministerIncharge.text = self.cabinetMemoDetailsObject.MinisterIncharge?.base64Decoded!
+                            self.approved_channel.text = "By Cabinet Meeting"
+                            
+                            //  self.approved_channel.text = self.cabinetMemoDetailsObject.AdditionalInformation.Appr
+                            self.cabinet_memo_details.text = self.cabinetMemoDetailsObject.FileNo?.base64Decoded!
+                            self.proposed_Details.attributedText = self.cabinetMemoDetailsObject.ProposalDetails!.convertHtmlToAttributedStringWithCSS(font: UIFont(name: "Poppins", size: 16), csscolor: "#475EAB", lineheight: 3, csstextalign: "left")
+                            self.subject.text = self.cabinetMemoDetailsObject.Subject?.base64Decoded!
+                            self.secIncharge.text = self.cabinetMemoDetailsObject.SecIncharge!.base64Decoded!
+                            
+                        })
+                        
+                        
                     } catch let parsingError {
                         print("Error", parsingError)
                     }
@@ -111,20 +163,18 @@ class CabinetMemoDetailsController: UIViewController {
             params2.append((cellData?.Deptid.base64Decoded)!);
             params2.append(globalUserId);
             params2.append(globalRoleId);
-
+            
             objectOther.parametersList = params2
             objectOther.activityIndicator = self.view
-
+            
             networkUtility.getDataDialog(GetDataPojo: objectOther) { response in
                 if let response = response {
-
+                    
                     print("are We here")
                     print(response.respnse!)
-
+                    
                     do{
-                        //here dataResponse received from a network request
-
-                        let jsonResponse = try  JSONSerialization.jsonObject(with: response.respnse!, options: []) as? [String:AnyObject]
+                        let jsonResponse = try  JSONSerialization.jsonObject(with: response.respnse!, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String:AnyObject]
                         self.cabinetMemoDetailsObject.AdditionalInformation = jsonResponse!["AdditionalInformation"]! as? String
                         self.cabinetMemoDetailsObject.ApprovalStatus = jsonResponse!["ApprovalStatus"]! as? String
                         self.cabinetMemoDetailsObject.CabinetMemoID = jsonResponse!["CabinetMemoID"]! as? String
@@ -137,37 +187,158 @@ class CabinetMemoDetailsController: UIViewController {
                         self.cabinetMemoDetailsObject.StatusCode = jsonResponse!["StatusCode"]! as? Int
                         self.cabinetMemoDetailsObject.Subject = jsonResponse!["Subject"]! as? String
                         self.cabinetMemoDetailsObject.Title = jsonResponse!["Title"]! as? String
-
-
+                        
+                        //Consideration Points
+                        if let considerationPointsServer = jsonResponse!["ListConsiderationPoints"]! as? NSArray{
+                            do{
+                                
+                                guard let jsonArray = considerationPointsServer as? [[String: Any]] else {
+                                    return
+                                }
+                                
+                                do {
+                                    var model = [ListConsiderationPoints]()
+                                    for dic in jsonArray{
+                                        model.append(ListConsiderationPoints(dic))
+                                    }
+                                    
+                                    self.considerationPoints = model;
+                                    print("Consideration Points are:- ")
+                                    dump(self.considerationPoints)
+                                    
+                                    for x in self.considerationPoints {
+                                        self.pointsconsiderationServer.append(x.PointNumber.base64Decoded!)
+                                        self.pointsconsiderationServer.append("). ")
+                                        self.pointsconsiderationServer.append(x.Title.base64Decoded!)
+                                        self.pointsconsiderationServer.append("\n")
+                                    }
+                                    
+                                    
+                                    
+                                }
+                            }
+                        }
+                        
+                        //List Annexers Points
+                        if let ListAnnuxturesServer = jsonResponse!["ListAnnexures"]! as? NSArray{
+                            do{
+                                
+                                guard let jsonArray = ListAnnuxturesServer as? [[String: Any]] else {
+                                    return
+                                }
+                                
+                                do {
+                                    var model = [ListAnnuxtures]()
+                                    for dic in jsonArray{
+                                        model.append(ListAnnuxtures(dic))
+                                    }
+                                    
+                                    self.listAnnuxtures = model;
+                                    print("ListAnnuxtures Points are:- ")
+                                    dump(self.listAnnuxtures)
+                                    
+                                    
+                                    
+                                }
+                            }
+                        }
+                        
+                        // List ListCabinetMemoTrackingHistoryLists
+                        if let serverCabinetMemoHistory = jsonResponse!["ListCabinetMemoTrackingHistoryLists"]! as? NSArray{
+                            do{
+                                
+                                guard let jsonArray = serverCabinetMemoHistory as? [[String: Any]] else {
+                                    return
+                                }
+                                
+                                do {
+                                    var model = [ListCabinetMemoTrackingHistoryLists]()
+                                    for dic in jsonArray{
+                                        model.append(ListCabinetMemoTrackingHistoryLists(dic))
+                                    }
+                                    
+                                    self.listCabinetMemoTrackingHistoryLists = model;
+                                    print("ListCabinetMemoTrackingHistoryLists Points are:- ")
+                                    dump(self.listCabinetMemoTrackingHistoryLists)
+                                    
+                                }
+                            }
+                        }
+                        
+                        
+                        
+                        
+                        
                         DispatchQueue.main.async(execute: {
-                            //pointsOfConsideration.text =
-//                            self.additionalInformation.attributedText = self.cabinetMemoDetailsObject.AdditionalInformation!.htmlAttributedString()
+                            self.pointsOfConsideration.text = self.pointsconsiderationServer
+                            
                             
                             self.additionalInformation.attributedText = self.cabinetMemoDetailsObject.AdditionalInformation!.convertHtmlToAttributedStringWithCSS(font: UIFont(name: "Poppins", size: 16), csscolor: "#475EAB", lineheight: 3, csstextalign: "left")
                             
-                            //myUILabel.attributedText = "Swift is awesome!!!".convertHtmlToAttributedStringWithCSS(font: UIFont(name: "Arial", size: 16), csscolor: "black", lineheight: 5, csstextalign: "center")
-
-
                             self.ministerIncharge.text = self.cabinetMemoDetailsObject.MinisterIncharge?.base64Decoded!
                             self.approved_channel.text = "By Cabinet Meeting"
-
-                          //  self.approved_channel.text = self.cabinetMemoDetailsObject.AdditionalInformation.Appr
+                            
+                            //  self.approved_channel.text = self.cabinetMemoDetailsObject.AdditionalInformation.Appr
                             self.cabinet_memo_details.text = self.cabinetMemoDetailsObject.FileNo?.base64Decoded!
                             self.proposed_Details.attributedText = self.cabinetMemoDetailsObject.ProposalDetails!.convertHtmlToAttributedStringWithCSS(font: UIFont(name: "Poppins", size: 16), csscolor: "#475EAB", lineheight: 3, csstextalign: "left")
                             self.subject.text = self.cabinetMemoDetailsObject.Subject?.base64Decoded!
                             self.secIncharge.text = self.cabinetMemoDetailsObject.SecIncharge!.base64Decoded!
-
+                            
                         })
-
-
+                        
+                        
                     } catch let parsingError {
                         print("Error", parsingError)
                     }
-
+                    
                 }
             }
         }
     }
+    
+    
+    
+    @objc func history(_ sender: UITapGestureRecognizer) {
+        
+        print("Button Clicked History")
+        dump(listCabinetMemoTrackingHistoryLists)
+        if listCabinetMemoTrackingHistoryLists.count > 0{
+              let cabinetHistoryController = CabinetHistoryController.instantiate(from: .CabinetMemoDetials)
+                      cabinetHistoryController.listToShow = listCabinetMemoTrackingHistoryLists
+                      
+                   UIApplication.setRootView(cabinetHistoryController)
+        }else{
+            //Show Dialog
+            DispatchQueue.main.async(execute: {
+                
+                let alertVC = self.alertService.alert(title: "Success Message", body: "No Comments Found ", buttonTitle: "OK")
+                { [weak self] in
+                }
+                self.present(alertVC, animated: true)
+            })
+        }
+    }
+    
+    //attachments
+    
+    @objc func attachments(_ sender: UITapGestureRecognizer) {
+        
+        print("Button Clicked attachments")
+        dump(listAnnuxtures)
+        if listAnnuxtures.count > 0{
+            print("We are here")
+        }else{
+            DispatchQueue.main.async(execute: {
+                
+                let alertVC = self.alertService.alert(title: "Success Message", body: "No Attachments Found ", buttonTitle: "OK")
+                { [weak self] in
+                }
+                self.present(alertVC, animated: true)
+            })
+        }
+    }
+    
+    
     
 }
 

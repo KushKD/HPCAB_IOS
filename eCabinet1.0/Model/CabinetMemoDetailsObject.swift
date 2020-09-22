@@ -22,14 +22,10 @@ struct CabinetMemoDetailsObject{
     var StatusCode: Int?
     var Subject: String?
     var Title: String?
+  
     
-//    init(AdditionalInformation: String? = nil,
-//         ApprovalStatus: String? = nil,
-//         CabinetMemoID: Double? = nil) {
-//
-//        self.myString = myString
-//        self.myInt = myInt
-//        self.myDouble = myDouble
-//    }
+    
+    
+
 
 }

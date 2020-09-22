@@ -10,6 +10,11 @@
 		BD2BD0AB250F850000C6798C /* CabinetMemosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2BD0AA250F850000C6798C /* CabinetMemosController.swift */; };
 		BD41D2FE25189B9B007B4EE6 /* CabinetMemoDetailsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD41D2FD25189B9B007B4EE6 /* CabinetMemoDetailsObject.swift */; };
 		BD41D3002518B58B007B4EE6 /* String+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD41D2FF2518B58B007B4EE6 /* String+HTML.swift */; };
+		BD41D3022519CB4F007B4EE6 /* ListAnnuxtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD41D3012519CB4F007B4EE6 /* ListAnnuxtures.swift */; };
+		BD41D3042519CC34007B4EE6 /* ListCabinetMemoTrackingHistoryLists.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD41D3032519CC34007B4EE6 /* ListCabinetMemoTrackingHistoryLists.swift */; };
+		BD41D3062519CCEC007B4EE6 /* ListConsiderationPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD41D3052519CCEC007B4EE6 /* ListConsiderationPoints.swift */; };
+		BD41D309251A1F93007B4EE6 /* CabinetHistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD41D308251A1F92007B4EE6 /* CabinetHistoryController.swift */; };
+		BD41D30B251A1FE5007B4EE6 /* CabinetHistory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD41D30A251A1FE5007B4EE6 /* CabinetHistory.storyboard */; };
 		BD57AA2425137B5F008ED65C /* CabinetMemosStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD57AA2325137B5F008ED65C /* CabinetMemosStoryBoard.storyboard */; };
 		BD591AA3251322BA00880A25 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD591AA1251322BA00880A25 /* CustomTableViewCell.swift */; };
 		BD591AA4251322BA00880A25 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD591AA2251322BA00880A25 /* CustomTableViewCell.xib */; };
@@ -83,6 +88,11 @@
 		BD2BD0AA250F850000C6798C /* CabinetMemosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinetMemosController.swift; sourceTree = "<group>"; };
 		BD41D2FD25189B9B007B4EE6 /* CabinetMemoDetailsObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinetMemoDetailsObject.swift; sourceTree = "<group>"; };
 		BD41D2FF2518B58B007B4EE6 /* String+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+HTML.swift"; sourceTree = "<group>"; };
+		BD41D3012519CB4F007B4EE6 /* ListAnnuxtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAnnuxtures.swift; sourceTree = "<group>"; };
+		BD41D3032519CC34007B4EE6 /* ListCabinetMemoTrackingHistoryLists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCabinetMemoTrackingHistoryLists.swift; sourceTree = "<group>"; };
+		BD41D3052519CCEC007B4EE6 /* ListConsiderationPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListConsiderationPoints.swift; sourceTree = "<group>"; };
+		BD41D308251A1F92007B4EE6 /* CabinetHistoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinetHistoryController.swift; sourceTree = "<group>"; };
+		BD41D30A251A1FE5007B4EE6 /* CabinetHistory.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CabinetHistory.storyboard; sourceTree = "<group>"; };
 		BD57AA2325137B5F008ED65C /* CabinetMemosStoryBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CabinetMemosStoryBoard.storyboard; sourceTree = "<group>"; };
 		BD591AA1251322BA00880A25 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		BD591AA2251322BA00880A25 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
@@ -173,6 +183,15 @@
 			path = cabinetMemos;
 			sourceTree = "<group>";
 		};
+		BD41D307251A1F3D007B4EE6 /* cabinetMemoHistory */ = {
+			isa = PBXGroup;
+			children = (
+				BD41D308251A1F92007B4EE6 /* CabinetHistoryController.swift */,
+				BD41D30A251A1FE5007B4EE6 /* CabinetHistory.storyboard */,
+			);
+			path = cabinetMemoHistory;
+			sourceTree = "<group>";
+		};
 		BD59B306250E0DA900A304E8 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,6 +223,7 @@
 		BD671F7F250B893B002A9639 /* eCabinet1.0 */ = {
 			isa = PBXGroup;
 			children = (
+				BD41D307251A1F3D007B4EE6 /* cabinetMemoHistory */,
 				BD831F5D25147B4800AD3206 /* cabinetMemoDetails */,
 				BD2BD0A9250F84B700C6798C /* cabinetMemos */,
 				BD59B306250E0DA900A304E8 /* Fonts */,
@@ -316,6 +336,9 @@
 				BDADE126250DDC34006244FB /* Menu.swift */,
 				BD591AA52513456000880A25 /* CabinetMemo.swift */,
 				BD41D2FD25189B9B007B4EE6 /* CabinetMemoDetailsObject.swift */,
+				BD41D3012519CB4F007B4EE6 /* ListAnnuxtures.swift */,
+				BD41D3032519CC34007B4EE6 /* ListCabinetMemoTrackingHistoryLists.swift */,
+				BD41D3052519CCEC007B4EE6 /* ListConsiderationPoints.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -486,6 +509,7 @@
 				BD57AA2425137B5F008ED65C /* CabinetMemosStoryBoard.storyboard in Resources */,
 				BD671FF4250B8EE5002A9639 /* AlertStoryboard.storyboard in Resources */,
 				BD831F6125147BAD00AD3206 /* CabinetMemoDetailsStoryBoard.storyboard in Resources */,
+				BD41D30B251A1FE5007B4EE6 /* CabinetHistory.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,6 +536,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD41D3022519CB4F007B4EE6 /* ListAnnuxtures.swift in Sources */,
 				BD671FEA250B8E8E002A9639 /* AlertService.swift in Sources */,
 				BD671FC0250B8B87002A9639 /* MainViewController.swift in Sources */,
 				BD41D2FE25189B9B007B4EE6 /* CabinetMemoDetailsObject.swift in Sources */,
@@ -531,11 +556,13 @@
 				BD671FB4250B8A55002A9639 /* UIApplication.swift in Sources */,
 				BD671FDD250B8E30002A9639 /* Departments.swift in Sources */,
 				BD591AA62513456000880A25 /* CabinetMemo.swift in Sources */,
+				BD41D309251A1F93007B4EE6 /* CabinetHistoryController.swift in Sources */,
 				BD671FF1250B8EC3002A9639 /* UtilitiesApp.swift in Sources */,
 				BD671FC7250B8CFD002A9639 /* AppDelegate.swift in Sources */,
 				BD831F5F25147B7E00AD3206 /* CabinetMemoDetailsController.swift in Sources */,
 				BD2BD0AB250F850000C6798C /* CabinetMemosController.swift in Sources */,
 				BD591AA3251322BA00880A25 /* CustomTableViewCell.swift in Sources */,
+				BD41D3042519CC34007B4EE6 /* ListCabinetMemoTrackingHistoryLists.swift in Sources */,
 				BD671FE7250B8E5C002A9639 /* NetworkUtility.swift in Sources */,
 				BD671FEF250B8EC3002A9639 /* ViewControllerUtils.swift in Sources */,
 				BD671FDC250B8E30002A9639 /* SavedUser.swift in Sources */,
@@ -543,6 +570,7 @@
 				BDFB3426250CE73A0044BE8D /* CollectionViewCell.swift in Sources */,
 				BD671FDF250B8E30002A9639 /* Branches.swift in Sources */,
 				BD671FE1250B8E30002A9639 /* Roles.swift in Sources */,
+				BD41D3062519CCEC007B4EE6 /* ListConsiderationPoints.swift in Sources */,
 				BD671FE2250B8E30002A9639 /* LoggedInUserDepartments.swift in Sources */,
 				BD671FCD250B8DE4002A9639 /* TaskType.swift in Sources */,
 				BD671FC1250B8B87002A9639 /* SplashViewController.swift in Sources */,
