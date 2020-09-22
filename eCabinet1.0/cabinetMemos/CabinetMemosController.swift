@@ -20,6 +20,8 @@
          */
         
         @IBOutlet weak var heading: UILabel!
+        @IBOutlet weak var back: UIButton!
+               @IBOutlet weak var tableView: UITableView!
         var dept_id: String = ""
         var param: String = ""
         var appUtilities = UtilitiesApp()
@@ -47,8 +49,7 @@
         //CabinetMemo
         var cabinetMemos = [CabinetMemo]()
         
-        @IBOutlet weak var back: UIButton!
-        @IBOutlet weak var tableView: UITableView!
+       
         override func viewDidLoad() {
             super.viewDidLoad()
             
@@ -341,10 +342,16 @@
         
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             print(cabinetMemos[indexPath.row])
-            let cabinetMemoDetailsController = CabinetMemoDetailsController.instantiate(from: .CabinetMemoDetials)
-            cabinetMemoDetailsController.cellData = cabinetMemos[indexPath.row]
-            cabinetMemoDetailsController.memoType = param
-         UIApplication.setRootView(cabinetMemoDetailsController)
+//            let cabinetMemoDetailsController = CabinetMemoDetailsController.instantiate(from: .CabinetMemoDetials)
+//            cabinetMemoDetailsController.cellData = cabinetMemos[indexPath.row]
+//            cabinetMemoDetailsController.memoType = param
+//            UIApplication.setRootView(cabinetMemoDetailsController)
+            
+            let storyBoard : UIStoryboard = UIStoryboard(name: "CabinetMemoDetailsStoryBoard", bundle:nil)
+                       let cabinetMemoDetailsController = storyBoard.instantiateViewController(withIdentifier: "CabinetMemoDetailsController") as! CabinetMemoDetailsController
+                                  cabinetMemoDetailsController.cellData = cabinetMemos[indexPath.row]
+                                   cabinetMemoDetailsController.memoType = param
+                       self.present(cabinetMemoDetailsController, animated:true, completion:nil)
         }
         
     }

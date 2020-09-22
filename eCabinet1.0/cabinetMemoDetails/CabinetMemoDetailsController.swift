@@ -303,10 +303,17 @@ class CabinetMemoDetailsController: UIViewController {
         print("Button Clicked History")
         dump(listCabinetMemoTrackingHistoryLists)
         if listCabinetMemoTrackingHistoryLists.count > 0{
-              let cabinetHistoryController = CabinetHistoryController.instantiate(from: .CabinetMemoDetials)
-                      cabinetHistoryController.listToShow = listCabinetMemoTrackingHistoryLists
-                      
-                   UIApplication.setRootView(cabinetHistoryController)
+             //  performSegue(withIdentifier: "goToResult", sender: self)
+//              let cabinetHistoryController = CabinetHistoryController.instantiate(from: .CabinetHistory)
+//                      cabinetHistoryController.listToShow = listCabinetMemoTrackingHistoryLists
+//                   UIApplication.setRootView(cabinetHistoryController)
+           
+            let storyBoard : UIStoryboard = UIStoryboard(name: "CabinetHistory", bundle:nil)
+            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "CabinetHistoryController") as! CabinetHistoryController
+            nextViewController.listToShow = listCabinetMemoTrackingHistoryLists
+            self.present(nextViewController, animated:true, completion:nil)
+            
+            
         }else{
             //Show Dialog
             DispatchQueue.main.async(execute: {
@@ -318,6 +325,13 @@ class CabinetMemoDetailsController: UIViewController {
             })
         }
     }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//           if segue.identifier == "goToResult" {
+//               let cabinetHistoryController = segue.destination as! CabinetHistoryController
+//               cabinetHistoryController.listToShow = listCabinetMemoTrackingHistoryLists
+//           }
+//       }
     
     //attachments
     
@@ -339,6 +353,10 @@ class CabinetMemoDetailsController: UIViewController {
     }
     
     
+    @IBAction func close(_ sender: Any) {
+       // UIApplication.setRootView(CabinetMemosController.instantiate(from: .CabinetMemos), options: UIApplication.logoutAnimation)
+         self.dismiss(animated: true, completion: nil)
+    }
     
 }
 
