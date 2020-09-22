@@ -62,7 +62,7 @@ class CabinetMemoDetailsController: UIViewController {
         print(globalRoleId)
         print(globalMappedDepartments)
         
-        
+    
         
         
         if memoType.caseInsensitiveCompare("Current") == .orderedSame {
@@ -79,21 +79,21 @@ class CabinetMemoDetailsController: UIViewController {
             params2.append((cellData?.Deptid.base64Decoded)!);
             params2.append(globalUserId);
             params2.append(globalRoleId);
-            
+
             objectMenu.parametersList = params2
             objectMenu.activityIndicator = self.view
-            
+
             networkUtility.getDataDialog(GetDataPojo: objectMenu) { response in
                 if let response = response {
                     print("are We here")
                     print(response.respnse!)
-                    
+
                     do{
                         //here dataResponse received from a network request
-                        
+
                         let jsonResponse = try  JSONSerialization.jsonObject(with: response.respnse!, options: []) as? [String:AnyObject]
                         print("jsonResponse")
-                        
+
                     } catch let parsingError {
                         print("Error", parsingError)
                     }
@@ -111,19 +111,19 @@ class CabinetMemoDetailsController: UIViewController {
             params2.append((cellData?.Deptid.base64Decoded)!);
             params2.append(globalUserId);
             params2.append(globalRoleId);
-            
+
             objectOther.parametersList = params2
             objectOther.activityIndicator = self.view
-            
+
             networkUtility.getDataDialog(GetDataPojo: objectOther) { response in
                 if let response = response {
-                    
+
                     print("are We here")
                     print(response.respnse!)
-                    
+
                     do{
                         //here dataResponse received from a network request
-                        
+
                         let jsonResponse = try  JSONSerialization.jsonObject(with: response.respnse!, options: []) as? [String:AnyObject]
                         self.cabinetMemoDetailsObject.AdditionalInformation = jsonResponse!["AdditionalInformation"]! as? String
                         self.cabinetMemoDetailsObject.ApprovalStatus = jsonResponse!["ApprovalStatus"]! as? String
@@ -137,28 +137,33 @@ class CabinetMemoDetailsController: UIViewController {
                         self.cabinetMemoDetailsObject.StatusCode = jsonResponse!["StatusCode"]! as? Int
                         self.cabinetMemoDetailsObject.Subject = jsonResponse!["Subject"]! as? String
                         self.cabinetMemoDetailsObject.Title = jsonResponse!["Title"]! as? String
-                        
-                        
+
+
                         DispatchQueue.main.async(execute: {
                             //pointsOfConsideration.text =
-                            self.additionalInformation.attributedText = self.cabinetMemoDetailsObject.AdditionalInformation!.htmlAttributedString()
+//                            self.additionalInformation.attributedText = self.cabinetMemoDetailsObject.AdditionalInformation!.htmlAttributedString()
                             
+                            self.additionalInformation.attributedText = self.cabinetMemoDetailsObject.AdditionalInformation!.convertHtmlToAttributedStringWithCSS(font: UIFont(name: "Poppins", size: 16), csscolor: "#475EAB", lineheight: 3, csstextalign: "left")
+                            
+                            //myUILabel.attributedText = "Swift is awesome!!!".convertHtmlToAttributedStringWithCSS(font: UIFont(name: "Arial", size: 16), csscolor: "black", lineheight: 5, csstextalign: "center")
+
+
                             self.ministerIncharge.text = self.cabinetMemoDetailsObject.MinisterIncharge?.base64Decoded!
                             self.approved_channel.text = "By Cabinet Meeting"
-                            
+
                           //  self.approved_channel.text = self.cabinetMemoDetailsObject.AdditionalInformation.Appr
                             self.cabinet_memo_details.text = self.cabinetMemoDetailsObject.FileNo?.base64Decoded!
-                            self.proposed_Details.attributedText = self.cabinetMemoDetailsObject.ProposalDetails!.htmlAttributedString()
+                            self.proposed_Details.attributedText = self.cabinetMemoDetailsObject.ProposalDetails!.convertHtmlToAttributedStringWithCSS(font: UIFont(name: "Poppins", size: 16), csscolor: "#475EAB", lineheight: 3, csstextalign: "left")
                             self.subject.text = self.cabinetMemoDetailsObject.Subject?.base64Decoded!
                             self.secIncharge.text = self.cabinetMemoDetailsObject.SecIncharge!.base64Decoded!
-                            
+
                         })
-                        
-                      
+
+
                     } catch let parsingError {
                         print("Error", parsingError)
                     }
-                    
+
                 }
             }
         }
