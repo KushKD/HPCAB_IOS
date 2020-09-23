@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SavedUser{
+class SavedUser {
    
     var Branchmapped: String?
     var Desgination: String?

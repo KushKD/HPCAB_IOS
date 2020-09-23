@@ -29,6 +29,7 @@ class CabinetMemoDetailsController: UIViewController {
     var globalRoleId: String = ""
     var globalMappedDepartments: String = ""
     var globalBranchedMapped: String = ""
+    var globalPhoneNumber: String = ""
     
     let mapped_loggedin_key = "IS_LOGGED_IN"
     let designationKey_ = "DESIGNATION"
@@ -41,6 +42,8 @@ class CabinetMemoDetailsController: UIViewController {
     let branchMappedkey_ = "BRANCH_MAPPED"
     var pointsconsiderationServer: String = ""
     
+    var buttonName  = ""
+    
     @IBOutlet weak var pointsOfConsideration: UILabel!
     @IBOutlet weak var additionalInformation: UILabel!
     @IBOutlet weak var ministerIncharge: UILabel!
@@ -52,6 +55,21 @@ class CabinetMemoDetailsController: UIViewController {
     @IBOutlet weak var buttonOne: UIStackView!
     @IBOutlet weak var buttonTwo: UIStackView!
     
+    @IBOutlet weak var enterRemarksLabel: UILabel!
+    @IBOutlet weak var enterRemarksTextView: UITextView!
+    
+    @IBOutlet weak var sendBack: UIButton!
+    @IBOutlet weak var forward: UIButton!
+    @IBOutlet weak var otpLabel: UILabel!
+    @IBOutlet weak var otpNumberLabel: UILabel!
+    
+    @IBOutlet weak var enterOtpLabel: UILabel!
+    @IBOutlet weak var enterOtpTextView: UITextView!
+    
+    @IBOutlet weak var cancel: UIButton!
+    @IBOutlet weak var proceed: UIButton!
+    
+    
     var tapGesture = UITapGestureRecognizer()
     var tapGestureAttachments = UITapGestureRecognizer()
     
@@ -61,11 +79,16 @@ class CabinetMemoDetailsController: UIViewController {
         
         dump(cellData)
         dump(memoType)
+        
+        
+        
+        
         // print(UserDefaults.standard.string(forKey: photo_key)!)
         globalRoleId = UserDefaults.standard.string(forKey: userRoleIdKey_)!
         globalUserId = UserDefaults.standard.string(forKey: userIdKey_)!
         globalMappedDepartments = UserDefaults.standard.string(forKey: mapped_departments_id_key)!
         globalBranchedMapped = UserDefaults.standard.string(forKey: branchMappedkey_)!
+        globalPhoneNumber  = UserDefaults.standard.string(forKey: mobileNumberKey_)!
         
         print(globalUserId)
         print(globalRoleId)
@@ -142,6 +165,18 @@ class CabinetMemoDetailsController: UIViewController {
                             self.proposed_Details.attributedText = self.cabinetMemoDetailsObject.ProposalDetails!.convertHtmlToAttributedStringWithCSS(font: UIFont(name: "Poppins", size: 16), csscolor: "#475EAB", lineheight: 3, csstextalign: "left")
                             self.subject.text = self.cabinetMemoDetailsObject.Subject?.base64Decoded!
                             self.secIncharge.text = self.cabinetMemoDetailsObject.SecIncharge!.base64Decoded!
+                            
+                            self.enterRemarksLabel.isHidden = false
+                            self.enterRemarksTextView .isHidden = false
+                            self.sendBack.isHidden = false
+                            self.forward.isHidden = false
+                            self.otpLabel.isHidden = true
+                            self.otpNumberLabel.isHidden = true
+                            self.enterOtpLabel.isHidden = true
+                            self.enterOtpTextView.isHidden = true
+                            self.cancel.isHidden = true
+                            self.proceed.isHidden = true
+                            
                             
                         })
                         
@@ -284,6 +319,19 @@ class CabinetMemoDetailsController: UIViewController {
                             self.subject.text = self.cabinetMemoDetailsObject.Subject?.base64Decoded!
                             self.secIncharge.text = self.cabinetMemoDetailsObject.SecIncharge!.base64Decoded!
                             
+                            
+                            self.enterRemarksLabel.isHidden = true
+                            self.enterRemarksTextView .isHidden = true
+                            self.sendBack.isHidden = true
+                            self.forward.isHidden = true
+                            self.otpLabel.isHidden = true
+                            self.otpNumberLabel.isHidden = true
+                            self.enterOtpLabel.isHidden = true
+                            self.enterOtpTextView.isHidden = true
+                            self.cancel.isHidden = true
+                            self.proceed.isHidden = true
+                            
+                            
                         })
                         
                         
@@ -297,17 +345,230 @@ class CabinetMemoDetailsController: UIViewController {
     }
     
     
+    @IBAction func sendBack(_ sender: Any) {
+        
+        buttonName = "back"
+        if globalRoleId.caseInsensitiveCompare("4") == .orderedSame || globalRoleId.caseInsensitiveCompare("11") == .orderedSame {
+            
+            if !enterRemarksTextView.text.isEmpty {
+                
+                self.enterRemarksLabel.isHidden = false
+                self.enterRemarksTextView .isHidden = false
+                self.sendBack.isHidden = true
+                self.forward.isHidden = true
+                self.otpLabel.isHidden = false
+                self.otpNumberLabel.isHidden = false
+                self.enterOtpLabel.isHidden = false
+                self.enterOtpTextView.isHidden = false
+                self.cancel.isHidden = false
+                self.proceed.isHidden = false
+                
+                
+                
+                
+                
+                otpNumberLabel.text = globalPhoneNumber
+                //Check Internet
+                //Get OTP
+                if otpNumberLabel.text!.count == 10{
+                    print(otpNumberLabel.text!)
+                    
+                    let objectUsers = GetPojo();
+                    objectUsers.url = Constants.url
+                    objectUsers.methord = Constants.methordGetOTP
+                    objectUsers.methordHash = (Constants.methordOTPToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
+                    objectUsers.taskType = TaskType.GET_OTP_VIA_MOBILE
+                    objectUsers.timeStamp = appUtilities.getDate()
+                    
+                    
+                    var params = [String]()
+                    params.append(otpNumberLabel.text!)
+                    params.append(globalUserId)
+                    params.append(globalRoleId)
+                    
+                    objectUsers.parametersList = params
+                    objectUsers.activityIndicator = self.view
+                    
+                    networkUtility.getDataDialog(GetDataPojo: objectUsers) { response in
+                        if let response = response {
+                            print(response.respnse!)
+                            do{
+                                //here dataResponse received from a network request
+                                
+                                let jsonResponse = try  JSONSerialization.jsonObject(with: response.respnse!, options: []) as? [String:AnyObject]
+                                print("kush")
+                                let statusMessage: String = jsonResponse!["StatusMessage"]! as! String
+                                
+                                DispatchQueue.main.async(execute: {
+                                    
+                                    let alertVC = self.alertService.alert(title: "Success?", body: statusMessage.base64Decoded!, buttonTitle: "Confirm")
+                                    { [weak self] in
+                                        //Functionality of Confirm Button Goes Here
+                                    }
+                                    self.present(alertVC, animated: true)
+                                })
+                                
+                                
+                            } catch let parsingError {
+                                print("Error", parsingError)
+                            }
+                        }
+                    }
+                }else{
+                    let alertVC = self.alertService.alert(title: "Error Message", body: "Please contact the department regarding the Phone number.", buttonTitle: "OK")
+                    { [weak self] in
+                    }
+                    self.present(alertVC, animated: true)
+                }
+                
+                
+                
+            }else{
+                DispatchQueue.main.async(execute: {
+                    
+                    self.enterRemarksLabel.isHidden = false
+                    self.enterRemarksTextView .isHidden = false
+                    self.sendBack.isHidden = false
+                    self.forward.isHidden = false
+                    self.otpLabel.isHidden = true
+                    self.otpNumberLabel.isHidden = true
+                    self.enterOtpLabel.isHidden = true
+                    self.enterOtpTextView.isHidden = true
+                    self.cancel.isHidden = true
+                    self.proceed.isHidden = true
+                    let alertVC = self.alertService.alert(title: "Error Message", body: "Please enter remarks ", buttonTitle: "OK")
+                    { [weak self] in
+                        
+                    }
+                    
+                    self.present(alertVC, animated: true)
+                })
+            }
+            
+            
+        }else{
+            
+            if !enterRemarksTextView.text.isEmpty{
+                //Post the Data Directly Kush
+                var postObject =  PostObject ()
+                postObject.userid = globalUserId
+                postObject.cabinetMemoId = cellData?.CabinetMemoID.base64Decoded!
+                postObject.roleid = globalRoleId
+                postObject.deptId = cellData?.Deptid.base64Decoded!
+                postObject.remarks = ""
+                postObject.phone = ""
+                postObject.otp = ""
+                postObject.token = (Constants.methordsendBackCabinetMemoListsToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
+                
+                let jsonEncoder = JSONEncoder()
+              
+                
+                let methodName = Constants.url
+                let url = Constants.methordsendBackCabinetMemoLists
+                var activityIndicator: UIView? =  self.view
+                
+//                networkUtility.postDataDialog(PostObject: jsonString!, URL_: url!, methord: methodName!) { response in
+//                    if let response = response {
+//                        print(response.respnse!)
+//                        do{
+//                            //here dataResponse received from a network request
+//
+//                            //                                                            let jsonResponse = try  JSONSerialization.jsonObject(with: response.respnse!, options: []) as? [String:AnyObject]
+//                            //                                                            print("kush")
+//                            // let statusMessage: String = jsonResponse!["StatusMessage"]! as! String
+//
+//                            //                                                            DispatchQueue.main.async(execute: {
+//                            //
+//                            //                                                                let alertVC = self.alertService.alert(title: "Success?", body: statusMessage.base64Decoded!, buttonTitle: "Confirm")
+//                            //                                                                { [weak self] in
+//                            //                                                                    //Functionality of Confirm Button Goes Here
+//                            //                                                                }
+//                            //                                                                self.present(alertVC, animated: true)
+//                            //                                                            })
+//
+//
+//                        } catch let parsingError {
+//                            print("Error", parsingError)
+//                        }
+                   // }
+               // }
+                
+                
+                
+                
+            }else{
+                let alertVC = self.alertService.alert(title: "Error Message", body: "Please enter remarks ", buttonTitle: "OK")
+                { [weak self] in
+                }
+                self.present(alertVC, animated: true)
+            }
+        }
+    }
+    
+    @IBAction func forwardToNextLevel(_ sender: Any) {
+    }
+    
+    
+    @IBAction func cancel(_ sender: Any) {
+        
+        self.otpLabel.isHidden = true
+        self.otpNumberLabel.isHidden = true
+        self.enterOtpLabel.isHidden = true
+        self.enterOtpTextView.isHidden = true
+        self.cancel.isHidden = true
+        self.proceed.isHidden = true
+        self.enterOtpTextView.text = ""
+        self.sendBack.isHidden = false
+        self.forward.isHidden = false
+    }
+    
+    @IBAction func proceed(_ sender: Any) {
+        
+        if buttonName.caseInsensitiveCompare("back") == .orderedSame{
+            
+            //Post the Data Directly Kush
+            var postObject =  PostObject ()
+            postObject.userid = globalUserId
+            postObject.cabinetMemoId = cellData?.CabinetMemoID.base64Decoded!
+            postObject.roleid = globalRoleId
+            postObject.deptId = cellData?.Deptid.base64Decoded!
+            postObject.remarks = enterRemarksTextView.text!
+            postObject.phone = globalPhoneNumber
+            postObject.otp = enterOtpTextView.text!
+            postObject.token = (Constants.methordsendBackCabinetMemoListsToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
+            
+          
+          
+            let methodName = Constants.methordsendBackCabinetMemoLists
+            let url = Constants.url
+           // var activityIndicator: UIView? =  self.view
+            
+            networkUtility.postDataDialog(PostObject: postObject, URL_: url!, methord: methodName!) { (result, error) in
+            if let result = result {
+                print("success: \(result)")
+            } else if let error = error {
+                print("error: \(error.localizedDescription)")
+            }
+            }
+            
+            
+            
+            
+        }
+    }
+    
+    
     
     @objc func history(_ sender: UITapGestureRecognizer) {
         
         print("Button Clicked History")
         dump(listCabinetMemoTrackingHistoryLists)
         if listCabinetMemoTrackingHistoryLists.count > 0{
-             //  performSegue(withIdentifier: "goToResult", sender: self)
-//              let cabinetHistoryController = CabinetHistoryController.instantiate(from: .CabinetHistory)
-//                      cabinetHistoryController.listToShow = listCabinetMemoTrackingHistoryLists
-//                   UIApplication.setRootView(cabinetHistoryController)
-           
+            //  performSegue(withIdentifier: "goToResult", sender: self)
+            //              let cabinetHistoryController = CabinetHistoryController.instantiate(from: .CabinetHistory)
+            //                      cabinetHistoryController.listToShow = listCabinetMemoTrackingHistoryLists
+            //                   UIApplication.setRootView(cabinetHistoryController)
+            
             let storyBoard : UIStoryboard = UIStoryboard(name: "CabinetHistory", bundle:nil)
             let nextViewController = storyBoard.instantiateViewController(withIdentifier: "CabinetHistoryController") as! CabinetHistoryController
             nextViewController.listToShow = listCabinetMemoTrackingHistoryLists
@@ -326,12 +587,12 @@ class CabinetMemoDetailsController: UIViewController {
         }
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//           if segue.identifier == "goToResult" {
-//               let cabinetHistoryController = segue.destination as! CabinetHistoryController
-//               cabinetHistoryController.listToShow = listCabinetMemoTrackingHistoryLists
-//           }
-//       }
+    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    //           if segue.identifier == "goToResult" {
+    //               let cabinetHistoryController = segue.destination as! CabinetHistoryController
+    //               cabinetHistoryController.listToShow = listCabinetMemoTrackingHistoryLists
+    //           }
+    //       }
     
     //attachments
     
@@ -340,7 +601,10 @@ class CabinetMemoDetailsController: UIViewController {
         print("Button Clicked attachments")
         dump(listAnnuxtures)
         if listAnnuxtures.count > 0{
-            print("We are here")
+            let storyBoard : UIStoryboard = UIStoryboard(name: "MemoAttachments", bundle:nil)
+            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MemoAttachmentsController") as! MemoAttachmentsController
+            nextViewController.listToShow = listAnnuxtures
+            self.present(nextViewController, animated:true, completion:nil)
         }else{
             DispatchQueue.main.async(execute: {
                 
@@ -354,8 +618,8 @@ class CabinetMemoDetailsController: UIViewController {
     
     
     @IBAction func close(_ sender: Any) {
-       // UIApplication.setRootView(CabinetMemosController.instantiate(from: .CabinetMemos), options: UIApplication.logoutAnimation)
-         self.dismiss(animated: true, completion: nil)
+        // UIApplication.setRootView(CabinetMemosController.instantiate(from: .CabinetMemos), options: UIApplication.logoutAnimation)
+        self.dismiss(animated: true, completion: nil)
     }
     
 }
