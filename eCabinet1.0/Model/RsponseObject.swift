@@ -14,6 +14,7 @@ struct ResponseObject{
     var responseCode: Int?;
     var respnse : Data? ;
     var dept_id: String?;
+    var stringData: String?;
     
     
 

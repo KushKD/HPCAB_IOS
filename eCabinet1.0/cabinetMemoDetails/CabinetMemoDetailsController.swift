@@ -461,37 +461,35 @@ class CabinetMemoDetailsController: UIViewController {
                 postObject.token = (Constants.methordsendBackCabinetMemoListsToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
                 
                 let jsonEncoder = JSONEncoder()
-              
+                
                 
                 let methodName = Constants.url
                 let url = Constants.methordsendBackCabinetMemoLists
                 var activityIndicator: UIView? =  self.view
                 
-//                networkUtility.postDataDialog(PostObject: jsonString!, URL_: url!, methord: methodName!) { response in
-//                    if let response = response {
-//                        print(response.respnse!)
-//                        do{
-//                            //here dataResponse received from a network request
-//
-//                            //                                                            let jsonResponse = try  JSONSerialization.jsonObject(with: response.respnse!, options: []) as? [String:AnyObject]
-//                            //                                                            print("kush")
-//                            // let statusMessage: String = jsonResponse!["StatusMessage"]! as! String
-//
-//                            //                                                            DispatchQueue.main.async(execute: {
-//                            //
-//                            //                                                                let alertVC = self.alertService.alert(title: "Success?", body: statusMessage.base64Decoded!, buttonTitle: "Confirm")
-//                            //                                                                { [weak self] in
-//                            //                                                                    //Functionality of Confirm Button Goes Here
-//                            //                                                                }
-//                            //                                                                self.present(alertVC, animated: true)
-//                            //                                                            })
-//
-//
-//                        } catch let parsingError {
-//                            print("Error", parsingError)
-//                        }
-                   // }
-               // }
+                
+                
+                networkUtility.postDataDialog(PostObject: postObject, URL_: url!, methord: methodName!, uiview: activityIndicator!) { response in
+                    if let response = response {
+                        do{
+                            print("success: \(String(describing: response.stringData))")
+                            DispatchQueue.main.async(execute: {
+                                
+                                let alertVC = self.alertService.alert(title: "Success Message", body: (response.stringData?.base64Decoded!)!, buttonTitle: "OK")
+                                { [weak self] in
+                                    //Close the Screen
+                                }
+                                self.present(alertVC, animated: true)
+                            })
+                            
+                            
+                            
+                        } catch let parsingError {
+                            print("Error", parsingError)
+                        }
+                        
+                    }
+                }
                 
                 
                 
@@ -506,8 +504,162 @@ class CabinetMemoDetailsController: UIViewController {
     }
     
     @IBAction func forwardToNextLevel(_ sender: Any) {
+        
+        buttonName = "forward"
+        if globalRoleId.caseInsensitiveCompare("4") == .orderedSame || globalRoleId.caseInsensitiveCompare("11") == .orderedSame {
+            
+            if !enterRemarksTextView.text.isEmpty {
+                
+                self.enterRemarksLabel.isHidden = false
+                self.enterRemarksTextView .isHidden = false
+                self.sendBack.isHidden = true
+                self.forward.isHidden = true
+                self.otpLabel.isHidden = false
+                self.otpNumberLabel.isHidden = false
+                self.enterOtpLabel.isHidden = false
+                self.enterOtpTextView.isHidden = false
+                self.cancel.isHidden = false
+                self.proceed.isHidden = false
+                
+                
+                
+                
+                
+                otpNumberLabel.text = globalPhoneNumber
+                //Check Internet
+                //Get OTP
+                if otpNumberLabel.text!.count == 10{
+                    print(otpNumberLabel.text!)
+                    
+                    let objectUsers = GetPojo();
+                    objectUsers.url = Constants.url
+                    objectUsers.methord = Constants.methordGetOTP
+                    objectUsers.methordHash = (Constants.methordOTPToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
+                    objectUsers.taskType = TaskType.GET_OTP_VIA_MOBILE
+                    objectUsers.timeStamp = appUtilities.getDate()
+                    
+                    
+                    var params = [String]()
+                    params.append(otpNumberLabel.text!)
+                    params.append(globalUserId)
+                    params.append(globalRoleId)
+                    
+                    objectUsers.parametersList = params
+                    objectUsers.activityIndicator = self.view
+                    
+                    networkUtility.getDataDialog(GetDataPojo: objectUsers) { response in
+                        if let response = response {
+                            print(response.respnse!)
+                            do{
+                                //here dataResponse received from a network request
+                                
+                                let jsonResponse = try  JSONSerialization.jsonObject(with: response.respnse!, options: []) as? [String:AnyObject]
+                                print("kush")
+                                let statusMessage: String = jsonResponse!["StatusMessage"]! as! String
+                                
+                                DispatchQueue.main.async(execute: {
+                                    
+                                    let alertVC = self.alertService.alert(title: "Success?", body: statusMessage.base64Decoded!, buttonTitle: "Confirm")
+                                    { [weak self] in
+                                        //Functionality of Confirm Button Goes Here
+                                    }
+                                    self.present(alertVC, animated: true)
+                                })
+                                
+                                
+                            } catch let parsingError {
+                                print("Error", parsingError)
+                            }
+                        }
+                    }
+                }else{
+                    let alertVC = self.alertService.alert(title: "Error Message", body: "Please contact the department regarding the Phone number.", buttonTitle: "OK")
+                    { [weak self] in
+                    }
+                    self.present(alertVC, animated: true)
+                }
+                
+                
+                
+            }else{
+                DispatchQueue.main.async(execute: {
+                    
+                    self.enterRemarksLabel.isHidden = false
+                    self.enterRemarksTextView .isHidden = false
+                    self.sendBack.isHidden = false
+                    self.forward.isHidden = false
+                    self.otpLabel.isHidden = true
+                    self.otpNumberLabel.isHidden = true
+                    self.enterOtpLabel.isHidden = true
+                    self.enterOtpTextView.isHidden = true
+                    self.cancel.isHidden = true
+                    self.proceed.isHidden = true
+                    let alertVC = self.alertService.alert(title: "Error Message", body: "Please enter remarks ", buttonTitle: "OK")
+                    { [weak self] in
+                        
+                    }
+                    
+                    self.present(alertVC, animated: true)
+                })
+            }
+            
+            
+        }else{
+            
+            if !enterRemarksTextView.text.isEmpty{
+                //Post the Data Directly Kush
+                var postObject =  PostObject ()
+                postObject.userid = globalUserId
+                postObject.cabinetMemoId = cellData?.CabinetMemoID.base64Decoded!
+                postObject.roleid = globalRoleId
+                postObject.deptId = cellData?.Deptid.base64Decoded!
+                postObject.remarks = ""
+                postObject.phone = ""
+                postObject.otp = ""
+                postObject.token = (Constants.methordForwardCabinetMemoToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
+                
+                let jsonEncoder = JSONEncoder()
+                
+                
+                let methodName = Constants.url
+                let url = Constants.methordForwardCabinetMemo
+                var activityIndicator: UIView? =  self.view
+                
+                
+                
+                networkUtility.postDataDialog(PostObject: postObject, URL_: url!, methord: methodName!, uiview: activityIndicator!) { response in
+                    if let response = response {
+                        do{
+                            print("success: \(String(describing: response.stringData))")
+                            DispatchQueue.main.async(execute: {
+                                
+                                let alertVC = self.alertService.alert(title: "Success Message", body: (response.stringData?.base64Decoded!)!, buttonTitle: "OK")
+                                { [weak self] in
+                                    //Close the Screen
+                                }
+                                self.present(alertVC, animated: true)
+                            })
+                            
+                            
+                            
+                        } catch let parsingError {
+                            print("Error", parsingError)
+                        }
+                        
+                    }
+                }
+                
+                
+                
+                
+            }else{
+                let alertVC = self.alertService.alert(title: "Error Message", body: "Please enter remarks ", buttonTitle: "OK")
+                { [weak self] in
+                }
+                self.present(alertVC, animated: true)
+            }
+        }
     }
-    
     
     @IBAction func cancel(_ sender: Any) {
         
@@ -537,23 +689,74 @@ class CabinetMemoDetailsController: UIViewController {
             postObject.otp = enterOtpTextView.text!
             postObject.token = (Constants.methordsendBackCabinetMemoListsToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
             
-          
-          
+            
+            
             let methodName = Constants.methordsendBackCabinetMemoLists
             let url = Constants.url
-           // var activityIndicator: UIView? =  self.view
+            let activityIndicator: UIView? =  self.view
             
-            networkUtility.postDataDialog(PostObject: postObject, URL_: url!, methord: methodName!) { (result, error) in
-            if let result = result {
-                print("success: \(result)")
-            } else if let error = error {
-                print("error: \(error.localizedDescription)")
+            networkUtility.postDataDialog(PostObject: postObject, URL_: url!, methord: methodName!, uiview: activityIndicator!) { response in
+                if let response = response {
+                    do{
+                        print("success: \(String(describing: response.stringData))")
+                        DispatchQueue.main.async(execute: {
+                            
+                            let alertVC = self.alertService.alert(title: "Success Message", body: (response.stringData?.base64Decoded!)!, buttonTitle: "OK")
+                            { [weak self] in
+                                //Close the Screen
+                            }
+                            self.present(alertVC, animated: true)
+                        })
+                        
+                        
+                        
+                    } catch let parsingError {
+                        print("Error", parsingError)
+                    }
+                    
+                }
             }
+            
+            
+            
+            
+        }else{
+            //Post the Data Directly Kush
+            var postObject =  PostObject ()
+            postObject.userid = globalUserId
+            postObject.cabinetMemoId = cellData?.CabinetMemoID.base64Decoded!
+            postObject.roleid = globalRoleId
+            postObject.deptId = cellData?.Deptid.base64Decoded!
+            postObject.remarks = enterRemarksTextView.text!
+            postObject.phone = globalPhoneNumber
+            postObject.otp = enterOtpTextView.text!
+            postObject.token = (Constants.methordForwardCabinetMemoToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
+            
+            
+            
+            let methodName = Constants.methordForwardCabinetMemo
+            let url = Constants.url
+            let activityIndicator: UIView? =  self.view
+            
+            networkUtility.postDataDialog(PostObject: postObject, URL_: url!, methord: methodName!, uiview: activityIndicator!) { response in
+                if let response = response {
+                    do{
+                        print("success: \(String(describing: response.stringData))")
+                        DispatchQueue.main.async(execute: {
+                            
+                            let alertVC = self.alertService.alert(title: "Success Message", body: (response.stringData?.base64Decoded!)!, buttonTitle: "OK")
+                            { [weak self] in
+                                //Close the Screen
+                            }
+                            self.present(alertVC, animated: true)
+                        })
+                        
+                    } catch let parsingError {
+                        print("Error", parsingError)
+                    }
+                    
+                }
             }
-            
-            
-            
-            
         }
     }
     
@@ -564,11 +767,7 @@ class CabinetMemoDetailsController: UIViewController {
         print("Button Clicked History")
         dump(listCabinetMemoTrackingHistoryLists)
         if listCabinetMemoTrackingHistoryLists.count > 0{
-            //  performSegue(withIdentifier: "goToResult", sender: self)
-            //              let cabinetHistoryController = CabinetHistoryController.instantiate(from: .CabinetHistory)
-            //                      cabinetHistoryController.listToShow = listCabinetMemoTrackingHistoryLists
-            //                   UIApplication.setRootView(cabinetHistoryController)
-            
+          
             let storyBoard : UIStoryboard = UIStoryboard(name: "CabinetHistory", bundle:nil)
             let nextViewController = storyBoard.instantiateViewController(withIdentifier: "CabinetHistoryController") as! CabinetHistoryController
             nextViewController.listToShow = listCabinetMemoTrackingHistoryLists
@@ -576,9 +775,8 @@ class CabinetMemoDetailsController: UIViewController {
             
             
         }else{
-            //Show Dialog
+           
             DispatchQueue.main.async(execute: {
-                
                 let alertVC = self.alertService.alert(title: "Success Message", body: "No Comments Found ", buttonTitle: "OK")
                 { [weak self] in
                 }
@@ -587,14 +785,6 @@ class CabinetMemoDetailsController: UIViewController {
         }
     }
     
-    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    //           if segue.identifier == "goToResult" {
-    //               let cabinetHistoryController = segue.destination as! CabinetHistoryController
-    //               cabinetHistoryController.listToShow = listCabinetMemoTrackingHistoryLists
-    //           }
-    //       }
-    
-    //attachments
     
     @objc func attachments(_ sender: UITapGestureRecognizer) {
         
@@ -618,7 +808,6 @@ class CabinetMemoDetailsController: UIViewController {
     
     
     @IBAction func close(_ sender: Any) {
-        // UIApplication.setRootView(CabinetMemosController.instantiate(from: .CabinetMemos), options: UIApplication.logoutAnimation)
         self.dismiss(animated: true, completion: nil)
     }
     
