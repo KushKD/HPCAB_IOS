@@ -77,19 +77,9 @@
             // print(UserDefaults.standard.string(forKey: photo_key)!)
             globalRoleID = UserDefaults.standard.string(forKey: userRoleIdKey_)!
             globalUserID = UserDefaults.standard.string(forKey: userIdKey_)!
-            //        globalPhoto = UserDefaults.standard.string(forKey: photo_key)!
-            
-            // let url = URL(string: globalPhoto)
-            // imageView.kf.setImage(with: url)
             
             name.text = UserDefaults.standard.string(forKey: nameKey_)!
             designation.text = UserDefaults.standard.string(forKey: designationKey_)!
-            
-            // department.text = UserDefaults.standard.string(forKey: mapped_departments_id_key)!
-            // department.isHidden = true
-            
-            
-            
             let objectMenu = GetPojo();
             objectMenu.url = Constants.url
             objectMenu.methord = Constants.methordMenuList
@@ -101,6 +91,12 @@
             
             objectMenu.parametersList = params2
             objectMenu.activityIndicator = self.view
+            
+            if Reachability.isConnectedToNetwork(){
+                print("Internet Connection Available!")
+            }else{
+                print("Internet Connection not Available!")
+            }
             
             networkUtility.getDataDialog(GetDataPojo: objectMenu) { response in
                 if let response = response {

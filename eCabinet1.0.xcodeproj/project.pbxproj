@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD1C50FA251C8CD300B0FA78 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1C50F9251C8CD300B0FA78 /* Reachability.swift */; };
 		BD2BD0AB250F850000C6798C /* CabinetMemosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2BD0AA250F850000C6798C /* CabinetMemosController.swift */; };
 		BD41D2FE25189B9B007B4EE6 /* CabinetMemoDetailsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD41D2FD25189B9B007B4EE6 /* CabinetMemoDetailsObject.swift */; };
 		BD41D3002518B58B007B4EE6 /* String+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD41D2FF2518B58B007B4EE6 /* String+HTML.swift */; };
@@ -92,6 +93,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BD1C50F9251C8CD300B0FA78 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		BD2BD0AA250F850000C6798C /* CabinetMemosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinetMemosController.swift; sourceTree = "<group>"; };
 		BD41D2FD25189B9B007B4EE6 /* CabinetMemoDetailsObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinetMemoDetailsObject.swift; sourceTree = "<group>"; };
 		BD41D2FF2518B58B007B4EE6 /* String+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+HTML.swift"; sourceTree = "<group>"; };
@@ -365,6 +367,7 @@
 			isa = PBXGroup;
 			children = (
 				BD671FE6250B8E5C002A9639 /* NetworkUtility.swift */,
+				BD1C50F9251C8CD300B0FA78 /* Reachability.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -586,6 +589,7 @@
 				BD671FE3250B8E30002A9639 /* RsponseObject.swift in Sources */,
 				BD671FDE250B8E30002A9639 /* GetPojo.swift in Sources */,
 				BD59B311250E2BE300A304E8 /* UIView+Bordor.swift in Sources */,
+				BD1C50FA251C8CD300B0FA78 /* Reachability.swift in Sources */,
 				BD671FE0250B8E30002A9639 /* StatusMessage.swift in Sources */,
 				BD671FB4250B8A55002A9639 /* UIApplication.swift in Sources */,
 				BD671FDD250B8E30002A9639 /* Departments.swift in Sources */,
