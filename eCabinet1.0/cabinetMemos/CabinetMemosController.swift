@@ -67,12 +67,15 @@
             print(globalRoleId)
             print(globalMappedDepartments)
             
-            if param.caseInsensitiveCompare("Backwarded") == .orderedSame{
+            if param.caseInsensitiveCompare("Backwarded") == .orderedSame {
                 headingView.text = "Sent Back Memos"
                    }else  if param.caseInsensitiveCompare("Forwarded") == .orderedSame{
                        headingView.text = "Forwarded Cabinet Memos"
                    }else  if param.caseInsensitiveCompare("Current") == .orderedSame{
                       headingView.text = "Current Memos"
+                     
+                   }else  if param.caseInsensitiveCompare("PlacedInCabinet") == .orderedSame{
+                      headingView.text = "Memos Placed In Cabinet"
                      
                    }
             
@@ -203,7 +206,68 @@
                 }
                 
                 
-            }
+            }  //PlacedInCabinet
+                else if param.caseInsensitiveCompare("PlacedInCabinet") == .orderedSame {
+                    
+                    //Check Internet Pending
+                    let objectMenu = GetPojo();
+                    objectMenu.url = Constants.url
+                    objectMenu.methord = Constants.PlaceinCabinetagendalists
+                    objectMenu.methordHash = (Constants.PlaceinCabinetagendalistsToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
+                    objectMenu.taskType = TaskType.GET_PENDING_MEMO_LIST_CABINET
+                    objectMenu.timeStamp = appUtilities.getDate()
+                    var params2 = [String]()
+                    params2.append(dept_id)
+                    params2.append(globalUserId)
+                    params2.append(globalRoleId)
+                    params2.append(globalMappedDepartments)
+                    
+                    objectMenu.parametersList = params2
+                    objectMenu.activityIndicator = self.view
+                    
+                    networkUtility.getDataDialog(GetDataPojo: objectMenu) { response in
+                        if let response = response {
+                            print(response.respnse!)
+                            do{
+                                let jsonResponse = try JSONSerialization.jsonObject(with: response.respnse!, options: [])
+                                guard let jsonArray = jsonResponse as? [[String: Any]] else {
+                                    return
+                                }
+                                
+                                do {
+                                    var model = [CabinetMemo]()
+                                    for dic in jsonArray{
+                                        model.append(CabinetMemo(dic))
+                                    }
+                                    
+                                    if model[0].StatusMessage.base64Decoded!.caseInsensitiveCompare("No Record Found") == .orderedSame{
+                                        DispatchQueue.main.async(execute: {
+                                            
+                                            let alertVC = self.alertService.alert(title: "Success Message", body: "No Record Found", buttonTitle: "OK")
+                                            { [weak self] in
+                                                //Go to the Next Story Board
+                                                UIApplication.setRootView(MainViewController.instantiate(from:.Main))
+                                            }
+                                            self.present(alertVC, animated: true)
+                                        })
+                                    }else{
+                                        self.cabinetMemos = model;
+                                        dump(self.cabinetMemos)
+                                        DispatchQueue.main.async {
+                                            self.tableView.reloadData()
+                                        }
+                                    }
+                                    
+                                    
+                                }
+                            } catch let parsingError {
+                                print("Error", parsingError)
+                            }
+                        }
+                    }
+                    
+                    
+                }
                 
             else if param.caseInsensitiveCompare("allowedCabinetMemos") == .orderedSame {
                 

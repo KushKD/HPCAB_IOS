@@ -346,7 +346,6 @@
                 let cabinetViewController = CabinetMemosController.instantiate(from: .CabinetMemos)
                 cabinetViewController.dept_id = deptIDPickerView
                 cabinetViewController.param = "allowedCabinetMemos"
-                
                 UIApplication.setRootView(cabinetViewController)
                 
             }else if menu[indexPath.row].Menuid.base64Decoded!.caseInsensitiveCompare("7") == .orderedSame{
@@ -354,6 +353,14 @@
                 let cabinetViewController = CabinetMemosController.instantiate(from: .CabinetMemos)
                 cabinetViewController.dept_id = deptIDPickerView
                 cabinetViewController.param = "FinalAgendaList"
+                
+                UIApplication.setRootView(cabinetViewController)
+                
+            }else if menu[indexPath.row].Menuid.base64Decoded!.caseInsensitiveCompare("8") == .orderedSame{
+                
+                let cabinetViewController = CabinetMemosController.instantiate(from: .CabinetMemos)
+                cabinetViewController.dept_id = deptIDPickerView
+                cabinetViewController.param = "PlacedInCabinet"
                 
                 UIApplication.setRootView(cabinetViewController)
                 

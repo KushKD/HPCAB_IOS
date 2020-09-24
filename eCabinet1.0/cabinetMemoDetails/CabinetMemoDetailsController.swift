@@ -478,7 +478,7 @@ class CabinetMemoDetailsController: UIViewController {
                                              let alertVC = self.alertService.alert(title: "Success Message", body: response.stringData! , buttonTitle: "OK")
                                              { [weak self] in
                                                  //Close the Screen
-                                                  if response.stringData!.caseInsensitiveCompare("OK") == .orderedSame{
+                                                  if response.stringData!.caseInsensitiveCompare("\"OK\"") == .orderedSame{
                                                                                                  UIApplication.setRootView(MainViewController.instantiate(from:.Main))
                                                                                             }else{
                                                                                                 //Do Nothing
@@ -661,7 +661,7 @@ class CabinetMemoDetailsController: UIViewController {
                                               let alertVC = self.alertService.alert(title: "Success Message", body: response.stringData! , buttonTitle: "OK")
                                               { [weak self] in
                                                   //Close the Screen
-                                                   if response.stringData!.caseInsensitiveCompare("OK") == .orderedSame{
+                                                   if response.stringData!.caseInsensitiveCompare("\"OK\"") == .orderedSame{
                                                                                                   UIApplication.setRootView(MainViewController.instantiate(from:.Main))
                                                                                              }else{
                                                                                                  //Do Nothing
@@ -755,7 +755,7 @@ class CabinetMemoDetailsController: UIViewController {
                                 let alertVC = self.alertService.alert(title: "Success Message", body: response.stringData! , buttonTitle: "OK")
                                 { [weak self] in
                                     //Close the Screen
-                                     if response.stringData!.caseInsensitiveCompare("OK") == .orderedSame{
+                                     if response.stringData!.caseInsensitiveCompare("\"OK\"") == .orderedSame{
                                                                                     UIApplication.setRootView(MainViewController.instantiate(from:.Main))
                                                                                }else{
                                                                                    //Do Nothing
@@ -826,7 +826,7 @@ class CabinetMemoDetailsController: UIViewController {
                                            let alertVC = self.alertService.alert(title: "Success Message", body: response.stringData! , buttonTitle: "OK")
                                            { [weak self] in
                                                //Close the Screen
-                                            if response.stringData!.caseInsensitiveCompare("OK") == .orderedSame{
+                                            if response.stringData!.caseInsensitiveCompare("\"OK\"") == .orderedSame{
                                                  UIApplication.setRootView(MainViewController.instantiate(from:.Main))
                                             }else{
                                                 //Do Nothing

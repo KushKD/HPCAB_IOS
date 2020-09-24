@@ -75,6 +75,12 @@ struct Constants{
     static let  methordAllowedCabinetMemo:String? = "AllowedCabinetMemo";
     static let  methordAllowedCabinetMemoToken:String? = "ghsssaccaa314e7421e7e12f5cf0sseeddd";
     
+   // METHOD SIGNATURE: PlaceinCabinetagendalists/{Token}/{DeptID}/{UserID}/{RoleID}/{LoginDeptID}
+   // TOKEN: ssdaccaa314e7421e7e12f5cf7171081a0ss
+    
+    static let PlaceinCabinetagendalists: String? = "PlaceinCabinetagendalists"
+    static let PlaceinCabinetagendalistsToken: String? = "ssdaccaa314e7421e7e12f5cf7171081a0ss"
+    
     static let   success:String? = "SUCCESS";
     static let   failure:String? = "FAILURE";
     
