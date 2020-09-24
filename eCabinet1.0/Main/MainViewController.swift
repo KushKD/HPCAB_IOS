@@ -5,10 +5,10 @@
     //  Created by Oğulcan on 11/05/2018.
     //  Copyright © 2018 ogulcan. All rights reserved.
     //
-
+    
     import UIKit
     import Kingfisher
-
+    
     class MainViewController: UIViewController {
         var appUtilities = UtilitiesApp();
         var networkUtility = NetworkUtility()
@@ -19,7 +19,7 @@
         @IBOutlet weak var collectionView: UICollectionView!
         @IBOutlet weak var name: UILabel!
         @IBOutlet weak var designation: UILabel!
-         let alertService = AlertService();
+        let alertService = AlertService();
         
         var pickerViewDepartments = UIPickerView()
         var globalRoleID: String = ""
@@ -190,9 +190,9 @@
         
         
     }
-
-
-
+    
+    
+    
     extension MainViewController: UIPickerViewDelegate,UIPickerViewDataSource {
         func numberOfComponents(in pickerView: UIPickerView) -> Int {
             return 1
@@ -229,7 +229,7 @@
         
         
     }
-
+    
     extension MainViewController: UICollectionViewDelegateFlowLayout{
         
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -253,8 +253,8 @@
         }
         
     }
-
-
+    
+    
     extension MainViewController : UICollectionViewDataSource{
         
         func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -283,7 +283,7 @@
         
         
     }
-
+    
     extension MainViewController :UICollectionViewDelegate{
         func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
             collectionView.deselectItem(at: indexPath, animated: true)
@@ -301,78 +301,78 @@
                 UIApplication.setRootView(LoginViewController.instantiate(from: .Login), options: UIApplication.logoutAnimation)
                 
             }else if menu[indexPath.row].Menuid.base64Decoded!.caseInsensitiveCompare("1") == .orderedSame{
-
+                
                 
                 let cabinetViewController = CabinetMemosController.instantiate(from: .CabinetMemos)
                 cabinetViewController.dept_id = deptIDPickerView
                 cabinetViewController.param = "Current"
-              
+                
                 UIApplication.setRootView(cabinetViewController)
-              
+                
             }else if menu[indexPath.row].Menuid.base64Decoded!.caseInsensitiveCompare("2") == .orderedSame{
-              
+                
                 let cabinetViewController = CabinetMemosController.instantiate(from: .CabinetMemos)
-                           cabinetViewController.dept_id = deptIDPickerView
-                           cabinetViewController.param = "Forwarded"
-                         
-                           UIApplication.setRootView(cabinetViewController)
-
+                cabinetViewController.dept_id = deptIDPickerView
+                cabinetViewController.param = "Forwarded"
+                
+                UIApplication.setRootView(cabinetViewController)
+                
             }else if menu[indexPath.row].Menuid.base64Decoded!.caseInsensitiveCompare("3") == .orderedSame{
-              
+                
                 let cabinetViewController = CabinetMemosController.instantiate(from: .CabinetMemos)
-                           cabinetViewController.dept_id = deptIDPickerView
-                           cabinetViewController.param = "Backwarded"
-                         
-                           UIApplication.setRootView(cabinetViewController)
-
+                cabinetViewController.dept_id = deptIDPickerView
+                cabinetViewController.param = "Backwarded"
+                
+                UIApplication.setRootView(cabinetViewController)
+                
             }else if menu[indexPath.row].Menuid.base64Decoded!.caseInsensitiveCompare("5") == .orderedSame{
-              
+                
                 DispatchQueue.main.async(execute: {
-                                                       
-                                                       let alertVC = self.alertService.alert(title: "Success Message", body: "Under Process ", buttonTitle: "OK")
-                                                       { [weak self] in
-                                                           //Go to the Next Story Board
-                                                         //  UIApplication.setRootView(MainViewController.instantiate(from:.Main))
-                                                       }
-                                                       self.present(alertVC, animated: true)
-                                                   })
-
-            }else if menu[indexPath.row].Menuid.base64Decoded!.caseInsensitiveCompare("4") == .orderedSame{
-              
-                let cabinetViewController = CabinetMemosController.instantiate(from: .CabinetMemos)
-                           cabinetViewController.dept_id = deptIDPickerView
-                           cabinetViewController.param = "getAgenda"
-                         
-                           UIApplication.setRootView(cabinetViewController)
-
-            }else if menu[indexPath.row].Menuid.base64Decoded!.caseInsensitiveCompare("6") == .orderedSame{
-              
-                let cabinetViewController = CabinetMemosController.instantiate(from: .CabinetMemos)
-                           cabinetViewController.dept_id = deptIDPickerView
-                           cabinetViewController.param = "allowedCabinetMemos"
-                         
-                           UIApplication.setRootView(cabinetViewController)
-
-            }else if menu[indexPath.row].Menuid.base64Decoded!.caseInsensitiveCompare("7") == .orderedSame{
-              
-                let cabinetViewController = CabinetMemosController.instantiate(from: .CabinetMemos)
-                           cabinetViewController.dept_id = deptIDPickerView
-                           cabinetViewController.param = "FinalAgendaList"
-                         
-                           UIApplication.setRootView(cabinetViewController)
-
-            }
-           
-           
-           
-         
-                
                     
-                  
+                    let alertVC = self.alertService.alert(title: "Success Message", body: "Under Process ", buttonTitle: "OK")
+                    { [weak self] in
+                        //Go to the Next Story Board
+                        //  UIApplication.setRootView(MainViewController.instantiate(from:.Main))
+                    }
+                    self.present(alertVC, animated: true)
+                })
                 
+            }else if menu[indexPath.row].Menuid.base64Decoded!.caseInsensitiveCompare("4") == .orderedSame{
                 
+                //                let cabinetViewController = CabinetMemosController.instantiate(from: .CabinetMemos)
+                //                           cabinetViewController.dept_id = deptIDPickerView
+                //                           cabinetViewController.param = "getAgenda"
+                //
+                //                           UIApplication.setRootView(cabinetViewController)
                 
+            }else if menu[indexPath.row].Menuid.base64Decoded!.caseInsensitiveCompare("6") == .orderedSame{
+                
+                let cabinetViewController = CabinetMemosController.instantiate(from: .CabinetMemos)
+                cabinetViewController.dept_id = deptIDPickerView
+                cabinetViewController.param = "allowedCabinetMemos"
+                
+                UIApplication.setRootView(cabinetViewController)
+                
+            }else if menu[indexPath.row].Menuid.base64Decoded!.caseInsensitiveCompare("7") == .orderedSame{
+                
+                let cabinetViewController = CabinetMemosController.instantiate(from: .CabinetMemos)
+                cabinetViewController.dept_id = deptIDPickerView
+                cabinetViewController.param = "FinalAgendaList"
+                
+                UIApplication.setRootView(cabinetViewController)
+                
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             
         }
     }
-
+    

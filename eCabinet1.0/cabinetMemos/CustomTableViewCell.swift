@@ -1,8 +1,8 @@
 import UIKit
 
 class CustomTableViewCell: UITableViewCell {
-
-   
+    
+    
     @IBOutlet weak var memoImage: UIImageView!
     
     @IBOutlet weak var contentTwo: UILabel!
@@ -11,20 +11,33 @@ class CustomTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-
+        
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
-    func commonInit(_ one: CabinetMemo){
-        print("Inside Table Cell")
+    func commonInit(_ one: CabinetMemo, _ two: String){
+       
+          
+        if two.caseInsensitiveCompare("Backwarded") == .orderedSame{
+            memoImage?.image = UIImage(named:"sent_back_memos")!
+           // memoImage!.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
+        }else  if two.caseInsensitiveCompare("Forwarded") == .orderedSame{
+            memoImage?.image = UIImage(named:"forward_memos")!
+           // memoImage!.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
+        }else  if two.caseInsensitiveCompare("Current") == .orderedSame{
+            memoImage?.image = UIImage(named:"cabinet_memos")!
+           // memoImage!.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
+        }
+        
         contentOne.text = one.Subject.base64Decoded!
         contentOne.contentMode = .scaleToFill
         contentOne.numberOfLines = 5
         contentOne.lineBreakMode = .byWordWrapping
         contentTwo.text = "Agenda Number:- \(one.AgendaItemType.base64Decoded!)"
+        contentTwo.isHidden = true
         contentThree.text = one.DeptName.base64Decoded!
         contentThree.isHidden = true
     }

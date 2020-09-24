@@ -19,6 +19,7 @@
          FinalAgendaList
          */
         
+        @IBOutlet weak var headingView: UILabel!
         @IBOutlet weak var heading: UILabel!
         @IBOutlet weak var back: UIButton!
                @IBOutlet weak var tableView: UITableView!
@@ -65,6 +66,15 @@
             print(globalUserId)
             print(globalRoleId)
             print(globalMappedDepartments)
+            
+            if param.caseInsensitiveCompare("Backwarded") == .orderedSame{
+                headingView.text = "Sent Back Memos"
+                   }else  if param.caseInsensitiveCompare("Forwarded") == .orderedSame{
+                       headingView.text = "Forwarded Cabinet Memos"
+                   }else  if param.caseInsensitiveCompare("Current") == .orderedSame{
+                      headingView.text = "Current Memos"
+                     
+                   }
             
             
             tableView.delegate = self
@@ -336,7 +346,8 @@
         
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: "tableCellMemos", for: indexPath) as? CustomTableViewCell
-            cell?.commonInit(cabinetMemos[indexPath.row])
+            print(param)
+            cell?.commonInit(cabinetMemos[indexPath.row], param)
             return cell!
         }
         

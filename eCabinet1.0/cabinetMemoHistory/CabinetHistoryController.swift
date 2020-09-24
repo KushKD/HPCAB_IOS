@@ -52,16 +52,27 @@ extension CabinetHistoryController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(listToShow[indexPath.row])
-        //Show Alert
-        DispatchQueue.main.async(execute: {
-            
-            let alertVC = self.alertService.alert(title: " Message", body:  self.listToShow[indexPath.row].Remarks.base64Decoded!, buttonTitle: "OK")
-            { [weak self] in
-                //Go to the Next Story Board
-                //  UIApplication.setRootView(MainViewController.instantiate(from:.Main))
-            }
-            self.present(alertVC, animated: true)
-        })
+        if listToShow[indexPath.row].Remarks.isEmpty{
+            DispatchQueue.main.async(execute: {
+                       
+                       let alertVC = self.alertService.alert(title: " Message", body:  "Remarks Not Added ", buttonTitle: "OK")
+                       { [weak self] in
+                           //Go to the Next Story Board
+                           //  UIApplication.setRootView(MainViewController.instantiate(from:.Main))
+                       }
+                       self.present(alertVC, animated: true)
+                   })
+        }else{
+            DispatchQueue.main.async(execute: {
+                       
+                       let alertVC = self.alertService.alert(title: " Message", body:  self.listToShow[indexPath.row].Remarks.base64Decoded!, buttonTitle: "OK")
+                       { [weak self] in
+                           //Go to the Next Story Board
+                           //  UIApplication.setRootView(MainViewController.instantiate(from:.Main))
+                       }
+                       self.present(alertVC, animated: true)
+                   })
+        }
         
     }
     
