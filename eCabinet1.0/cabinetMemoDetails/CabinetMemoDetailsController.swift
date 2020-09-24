@@ -460,37 +460,63 @@ class CabinetMemoDetailsController: UIViewController {
                 postObject.otp = ""
                 postObject.token = (Constants.methordsendBackCabinetMemoListsToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
                 
-                let jsonEncoder = JSONEncoder()
-                
-                
+               
                 let methodName = Constants.url
                 let url = Constants.methordsendBackCabinetMemoLists
                 var activityIndicator: UIView? =  self.view
                 
                 
                 
-                networkUtility.postDataDialog(PostObject: postObject, URL_: url!, methord: methodName!, uiview: activityIndicator!) { response in
-                    if let response = response {
-                        do{
-                            print("success: \(String(describing: response.stringData))")
-                            DispatchQueue.main.async(execute: {
-                                
-                                let alertVC = self.alertService.alert(title: "Success Message", body: (response.stringData?.base64Decoded!)!, buttonTitle: "OK")
-                                { [weak self] in
-                                    //Close the Screen
-                                }
-                                self.present(alertVC, animated: true)
-                            })
-                            
-                            
-                            
-                        } catch let parsingError {
-                            print("Error", parsingError)
-                        }
-                        
-                    }
-                }
-                
+               networkUtility.postDataDialog(PostObject: postObject, URL_: url!, methord: methodName!, uiview: activityIndicator!) { response in
+                             if let response = response {
+                                 print(response.responseCode)
+                                 if response.responseCode == 200{
+                                     do{
+                                         // print("success: \(String(describing: response.stringData))")
+                                         DispatchQueue.main.async(execute: {
+                                             
+                                             let alertVC = self.alertService.alert(title: "Success Message", body: response.stringData! , buttonTitle: "OK")
+                                             { [weak self] in
+                                                 //Close the Screen
+                                                  if response.stringData!.caseInsensitiveCompare("OK") == .orderedSame{
+                                                                                                 UIApplication.setRootView(MainViewController.instantiate(from:.Main))
+                                                                                            }else{
+                                                                                                //Do Nothing
+                                                                                            }
+                                             }
+                                             self.present(alertVC, animated: true)
+                                         })
+                                         
+                                         
+                                         
+                                     } catch let parsingError {
+                                         print("Error", parsingError)
+                                     }
+                                 }else{
+                                     // print("success: \(String(describing: response.stringData))")
+                                     do{
+                                         DispatchQueue.main.async(execute: {
+                                             
+                                             let alertVC = self.alertService.alert(title: "Message Faliure", body: response.stringData! , buttonTitle: "OK")
+                                             { [weak self] in
+                                                 //Close the Screen
+                                                 
+                                             }
+                                             self.present(alertVC, animated: true)
+                                         })
+                                         
+                                         
+                                         
+                                     } catch let parsingError {
+                                         print("Error", parsingError)
+                                     }
+                                 }
+                                 
+                                 
+                                 
+                             }
+                         }
+                         
                 
                 
                 
@@ -618,38 +644,62 @@ class CabinetMemoDetailsController: UIViewController {
                 postObject.otp = ""
                 postObject.token = (Constants.methordForwardCabinetMemoToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
                 
-                let jsonEncoder = JSONEncoder()
-                
+               
                 
                 let methodName = Constants.url
                 let url = Constants.methordForwardCabinetMemo
                 var activityIndicator: UIView? =  self.view
                 
-                
-                
                 networkUtility.postDataDialog(PostObject: postObject, URL_: url!, methord: methodName!, uiview: activityIndicator!) { response in
-                    if let response = response {
-                        do{
-                            print("success: \(String(describing: response.stringData))")
-                            DispatchQueue.main.async(execute: {
-                                
-                                let alertVC = self.alertService.alert(title: "Success Message", body: (response.stringData?.base64Decoded!)!, buttonTitle: "OK")
-                                { [weak self] in
-                                    //Close the Screen
-                                }
-                                self.present(alertVC, animated: true)
-                            })
-                            
-                            
-                            
-                        } catch let parsingError {
-                            print("Error", parsingError)
-                        }
-                        
-                    }
-                }
-                
-                
+                              if let response = response {
+                                  print(response.responseCode)
+                                  if response.responseCode == 200{
+                                      do{
+                                          // print("success: \(String(describing: response.stringData))")
+                                          DispatchQueue.main.async(execute: {
+                                              
+                                              let alertVC = self.alertService.alert(title: "Success Message", body: response.stringData! , buttonTitle: "OK")
+                                              { [weak self] in
+                                                  //Close the Screen
+                                                   if response.stringData!.caseInsensitiveCompare("OK") == .orderedSame{
+                                                                                                  UIApplication.setRootView(MainViewController.instantiate(from:.Main))
+                                                                                             }else{
+                                                                                                 //Do Nothing
+                                                                                             }
+                                              }
+                                              self.present(alertVC, animated: true)
+                                          })
+                                          
+                                          
+                                          
+                                      } catch let parsingError {
+                                          print("Error", parsingError)
+                                      }
+                                  }else{
+                                      // print("success: \(String(describing: response.stringData))")
+                                      do{
+                                          DispatchQueue.main.async(execute: {
+                                              
+                                              let alertVC = self.alertService.alert(title: "Message Faliure", body: response.stringData! , buttonTitle: "OK")
+                                              { [weak self] in
+                                                  //Close the Screen
+                                                  
+                                              }
+                                              self.present(alertVC, animated: true)
+                                          })
+                                          
+                                          
+                                          
+                                      } catch let parsingError {
+                                          print("Error", parsingError)
+                                      }
+                                  }
+                                  
+                                  
+                                  
+                              }
+                          }
+                          
                 
                 
             }else{
@@ -688,31 +738,58 @@ class CabinetMemoDetailsController: UIViewController {
             postObject.phone = globalPhoneNumber
             postObject.otp = enterOtpTextView.text!
             postObject.token = (Constants.methordsendBackCabinetMemoListsToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
-            
-            
-            
             let methodName = Constants.methordsendBackCabinetMemoLists
             let url = Constants.url
             let activityIndicator: UIView? =  self.view
             
+            
+            
             networkUtility.postDataDialog(PostObject: postObject, URL_: url!, methord: methodName!, uiview: activityIndicator!) { response in
                 if let response = response {
-                    do{
-                        print("success: \(String(describing: response.stringData))")
-                        DispatchQueue.main.async(execute: {
+                    print(response.responseCode)
+                    if response.responseCode == 200{
+                        do{
+                            // print("success: \(String(describing: response.stringData))")
+                            DispatchQueue.main.async(execute: {
+                                
+                                let alertVC = self.alertService.alert(title: "Success Message", body: response.stringData! , buttonTitle: "OK")
+                                { [weak self] in
+                                    //Close the Screen
+                                     if response.stringData!.caseInsensitiveCompare("OK") == .orderedSame{
+                                                                                    UIApplication.setRootView(MainViewController.instantiate(from:.Main))
+                                                                               }else{
+                                                                                   //Do Nothing
+                                                                               }
+                                }
+                                self.present(alertVC, animated: true)
+                            })
                             
-                            let alertVC = self.alertService.alert(title: "Success Message", body: (response.stringData?.base64Decoded!)!, buttonTitle: "OK")
-                            { [weak self] in
-                                //Close the Screen
-                            }
-                            self.present(alertVC, animated: true)
-                        })
-                        
-                        
-                        
-                    } catch let parsingError {
-                        print("Error", parsingError)
+                            
+                            
+                        } catch let parsingError {
+                            print("Error", parsingError)
+                        }
+                    }else{
+                        // print("success: \(String(describing: response.stringData))")
+                        do{
+                            DispatchQueue.main.async(execute: {
+                                
+                                let alertVC = self.alertService.alert(title: "Message Faliure", body: response.stringData! , buttonTitle: "OK")
+                                { [weak self] in
+                                    //Close the Screen
+                                    
+                                }
+                                self.present(alertVC, animated: true)
+                            })
+                            
+                            
+                            
+                        } catch let parsingError {
+                            print("Error", parsingError)
+                        }
                     }
+                    
+                    
                     
                 }
             }
@@ -739,24 +816,55 @@ class CabinetMemoDetailsController: UIViewController {
             let activityIndicator: UIView? =  self.view
             
             networkUtility.postDataDialog(PostObject: postObject, URL_: url!, methord: methodName!, uiview: activityIndicator!) { response in
-                if let response = response {
-                    do{
-                        print("success: \(String(describing: response.stringData))")
-                        DispatchQueue.main.async(execute: {
-                            
-                            let alertVC = self.alertService.alert(title: "Success Message", body: (response.stringData?.base64Decoded!)!, buttonTitle: "OK")
-                            { [weak self] in
-                                //Close the Screen
-                            }
-                            self.present(alertVC, animated: true)
-                        })
-                        
-                    } catch let parsingError {
-                        print("Error", parsingError)
-                    }
-                    
-                }
-            }
+                           if let response = response {
+                            print(response.stringData)
+                               if response.responseCode == 200{
+                                   do{
+                                       // print("success: \(String(describing: response.stringData))")
+                                       DispatchQueue.main.async(execute: {
+                                           
+                                           let alertVC = self.alertService.alert(title: "Success Message", body: response.stringData! , buttonTitle: "OK")
+                                           { [weak self] in
+                                               //Close the Screen
+                                            if response.stringData!.caseInsensitiveCompare("OK") == .orderedSame{
+                                                 UIApplication.setRootView(MainViewController.instantiate(from:.Main))
+                                            }else{
+                                                //Do Nothing
+                                            }
+                                              
+                                           }
+                                           self.present(alertVC, animated: true)
+                                       })
+                                       
+                                       
+                                       
+                                   } catch let parsingError {
+                                       print("Error", parsingError)
+                                   }
+                               }else{
+                                   // print("success: \(String(describing: response.stringData))")
+                                   do{
+                                       DispatchQueue.main.async(execute: {
+                                           
+                                           let alertVC = self.alertService.alert(title: "Message Faliure", body: response.stringData! , buttonTitle: "OK")
+                                           { [weak self] in
+                                               //Close the Screen
+                                               
+                                           }
+                                           self.present(alertVC, animated: true)
+                                       })
+                                       
+                                       
+                                       
+                                   } catch let parsingError {
+                                       print("Error", parsingError)
+                                   }
+                               }
+                               
+                               
+                               
+                           }
+                       }
         }
     }
     
@@ -767,7 +875,7 @@ class CabinetMemoDetailsController: UIViewController {
         print("Button Clicked History")
         dump(listCabinetMemoTrackingHistoryLists)
         if listCabinetMemoTrackingHistoryLists.count > 0{
-          
+            
             let storyBoard : UIStoryboard = UIStoryboard(name: "CabinetHistory", bundle:nil)
             let nextViewController = storyBoard.instantiateViewController(withIdentifier: "CabinetHistoryController") as! CabinetHistoryController
             nextViewController.listToShow = listCabinetMemoTrackingHistoryLists
@@ -775,7 +883,7 @@ class CabinetMemoDetailsController: UIViewController {
             
             
         }else{
-           
+            
             DispatchQueue.main.async(execute: {
                 let alertVC = self.alertService.alert(title: "Success Message", body: "No Comments Found ", buttonTitle: "OK")
                 { [weak self] in

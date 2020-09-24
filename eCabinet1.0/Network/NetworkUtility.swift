@@ -153,32 +153,37 @@ class NetworkUtility  {
                    DispatchQueue.main.async(execute: {
                                   ViewControllerUtils().hideActivityIndicator(uiView: indicator)
                               })
-                   completion(nil)
+                    responseObject.stringData = "Error"
+                                       responseObject.successFailure = "FALIURE"
+                                                       responseObject.responseCode = 400
+                                                       responseObject.dept_id = ""
+                   completion(responseObject)
                       return
                   }
                 var stringdata = ""
-                  guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                      // handle the server error
-                    if let data = data,  let dataString = String(data: data, encoding: .utf8) {
-                                                       print("Response data string:\n \(dataString)")
-                        stringdata = dataString
-                    }
-                   DispatchQueue.main.async(execute: {
-                                                 ViewControllerUtils().hideActivityIndicator(uiView: indicator)
-                                             })
-                      return
-                    completion(nil)
-                  }
-                  responseObject.successFailure = "SUCCESS"
-                  responseObject.respnse = data
-                  responseObject.responseCode = response.statusCode
-                  responseObject.dept_id = ""
-                responseObject.stringData = stringdata
+                
+                 if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                                    print("Response data string:\n \(dataString)")
+                                    // completion(data, error)
+                      responseObject.stringData = dataString
+                    print("Object Data")
+                    print( responseObject.stringData!)
+                    responseObject.successFailure = "SUCCESS"
+                                    responseObject.respnse = data
+                                    responseObject.responseCode = 200
+                                    responseObject.dept_id = ""
+                    DispatchQueue.main.async(execute: {
+                                                                    ViewControllerUtils().hideActivityIndicator(uiView: indicator)
+                                                                })
+                                         return
+                                       completion(responseObject)
+                                }
+              
                 
              DispatchQueue.main.async(execute: {
                                            ViewControllerUtils().hideActivityIndicator(uiView: indicator)
                                        })
-                 completion(responseObject)
+              
                  
 
               })
