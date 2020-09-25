@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD0123E4251DB07700C79B06 /* CabinetDesicionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0123E3251DB07700C79B06 /* CabinetDesicionViewController.swift */; };
+		BD0123E6251DB09D00C79B06 /* CabinetDecision.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD0123E5251DB09D00C79B06 /* CabinetDecision.storyboard */; };
+		BD0123E8251DB9B100C79B06 /* Dates.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0123E7251DB9B100C79B06 /* Dates.swift */; };
+		BD0123EF251DBE7500C79B06 /* CustomCabinetDecisionTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0123ED251DBE7500C79B06 /* CustomCabinetDecisionTableCell.swift */; };
+		BD0123F0251DBE7500C79B06 /* CustomCabinetDecisionTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD0123EE251DBE7500C79B06 /* CustomCabinetDecisionTableCell.xib */; };
 		BD1C50FA251C8CD300B0FA78 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1C50F9251C8CD300B0FA78 /* Reachability.swift */; };
 		BD2BD0AB250F850000C6798C /* CabinetMemosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2BD0AA250F850000C6798C /* CabinetMemosController.swift */; };
 		BD41D2FE25189B9B007B4EE6 /* CabinetMemoDetailsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD41D2FD25189B9B007B4EE6 /* CabinetMemoDetailsObject.swift */; };
@@ -93,6 +98,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BD0123E3251DB07700C79B06 /* CabinetDesicionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinetDesicionViewController.swift; sourceTree = "<group>"; };
+		BD0123E5251DB09D00C79B06 /* CabinetDecision.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CabinetDecision.storyboard; sourceTree = "<group>"; };
+		BD0123E7251DB9B100C79B06 /* Dates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dates.swift; sourceTree = "<group>"; };
+		BD0123ED251DBE7500C79B06 /* CustomCabinetDecisionTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCabinetDecisionTableCell.swift; sourceTree = "<group>"; };
+		BD0123EE251DBE7500C79B06 /* CustomCabinetDecisionTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCabinetDecisionTableCell.xib; sourceTree = "<group>"; };
 		BD1C50F9251C8CD300B0FA78 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		BD2BD0AA250F850000C6798C /* CabinetMemosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinetMemosController.swift; sourceTree = "<group>"; };
 		BD41D2FD25189B9B007B4EE6 /* CabinetMemoDetailsObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinetMemoDetailsObject.swift; sourceTree = "<group>"; };
@@ -188,6 +198,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BD0123E2251DB00600C79B06 /* CabinetDecisions */ = {
+			isa = PBXGroup;
+			children = (
+				BD0123E3251DB07700C79B06 /* CabinetDesicionViewController.swift */,
+				BD0123E5251DB09D00C79B06 /* CabinetDecision.storyboard */,
+				BD0123ED251DBE7500C79B06 /* CustomCabinetDecisionTableCell.swift */,
+				BD0123EE251DBE7500C79B06 /* CustomCabinetDecisionTableCell.xib */,
+			);
+			path = CabinetDecisions;
+			sourceTree = "<group>";
+		};
 		BD2BD0A9250F84B700C6798C /* cabinetMemos */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,6 +262,7 @@
 		BD671F7F250B893B002A9639 /* eCabinet1.0 */ = {
 			isa = PBXGroup;
 			children = (
+				BD0123E2251DB00600C79B06 /* CabinetDecisions */,
 				BDA05103251A60B100FA5F51 /* cabinetMemoAttachments */,
 				BD41D307251A1F3D007B4EE6 /* cabinetMemoHistory */,
 				BD831F5D25147B4800AD3206 /* cabinetMemoDetails */,
@@ -359,6 +381,7 @@
 				BD41D3032519CC34007B4EE6 /* ListCabinetMemoTrackingHistoryLists.swift */,
 				BD41D3052519CCEC007B4EE6 /* ListConsiderationPoints.swift */,
 				BD4DA53B251B2A7A00A139B4 /* PostObject.swift */,
+				BD0123E7251DB9B100C79B06 /* Dates.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -533,6 +556,7 @@
 			files = (
 				BD671FBB250B8B40002A9639 /* Login.storyboard in Resources */,
 				BD59B308250E0DC500A304E8 /* Poppins-SemiBold.ttf in Resources */,
+				BD0123F0251DBE7500C79B06 /* CustomCabinetDecisionTableCell.xib in Resources */,
 				BDA05107251B001500FA5F51 /* MemoAttachments.storyboard in Resources */,
 				BD671FC5250B8C04002A9639 /* LaunchScreen.storyboard in Resources */,
 				BDA05102251A26A700FA5F51 /* CabinetHistoryTableViewCell.xib in Resources */,
@@ -545,6 +569,7 @@
 				BD831F6125147BAD00AD3206 /* CabinetMemoDetailsStoryBoard.storyboard in Resources */,
 				BDA0510B251B014300FA5F51 /* AttachmentTableViewCell.xib in Resources */,
 				BD41D30B251A1FE5007B4EE6 /* CabinetHistory.storyboard in Resources */,
+				BD0123E6251DB09D00C79B06 /* CabinetDecision.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,7 +603,9 @@
 				BDADE127250DDC34006244FB /* Menu.swift in Sources */,
 				BD671FE4250B8E30002A9639 /* UserViaRoles.swift in Sources */,
 				BD671FDB250B8E30002A9639 /* LoggedInUser.swift in Sources */,
+				BD0123E4251DB07700C79B06 /* CabinetDesicionViewController.swift in Sources */,
 				BD671FBC250B8B40002A9639 /* LoginViewController.swift in Sources */,
+				BD0123EF251DBE7500C79B06 /* CustomCabinetDecisionTableCell.swift in Sources */,
 				BDA05105251AFFF900FA5F51 /* MemoAttachmentsController.swift in Sources */,
 				BD4DA53C251B2A7A00A139B4 /* PostObject.swift in Sources */,
 				BD671FCF250B8DFB002A9639 /* String+Base64Encode_Decode.swift in Sources */,
@@ -587,6 +614,7 @@
 				BDFB341E250C76920044BE8D /* ImageView+URL.swift in Sources */,
 				BD41D3002518B58B007B4EE6 /* String+HTML.swift in Sources */,
 				BD671FE3250B8E30002A9639 /* RsponseObject.swift in Sources */,
+				BD0123E8251DB9B100C79B06 /* Dates.swift in Sources */,
 				BD671FDE250B8E30002A9639 /* GetPojo.swift in Sources */,
 				BD59B311250E2BE300A304E8 /* UIView+Bordor.swift in Sources */,
 				BD1C50FA251C8CD300B0FA78 /* Reachability.swift in Sources */,

@@ -81,6 +81,14 @@ struct Constants{
     static let PlaceinCabinetagendalists: String? = "PlaceinCabinetagendalists"
     static let PlaceinCabinetagendalistsToken: String? = "ssdaccaa314e7421e7e12f5cf7171081a0ss"
     
+    //GetClosedMeetingDates_API Token,Role
+    static let GetClosedMeetingDates_API: String? = "GetClosedMeetingDates_API"
+    static let GetClosedMeetingDates_API_TOKEN: String? = "da314e7421e7e12f5cf7171081a0ddd"
+    
+    //CabinetDecisionlists/{Token}/{DeptID}/{UserID}/{RoleID}/{LoginDeptID}/{Meetingid}
+    static let CabinetDecisionlists: String? = "CabinetDecisionlists"
+       static let CabinetDecisionlistsToken: String? = "69FBBF62A31CBC7C761B0AB96696C9EB"
+    
     static let   success:String? = "SUCCESS";
     static let   failure:String? = "FAILURE";
     

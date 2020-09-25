@@ -364,6 +364,15 @@
                 
                 UIApplication.setRootView(cabinetViewController)
                 
+            } //Cabinet Decisions
+            else if menu[indexPath.row].Menuid.base64Decoded!.caseInsensitiveCompare("9") == .orderedSame{
+                
+                let cabinetViewController = CabinetDesicionViewController.instantiate(from: .CabinetDecisions)
+                cabinetViewController.dept_id = deptIDPickerView
+                cabinetViewController.param = "Cabinet_Decisions"
+                
+                UIApplication.setRootView(cabinetViewController)
+                
             }
             
             

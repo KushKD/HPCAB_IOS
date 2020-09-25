@@ -26,6 +26,7 @@ enum TaskType : String {
     case GET_ALLOWED_MEMO_LIST_CABINET
     case GET_PUBLISHED_MEETING_ID_BY_ROLE
     case FINAL_MEETING_AGENDA_LIST
+    case GET_DATES
 
    
 }
