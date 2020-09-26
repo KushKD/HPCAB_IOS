@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WebKit
 
 class MemoAttachmentsController: UIViewController {
     var listToShow = [ListAnnuxtures]()
@@ -56,17 +57,28 @@ extension MemoAttachmentsController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(listToShow[indexPath.row])
+        print(listToShow[indexPath.row].Attachment.base64Decoded!)
+        
+        let url = URL(string: self.listToShow[indexPath.row].Attachment.base64Decoded!)
+        FileDownloader.loadFileSync(url: url!) { (path, error) in
+            print("PDF Fil downloaded to : \(path!)")
+        }
+       // let url = URL(string: "http://legislative.gov.in/sites/default/files/A1956-32_0.pdf")
+//       let url = URL(string: self.listToShow[indexPath.row].Attachment.base64Decoded!)
+//        let webView = WKWebView(frame: view.frame)
+//        let urlRequest = URLRequest(url: url!)
+//        webView.load(urlRequest)
+//        view.addSubview(webView)
         //Show Alert
-        DispatchQueue.main.async(execute: {
-            
-            let alertVC = self.alertService.alert(title: " Message", body:  self.listToShow[indexPath.row].Attachment.base64Decoded!, buttonTitle: "OK")
-            { [weak self] in
-                //Go to the Next Story Board
-                //  UIApplication.setRootView(MainViewController.instantiate(from:.Main))
-            }
-            self.present(alertVC, animated: true)
-        })
+//        DispatchQueue.main.async(execute: {
+//
+//            let alertVC = self.alertService.alert(title: " Message", body:  self.listToShow[indexPath.row].Attachment.base64Decoded!, buttonTitle: "OK")
+//            { [weak self] in
+//                //Go to the Next Story Board
+//                //  UIApplication.setRootView(MainViewController.instantiate(from:.Main))
+//            }
+//            self.present(alertVC, animated: true)
+//        })
         
     }
     

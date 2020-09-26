@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -36,30 +35,8 @@
                                                 <color key="textColor" name="RedMaroon"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="npf-dt-3G0">
-                                                <rect key="frame" x="0.0" y="40" width="414" height="34"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Dates" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SUc-j6-gmB">
-                                                        <rect key="frame" x="0.0" y="0.0" width="204.5" height="34"/>
-                                                        <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
-                                                        <color key="textColor" name="darkRed"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="79a-Ba-VKH">
-                                                        <rect key="frame" x="209.5" y="0.0" width="204.5" height="34"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
-                                                    </textField>
-                                                </subviews>
-                                            </stackView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="npf-dt-3G0" secondAttribute="bottom" id="WnU-4v-ZVN"/>
-                                            <constraint firstItem="npf-dt-3G0" firstAttribute="leading" secondItem="QEg-D0-5m8" secondAttribute="leading" id="tiJ-IR-MHP"/>
-                                            <constraint firstItem="npf-dt-3G0" firstAttribute="top" secondItem="QEg-D0-5m8" secondAttribute="top" constant="40" id="wsr-Lv-MpI"/>
-                                            <constraint firstAttribute="trailing" secondItem="npf-dt-3G0" secondAttribute="trailing" id="zJC-Tk-nts"/>
-                                        </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9e3-Td-ddK" userLabel="content">
                                         <rect key="frame" x="0.0" y="82" width="414" height="656"/>
@@ -81,7 +58,7 @@
                                         <rect key="frame" x="0.0" y="738" width="414" height="82"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f2h-1F-9IE">
-                                                <rect key="frame" x="10" y="10" width="394" height="30"/>
+                                                <rect key="frame" x="10" y="10" width="394" height="62"/>
                                                 <color key="backgroundColor" name="RedMaroon"/>
                                                 <state key="normal" title="Back">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -125,7 +102,6 @@
                     </view>
                     <connections>
                         <outlet property="backButton" destination="f2h-1F-9IE" id="t2e-nG-K9a"/>
-                        <outlet property="datesSelection" destination="79a-Ba-VKH" id="rh1-Nl-EYY"/>
                         <outlet property="tableContent" destination="3nw-AV-VNp" id="30f-yx-xgK"/>
                     </connections>
                 </viewController>
@@ -137,9 +113,6 @@
     <resources>
         <namedColor name="RedMaroon">
             <color red="0.69800001382827759" green="0.19599999487400055" blue="0.36500000953674316" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="darkRed">
-            <color red="0.84700000286102295" green="0.14499999582767487" blue="0.20399999618530273" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

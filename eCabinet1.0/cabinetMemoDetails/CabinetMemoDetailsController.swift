@@ -11,6 +11,7 @@ import UIKit
 
 class CabinetMemoDetailsController: UIViewController {
     
+    @IBOutlet weak var departmentName: UILabel!
     var cellData:CabinetMemo? = nil
     var memoType: String = ""
     //CabinetMemo
@@ -148,9 +149,88 @@ class CabinetMemoDetailsController: UIViewController {
                         self.cabinetMemoDetailsObject.Title = jsonResponse!["Title"]! as? String
                         
                         
+                        //Consideration Points
+                                               if let considerationPointsServer = jsonResponse!["ListConsiderationPoints"]! as? NSArray{
+                                                   do{
+                                                       
+                                                       guard let jsonArray = considerationPointsServer as? [[String: Any]] else {
+                                                           return
+                                                       }
+                                                       
+                                                       do {
+                                                           var model = [ListConsiderationPoints]()
+                                                           for dic in jsonArray{
+                                                               model.append(ListConsiderationPoints(dic))
+                                                           }
+                                                           
+                                                           self.considerationPoints = model;
+                                                           print("Consideration Points are:- ")
+                                                           dump(self.considerationPoints)
+                                                           
+                                                           for x in self.considerationPoints {
+                                                               self.pointsconsiderationServer.append(x.PointNumber.base64Decoded!)
+                                                               self.pointsconsiderationServer.append("). ")
+                                                               self.pointsconsiderationServer.append(x.Title.base64Decoded!)
+                                                               self.pointsconsiderationServer.append("\n")
+                                                           }
+                                                           
+                                                           
+                                                           
+                                                       }
+                                                   }
+                                               }
+                                               
+                                               //List Annexers Points
+                                               if let ListAnnuxturesServer = jsonResponse!["ListAnnexures"]! as? NSArray{
+                                                   do{
+                                                       
+                                                       guard let jsonArray = ListAnnuxturesServer as? [[String: Any]] else {
+                                                           return
+                                                       }
+                                                       
+                                                       do {
+                                                           var model = [ListAnnuxtures]()
+                                                           for dic in jsonArray{
+                                                               model.append(ListAnnuxtures(dic))
+                                                           }
+                                                           
+                                                           self.listAnnuxtures = model;
+                                                           print("ListAnnuxtures Points are:- ")
+                                                           dump(self.listAnnuxtures)
+                                                           
+                                                           
+                                                           
+                                                       }
+                                                   }
+                                               }
+                                               
+                                               // List ListCabinetMemoTrackingHistoryLists
+                                               if let serverCabinetMemoHistory = jsonResponse!["ListCabinetMemoTrackingHistoryLists"]! as? NSArray{
+                                                   do{
+                                                       
+                                                       guard let jsonArray = serverCabinetMemoHistory as? [[String: Any]] else {
+                                                           return
+                                                       }
+                                                       
+                                                       do {
+                                                           var model = [ListCabinetMemoTrackingHistoryLists]()
+                                                           for dic in jsonArray{
+                                                               model.append(ListCabinetMemoTrackingHistoryLists(dic))
+                                                           }
+                                                           
+                                                           self.listCabinetMemoTrackingHistoryLists = model;
+                                                           print("ListCabinetMemoTrackingHistoryLists Points are:- ")
+                                                           dump(self.listCabinetMemoTrackingHistoryLists)
+                                                           
+                                                       }
+                                                   }
+                                               }
+                        
                         DispatchQueue.main.async(execute: {
                             //pointsOfConsideration.text =
                             //                            self.additionalInformation.attributedText = self.cabinetMemoDetailsObject.AdditionalInformation!.htmlAttributedString()
+                            
+                            self.pointsOfConsideration.text = self.pointsconsiderationServer
                             
                             self.additionalInformation.attributedText = self.cabinetMemoDetailsObject.AdditionalInformation!.convertHtmlToAttributedStringWithCSS(font: UIFont(name: "Poppins", size: 16), csscolor: "#475EAB", lineheight: 3, csstextalign: "left")
                             
@@ -165,6 +245,7 @@ class CabinetMemoDetailsController: UIViewController {
                             self.proposed_Details.attributedText = self.cabinetMemoDetailsObject.ProposalDetails!.convertHtmlToAttributedStringWithCSS(font: UIFont(name: "Poppins", size: 16), csscolor: "#475EAB", lineheight: 3, csstextalign: "left")
                             self.subject.text = self.cabinetMemoDetailsObject.Subject?.base64Decoded!
                             self.secIncharge.text = self.cabinetMemoDetailsObject.SecIncharge!.base64Decoded!
+                            self.departmentName.text = self.cabinetMemoDetailsObject.DeptName!.base64Decoded!
                             
                             self.enterRemarksLabel.isHidden = false
                             self.enterRemarksTextView .isHidden = false
@@ -318,6 +399,7 @@ class CabinetMemoDetailsController: UIViewController {
                             self.proposed_Details.attributedText = self.cabinetMemoDetailsObject.ProposalDetails!.convertHtmlToAttributedStringWithCSS(font: UIFont(name: "Poppins", size: 16), csscolor: "#475EAB", lineheight: 3, csstextalign: "left")
                             self.subject.text = self.cabinetMemoDetailsObject.Subject?.base64Decoded!
                             self.secIncharge.text = self.cabinetMemoDetailsObject.SecIncharge!.base64Decoded!
+                             self.departmentName.text = self.cabinetMemoDetailsObject.DeptName!.base64Decoded!
                             
                             
                             self.enterRemarksLabel.isHidden = true

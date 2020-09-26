@@ -25,7 +25,7 @@ class CustomCabinetDecisionTableCell: UITableViewCell {
            super.setSelected(selected, animated: animated)
        }
        
-       func commonInit(_ one: CabinetMemo, _ two: String){
+       func commonInit(_ one: Dates, _ two: String){
           
              
 //           if two.caseInsensitiveCompare("Backwarded") == .orderedSame{
@@ -39,13 +39,13 @@ class CustomCabinetDecisionTableCell: UITableViewCell {
 //              // memoImage!.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
 //           }
            
-           contentOne.text = one.Subject.base64Decoded!
+           contentOne.text = one.DepartmentName.base64Decoded!
            contentOne.contentMode = .scaleToFill
-           contentOne.numberOfLines = 5
+           contentOne.numberOfLines = 1
            contentOne.lineBreakMode = .byWordWrapping
-           contentTwo.text = "Agenda Number:- \(one.AgendaItemType.base64Decoded!)"
-           contentTwo.isHidden = true
-           contentThree.text = one.DeptName.base64Decoded!
-           contentThree.isHidden = true
+           contentTwo.text = "Total Number:  - \(one.TotalCabinetMemos.base64Decoded!)"
+           contentTwo.isHidden = false
+           contentThree.text = "Date:  - \(one.MeetingDate.base64Decoded!)"
+           contentThree.isHidden = false
        }
 }

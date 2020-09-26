@@ -25,6 +25,7 @@
                @IBOutlet weak var tableView: UITableView!
         var dept_id: String = ""
         var param: String = ""
+        var meetingID : String = ""
         var appUtilities = UtilitiesApp()
         var networkUtility = NetworkUtility()
         
@@ -77,7 +78,10 @@
                    }else  if param.caseInsensitiveCompare("PlacedInCabinet") == .orderedSame{
                       headingView.text = "Memos Placed In Cabinet"
                      
-                   }
+                   }//CabinetDecisions
+            else if param.caseInsensitiveCompare("CabinetDecisions") == .orderedSame{
+                headingView.text = "Cabinet Decisions (Department Wise)"
+            }
             
             
             tableView.delegate = self
@@ -222,6 +226,69 @@
                     params2.append(globalRoleId)
                     params2.append(globalMappedDepartments)
                     
+                    objectMenu.parametersList = params2
+                    objectMenu.activityIndicator = self.view
+                    
+                    networkUtility.getDataDialog(GetDataPojo: objectMenu) { response in
+                        if let response = response {
+                            print(response.respnse!)
+                            do{
+                                let jsonResponse = try JSONSerialization.jsonObject(with: response.respnse!, options: [])
+                                guard let jsonArray = jsonResponse as? [[String: Any]] else {
+                                    return
+                                }
+                                
+                                do {
+                                    var model = [CabinetMemo]()
+                                    for dic in jsonArray{
+                                        model.append(CabinetMemo(dic))
+                                    }
+                                    
+                                    if model[0].StatusMessage.base64Decoded!.caseInsensitiveCompare("No Record Found") == .orderedSame{
+                                        DispatchQueue.main.async(execute: {
+                                            
+                                            let alertVC = self.alertService.alert(title: "Success Message", body: "No Record Found", buttonTitle: "OK")
+                                            { [weak self] in
+                                                //Go to the Next Story Board
+                                                UIApplication.setRootView(MainViewController.instantiate(from:.Main))
+                                            }
+                                            self.present(alertVC, animated: true)
+                                        })
+                                    }else{
+                                        self.cabinetMemos = model;
+                                        dump(self.cabinetMemos)
+                                        DispatchQueue.main.async {
+                                            self.tableView.reloadData()
+                                        }
+                                    }
+                                    
+                                    
+                                }
+                            } catch let parsingError {
+                                print("Error", parsingError)
+                            }
+                        }
+                    }
+                    
+                    
+                }
+                
+                //CabinetDecisions
+                else if param.caseInsensitiveCompare("CabinetDecisions") == .orderedSame {
+                    
+                    //Check Internet Pending
+                   let objectMenu = GetPojo();
+                    objectMenu.url = Constants.url
+                    objectMenu.methord = Constants.CabinetDecisionlists
+                    objectMenu.methordHash = (Constants.CabinetDecisionlistsToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
+                    objectMenu.taskType = TaskType.GET_PENDING_MEMO_LIST_CABINET
+                    objectMenu.timeStamp = appUtilities.getDate()
+                    var params2 = [String]()
+                    params2.append(dept_id)
+                    params2.append(globalUserId)
+                    params2.append(globalRoleId)
+                    params2.append(globalMappedDepartments)
+                    params2.append(meetingID)
                     objectMenu.parametersList = params2
                     objectMenu.activityIndicator = self.view
                     

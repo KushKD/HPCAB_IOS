@@ -85,6 +85,10 @@ struct Constants{
     static let GetClosedMeetingDates_API: String? = "GetClosedMeetingDates_API"
     static let GetClosedMeetingDates_API_TOKEN: String? = "da314e7421e7e12f5cf7171081a0ddd"
     
+    //GetCabinetDecisionbyMeetingDates
+    static let GetCabinetDecisionbyMeetingDates: String? = "GetCabinetDecisionbyMeetingDates"
+       static let GetCabinetDecisionbyMeetingDatesToken: String? = "da314e7421e7e12f5cf7171081a0ddd"
+    
     //CabinetDecisionlists/{Token}/{DeptID}/{UserID}/{RoleID}/{LoginDeptID}/{Meetingid}
     static let CabinetDecisionlists: String? = "CabinetDecisionlists"
        static let CabinetDecisionlistsToken: String? = "69FBBF62A31CBC7C761B0AB96696C9EB"

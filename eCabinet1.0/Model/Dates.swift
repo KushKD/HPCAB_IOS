@@ -22,6 +22,9 @@ struct Dates{
     var StatusMessage: String
     var VenueID: String
     var VenueName: String
+    var TotalCabinetMemos: String
+    var DepartmentID: String
+    var DepartmentName: String
     
     
     init(_ dictionary: [String: Any]) {
@@ -36,6 +39,10 @@ struct Dates{
         self.StatusMessage = dictionary["StatusMessage"] as? String ?? ""
         self.VenueID = dictionary["VenueID"] as? String ?? ""
         self.VenueName = dictionary["VenueName"] as? String ?? ""
+        
+          self.TotalCabinetMemos = dictionary["TotalCabinetMemos"] as? String ?? ""
+          self.DepartmentID = dictionary["DepartmentID"] as? String ?? ""
+          self.DepartmentName = dictionary["DepartmentName"] as? String ?? ""
         
     }
     
