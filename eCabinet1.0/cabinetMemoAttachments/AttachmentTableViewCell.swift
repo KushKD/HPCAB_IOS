@@ -32,6 +32,7 @@ class AttachmentTableViewCell: UITableViewCell {
                contentOne.numberOfLines = 5
                contentOne.lineBreakMode = .byWordWrapping
                contentTwo.text = "Date:- \(one.AnnexureID.base64Decoded!)"
+            contentTwo.isHidden = true
               // contentThree.text = one.DeptName.base64Decoded!
                contentThree.isHidden = true
            }

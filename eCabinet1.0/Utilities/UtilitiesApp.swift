@@ -20,6 +20,14 @@ class UtilitiesApp{
         return dateString
     }
     
+    public func getDatess()->String{
+           let dateFormatter : DateFormatter = DateFormatter()
+                 dateFormatter.dateFormat = "yyyyMMddHHmmss"
+                 let date = Date()
+                 let dateString = dateFormatter.string(from: date)
+                 print(dateString)
+           return dateString
+       }
     
     public func createUrl(GetDataPojo data: GetPojo) -> String{
         var url = ""

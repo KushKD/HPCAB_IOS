@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-SemiBold.ttf">
+            <string>Poppins-SemiBold</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Download Alert-->
+        <scene sceneID="9Dc-r3-jaB">
+            <objects>
+                <viewController storyboardIdentifier="AlertDownload" modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" id="zLG-ZZ-tB4" customClass="DownloadAlert" customModule="eCabinet1_0" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Bv1-ci-Ps5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Icb-Fp-k8O">
+                                <rect key="frame" x="5" y="303.5" width="404" height="171.5"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zcX-73-Q78">
+                                        <rect key="frame" x="0.0" y="0.0" width="404" height="60"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Downloading  Document" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DoN-rz-89f">
+                                                <rect key="frame" x="0.0" y="0.0" width="404" height="60"/>
+                                                <color key="backgroundColor" name="RedMaroon"/>
+                                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="17"/>
+                                                <color key="textColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="DoN-rz-89f" secondAttribute="trailing" id="k5k-9A-fpf"/>
+                                            <constraint firstItem="DoN-rz-89f" firstAttribute="leading" secondItem="zcX-73-Q78" secondAttribute="leading" id="uAs-ID-IPi"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="JTn-5n-fAg" userLabel="middle">
+                                        <rect key="frame" x="0.0" y="60" width="404" height="81.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KIE-n8-DKx">
+                                                <rect key="frame" x="0.0" y="0.0" width="404" height="59.5"/>
+                                                <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                <string key="text">This is a lot This is a lot This is a lot This is a lot This is a lot This is a lot This is a lot This is a lot This is a lot This is a lot This is a lot This is a lot This is a lot This is a lot This is a lot This is a lot This is a lot This is a lot This is a lot This is a lot This is a lot This is a lot This is a lot This is a lot This is a lot This is a lot This is a lot This is a lot </string>
+                                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="17"/>
+                                                <color key="textColor" name="Blue"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="N86-0W-IgS">
+                                                <rect key="frame" x="0.0" y="59.5" width="404" height="2"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="tintColor" name="darkRed"/>
+                                                <color key="progressTintColor" name="RedMaroon"/>
+                                                <color key="trackTintColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+                                            </progressView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Progress" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yaa-Dk-S0c">
+                                                <rect key="frame" x="0.0" y="61.5" width="404" height="20"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="17"/>
+                                                <color key="textColor" name="Blue"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="Yaa-Dk-S0c" secondAttribute="trailing" id="1rE-Xx-Wbf"/>
+                                            <constraint firstItem="N86-0W-IgS" firstAttribute="leading" secondItem="JTn-5n-fAg" secondAttribute="leading" id="2Vg-J8-JN5"/>
+                                            <constraint firstItem="Yaa-Dk-S0c" firstAttribute="leading" secondItem="JTn-5n-fAg" secondAttribute="leading" id="GUB-ch-Tun"/>
+                                            <constraint firstAttribute="trailing" secondItem="N86-0W-IgS" secondAttribute="trailing" id="hzb-8S-Ooa"/>
+                                            <constraint firstAttribute="trailing" secondItem="KIE-n8-DKx" secondAttribute="trailing" id="iBW-Hh-RwZ"/>
+                                            <constraint firstItem="KIE-n8-DKx" firstAttribute="leading" secondItem="JTn-5n-fAg" secondAttribute="leading" id="wPo-Ze-Yrt"/>
+                                        </constraints>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bzI-yv-I3R" userLabel="close">
+                                        <rect key="frame" x="0.0" y="141.5" width="404" height="30"/>
+                                        <color key="backgroundColor" name="RedMaroon"/>
+                                        <state key="normal" title="OK">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="close:" destination="zLG-ZZ-tB4" eventType="touchUpInside" id="zgo-fH-NS8"/>
+                                            <action selector="didTapActionButton:" destination="zLG-ZZ-tB4" eventType="touchUpInside" id="thx-M4-UZ4"/>
+                                            <action selector="dismiss:" destination="zLG-ZZ-tB4" eventType="touchUpInside" id="K0L-J4-WlU"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="JTn-5n-fAg" firstAttribute="leading" secondItem="Icb-Fp-k8O" secondAttribute="leading" id="B4j-zN-3Vq"/>
+                                    <constraint firstAttribute="trailing" secondItem="JTn-5n-fAg" secondAttribute="trailing" id="J5e-JI-hAe"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.34999999999999998" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="Icb-Fp-k8O" firstAttribute="centerY" secondItem="Bv1-ci-Ps5" secondAttribute="centerY" id="Ftu-J6-8jo"/>
+                            <constraint firstAttribute="trailing" secondItem="Icb-Fp-k8O" secondAttribute="trailing" constant="5" id="MQZ-u5-LPl"/>
+                            <constraint firstItem="Icb-Fp-k8O" firstAttribute="leading" secondItem="Bv1-ci-Ps5" secondAttribute="leading" constant="5" id="Rtn-2n-cLG"/>
+                            <constraint firstItem="Icb-Fp-k8O" firstAttribute="centerX" secondItem="Bv1-ci-Ps5" secondAttribute="centerX" id="hDv-mD-5m9"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fta-lv-vDP"/>
+                    </view>
+                    <connections>
+                        <outlet property="TopView" destination="zcX-73-Q78" id="8BD-3L-meL"/>
+                        <outlet property="actionButton" destination="bzI-yv-I3R" id="rYg-BT-mx3"/>
+                        <outlet property="bodyLabel" destination="KIE-n8-DKx" id="3qS-4V-6rX"/>
+                        <outlet property="close" destination="bzI-yv-I3R" id="pj1-eA-GmD"/>
+                        <outlet property="closeButton" destination="bzI-yv-I3R" id="vbd-hK-qwo"/>
+                        <outlet property="progressLabel" destination="Yaa-Dk-S0c" id="UUn-X9-4QJ"/>
+                        <outlet property="progressView" destination="N86-0W-IgS" id="JQY-fQ-EAt"/>
+                        <outlet property="titleLabel" destination="DoN-rz-89f" id="fkp-rZ-JYW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TID-48-LY7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="27.536231884057973" y="187.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="Blue">
+            <color red="0.27799999713897705" green="0.36899998784065247" blue="0.67100000381469727" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="RedMaroon">
+            <color red="0.69800001382827759" green="0.19599999487400055" blue="0.36500000953674316" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="darkRed">
+            <color red="0.84700000286102295" green="0.14499999582767487" blue="0.20399999618530273" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

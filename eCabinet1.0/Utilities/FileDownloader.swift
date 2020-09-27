@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 
 class FileDownloader {
@@ -43,7 +44,7 @@ class FileDownloader {
         }
     }
 
-    static func loadFileAsync(url: URL, completion: @escaping (String?, Error?) -> Void)
+    static func loadFileAsync(url: URL, activirtIndicator: UIView!, completion: @escaping (String?, Error?) -> Void)
     {
         let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
 
@@ -59,6 +60,9 @@ class FileDownloader {
             let session = URLSession(configuration: URLSessionConfiguration.default, delegate: nil, delegateQueue: nil)
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
+            DispatchQueue.main.async(execute: {
+                          ViewControllerUtils().showActivityIndicator(uiView: activirtIndicator!)
+                      })
             let task = session.dataTask(with: request, completionHandler:
             {
                 data, response, error in
@@ -73,14 +77,21 @@ class FileDownloader {
                                 if let _ = try? data.write(to: destinationUrl, options: Data.WritingOptions.atomic)
                                 {
                                     completion(destinationUrl.path, error)
+                                    DispatchQueue.main.async(execute: {
+                                                             ViewControllerUtils().hideActivityIndicator(uiView: activirtIndicator!)
+                                                         })
                                 }
                                 else
                                 {
                                     completion(destinationUrl.path, error)
+                                    DispatchQueue.main.async(execute: {
+                                                              ViewControllerUtils().hideActivityIndicator(uiView: activirtIndicator!)
+                                                         })
                                 }
                             }
                             else
                             {
+                                  ViewControllerUtils().hideActivityIndicator(uiView: activirtIndicator!)
                                 completion(destinationUrl.path, error)
                             }
                         }
@@ -88,6 +99,7 @@ class FileDownloader {
                 }
                 else
                 {
+                      ViewControllerUtils().hideActivityIndicator(uiView: activirtIndicator!)
                     completion(destinationUrl.path, error)
                 }
             })

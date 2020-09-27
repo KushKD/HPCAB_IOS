@@ -43,10 +43,7 @@ class AlertViewController: UIViewController {
         actionButton.setTitle(actionButtonTitle, for: .normal)
     }
     
-    @IBAction func didTapCancel(_ sender: Any) {
-        
-        dismiss(animated: true)
-    }
+
     
     
     @IBAction func didTapActionButton(_ sender: Any) {
