@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>eCabinet1.0.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>arm64</string>
+			</array>
+			<key>bitcode</key>
+			<true/>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>D7904DBD3927BBF126F7DAA2426F96ED5CB0B494</string>
+				<key>dateExpires</key>
+				<string>9/28/21</string>
+				<key>type</key>
+				<string>Apple Distribution</string>
+			</dict>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>8V72THF3KT.com.hp.ecabinet</string>
+				<key>beta-reports-active</key>
+				<true/>
+				<key>com.apple.developer.team-identifier</key>
+				<string>8V72THF3KT</string>
+				<key>get-task-allow</key>
+				<false/>
+				<key>keychain-access-groups</key>
+				<array>
+					<string>8V72THF3KT.com.hp.ecabinet</string>
+				</array>
+			</dict>
+			<key>name</key>
+			<string>eCabinet1.0.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>5fa50d69-fd5d-462c-906c-7e0f3b2dc7f9</string>
+				<key>name</key>
+				<string>iOS Team Store Provisioning Profile: *</string>
+			</dict>
+			<key>symbols</key>
+			<true/>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>8V72THF3KT</string>
+				<key>name</key>
+				<string>Department of Information Technology, Himachal Pradesh</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>
