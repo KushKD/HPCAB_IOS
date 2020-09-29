@@ -1,24 +1,9 @@
-//
-//  LoginViewController.swift
-//  login
-//
-//  Created by Oğulcan on 11/05/2018.
-//  Copyright © 2018 ogulcan. All rights reserved.
-//
-
 import UIKit
 import Foundation
 
 class LoginViewController: UIViewController {
     
-    //    override func viewDidLoad() {
-    //        super.viewDidLoad()
-    //    }
-    
-    //    @IBAction func saveLoginTapped(_ sender: UIButton) {
-    //       // try! App.keychain?.set("token", key: "token")
-    //        UIApplication.setRootView(MainViewController.instantiate(from: .Main))
-    //    }
+
     var window: UIWindow?
     
     @IBOutlet weak var topView: UIView!
@@ -69,6 +54,10 @@ class LoginViewController: UIViewController {
         
         
         appUtilities.setHorizontalGradientColor(view: self.topView)
+        
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
         
         pickerViewRoles.dataSource = self
         pickerViewRoles.delegate = self
@@ -125,44 +114,58 @@ class LoginViewController: UIViewController {
          Get Roles via Token on Screen Load
          */
         
-        
-        let object = GetPojo();
-        object.url = Constants.url
-        object.methord = Constants.methordGetRoles
-        object.methordHash = (Constants.methordGetRolesToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
-        object.taskType = TaskType.GET_ROLES
-        object.timeStamp = appUtilities.getDate()
-        object.activityIndicator = self.view
-        
-        //ViewControllerUtils().showActivityIndicator(uiView: object.viewController!)
-        
-        networkUtility.getDataDialog(GetDataPojo: object) { response in
-            //            DispatchQueue.main.async(execute: {
-            //                          ViewControllerUtils().hideActivityIndicator(uiView: object.viewController!)
-            //                      })
-            if let response = response {
-                print(response.respnse!)
-                do{
-                    let jsonResponse = try JSONSerialization.jsonObject(with: response.respnse!, options: [])
-                    guard let jsonArray = jsonResponse as? [[String: Any]] else {
-                        return
-                    }
-                    do {
-                        var model = [Roles]()
-                        for dic in jsonArray{
-                            model.append(Roles(dic))
+        if Reachability.isConnectedToNetwork(){
+            let object = GetPojo();
+            object.url = Constants.url
+            object.methord = Constants.methordGetRoles
+            object.methordHash = (Constants.methordGetRolesToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
+            object.taskType = TaskType.GET_ROLES
+            object.timeStamp = appUtilities.getDate()
+            object.activityIndicator = self.view
+            
+            
+            networkUtility.getDataDialog(GetDataPojo: object) { response in
+                if let response = response {
+                    print(response.respnse!)
+                    do{
+                        let jsonResponse = try JSONSerialization.jsonObject(with: response.respnse!, options: [])
+                        guard let jsonArray = jsonResponse as? [[String: Any]] else {
+                            return
                         }
-                        self.roles = model;
-                        
+                        do {
+                            var model = [Roles]()
+                            for dic in jsonArray{
+                                model.append(Roles(dic))
+                            }
+                            self.roles = model;
+                            
+                        }
+                    } catch let parsingError {
+                        print("Error", parsingError)
                     }
-                } catch let parsingError {
-                    print("Error", parsingError)
                 }
             }
+        }else{
+            DispatchQueue.main.async(execute: {
+                let alertVC = self.alertService.alert(title: "Network Message", body: Constants.internetNotAvailable!, buttonTitle: "OK")
+                { [weak self] in
+                    //Go to the Next Story Board
+                    
+                }
+                self.present(alertVC, animated: true)
+                
+            })
         }
         
         
         
+        
+        
+        
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     
@@ -170,184 +173,239 @@ class LoginViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    //    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange,
-    //                           replacementString string: String) -> Bool
-    //    {
-    //        let maxLength = 10
-    //        let currentString: NSString = textField.text! as NSString
-    //        let newString: NSString =
-    //            currentString.replacingCharacters(in: range, with: string) as NSString
-    //        return newString.length <= maxLength
-    //    }
-    
     
     /**
      Login Button
      */
     @IBAction func login(_ sender: Any) {
         
+        //Check OTP
+        // Check Mobile
+        // Check Other Params
+        //Check Internet
         
-        let loginObject = GetPojo();
-        loginObject.url = Constants.url
-        loginObject.methord = Constants.methordLogin
-        loginObject.methordHash = (Constants.methordLoginToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
-        loginObject.taskType = TaskType.LOGIN
-        loginObject.timeStamp = appUtilities.getDate()
-        
-        
-        var params = [String]()
-        params.append(globalMobile)
-        params.append(OTP.text!)
-        params.append(globalUserId)
-        params.append(globalRoleId)
-        
-        loginObject.parametersList = params
-        loginObject.activityIndicator = self.view
-        
-        
-        networkUtility.getDataDialog(GetDataPojo: loginObject) { response in
-            if let response = response {
-                do{
-                    //here dataResponse received from a network request
-                    let jsonResponse = try JSONSerialization.jsonObject(with: response.respnse!, options: [])
-                    guard let jsonArray = jsonResponse as? [[String: Any]] else {
-                        return
-                    }
-                    do {
-                        var model = [LoggedInUserDepartments]()
-                        for dic in jsonArray{
-                            model.append(LoggedInUserDepartments(dic))
-                        }
-                        self.LoggedUserDepartments = model;
-                        
-                    }
-                    do {
-                        var userDataServer = [LoggedInUser]()
-                        for dic in jsonArray{
-                            userDataServer.append(LoggedInUser(dic))
-                        }
-                        self.userData = userDataServer;
-                        print(userDataServer[0].Branchmapped.base64Decoded!)
-                    }
-                    
-                    if self.userData[0].StatusMessage.base64Decoded!.caseInsensitiveCompare("Record Found") == .orderedSame{
-                        self.userData[0].RoleId = self.globalRoleId
-                        // self.userData[0].Photo = self.globalPhoto
-                        self.userServer =  self.appUtilities.saveUserDetails(data_user: self.userData[0] , user_server: self.LoggedUserDepartments);
-                        //Save Data Saved Prefrences TODO
-                        let isAllowed: Bool = self.appUtilities.writeUserData(data: self.userServer)
-                        print(isAllowed)
-                        if isAllowed{
-                            //Go to Othrer Screen
-                            DispatchQueue.main.async(execute: {
-                                
-                                let alertVC = self.alertService.alert(title: "Success Message", body: "Login Successful. Please click OK to continue.", buttonTitle: "OK")
-                                { [weak self] in
-                                    //Go to the Next Story Board
-                                    UIApplication.setRootView(MainViewController.instantiate(from:.Main))
-                                }
-                                self.present(alertVC, animated: true)
-                            })
-                        }else{
-                            DispatchQueue.main.async(execute: {
-                                
-                                let alertVC = self.alertService.alert(title: "Error Mesage", body: "Something Bad Happened. Please restart the application", buttonTitle: "OK")
-                                { [weak self] in
-                                    //Functionality of Confirm Button Goes Here TODO
-                                }
-                                self.present(alertVC, animated: true)
-                            })
-                        }
-                        
-                    }else{
-                        DispatchQueue.main.async(execute: {
-                            
-                            let alertVC = self.alertService.alert(title: "Success?", body: self.userData[0].StatusMessage.base64Decoded!, buttonTitle: "Confirm")
-                            { [weak self] in
-                                //Functionality of Confirm Button Goes Here TODO
-                            }
-                            self.present(alertVC, animated: true)
-                        })
-                    }
-                    
-                    
-                    
-                } catch let parsingError {
-                    print("Error", parsingError)
-                }
+        if OTP.text?.count == 6 {
+            if MobileNumber.text?.count == 10 {
+                
+                if Reachability.isConnectedToNetwork(){
+                           let loginObject = GetPojo();
+                           loginObject.url = Constants.url
+                           loginObject.methord = Constants.methordLogin
+                           loginObject.methordHash = (Constants.methordLoginToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
+                           loginObject.taskType = TaskType.LOGIN
+                           loginObject.timeStamp = appUtilities.getDate()
+                           
+                           
+                           var params = [String]()
+                           params.append(globalMobile)
+                           params.append(OTP.text!)
+                           params.append(globalUserId)
+                           params.append(globalRoleId)
+                           
+                           loginObject.parametersList = params
+                           loginObject.activityIndicator = self.view
+                           
+                           
+                           networkUtility.getDataDialog(GetDataPojo: loginObject) { response in
+                               if let response = response {
+                                   do{
+                                       //here dataResponse received from a network request
+                                       let jsonResponse = try JSONSerialization.jsonObject(with: response.respnse!, options: [])
+                                       guard let jsonArray = jsonResponse as? [[String: Any]] else {
+                                           return
+                                       }
+                                       do {
+                                           var model = [LoggedInUserDepartments]()
+                                           for dic in jsonArray{
+                                               model.append(LoggedInUserDepartments(dic))
+                                           }
+                                           self.LoggedUserDepartments = model;
+                                           
+                                       }
+                                       do {
+                                           var userDataServer = [LoggedInUser]()
+                                           for dic in jsonArray{
+                                               userDataServer.append(LoggedInUser(dic))
+                                           }
+                                           self.userData = userDataServer;
+                                           print(userDataServer[0].Branchmapped.base64Decoded!)
+                                       }
+                                       
+                                       if self.userData[0].StatusMessage.base64Decoded!.caseInsensitiveCompare("Record Found") == .orderedSame{
+                                           self.userData[0].RoleId = self.globalRoleId
+                                           // self.userData[0].Photo = self.globalPhoto
+                                           self.userServer =  self.appUtilities.saveUserDetails(data_user: self.userData[0] , user_server: self.LoggedUserDepartments);
+                                           //Save Data Saved Prefrences TODO
+                                           let isAllowed: Bool = self.appUtilities.writeUserData(data: self.userServer)
+                                           print(isAllowed)
+                                           if isAllowed{
+                                               //Go to Othrer Screen
+                                               DispatchQueue.main.async(execute: {
+                                                   
+                                                   let alertVC = self.alertService.alert(title: "Success Message", body: "Login Successful. Please click OK to continue.", buttonTitle: "OK")
+                                                   { [weak self] in
+                                                       //Go to the Next Story Board
+                                                       UIApplication.setRootView(MainViewController.instantiate(from:.Main))
+                                                   }
+                                                   self.present(alertVC, animated: true)
+                                               })
+                                           }else{
+                                               DispatchQueue.main.async(execute: {
+                                                   
+                                                   let alertVC = self.alertService.alert(title: "Error Mesage", body: "Something Bad Happened. Please restart the application", buttonTitle: "OK")
+                                                   { [weak self] in
+                                                       //Functionality of Confirm Button Goes Here TODO
+                                                   }
+                                                   self.present(alertVC, animated: true)
+                                               })
+                                           }
+                                           
+                                       }else{
+                                           DispatchQueue.main.async(execute: {
+                                               
+                                               let alertVC = self.alertService.alert(title: "Success?", body: self.userData[0].StatusMessage.base64Decoded!, buttonTitle: "Confirm")
+                                               { [weak self] in
+                                                   //Functionality of Confirm Button Goes Here TODO
+                                               }
+                                               self.present(alertVC, animated: true)
+                                           })
+                                       }
+                                       
+                                       
+                                       
+                                   } catch let parsingError {
+                                       print("Error", parsingError)
+                                   }
+                               }
+                           }
+                       }
+                       else{
+                           DispatchQueue.main.async(execute: {
+                               let alertVC = self.alertService.alert(title: "Network Message", body: Constants.internetNotAvailable!, buttonTitle: "OK")
+                               { [weak self] in
+                                   //Go to the Next Story Board
+                                   
+                               }
+                               self.present(alertVC, animated: true)
+                               
+                           })
+                       }
+                
+            }else{
+                DispatchQueue.main.async(execute: {
+                                         let alertVC = self.alertService.alert(title: "Input Message", body: "Please enter a valid 10 Digit Mobile Number.", buttonTitle: "OK")
+                                         { [weak self] in
+                                             //Go to the Next Story Board
+                                             
+                                         }
+                                         self.present(alertVC, animated: true)
+                                         
+                                     })
             }
-        }
-        
-        
-        
-        
-        
-        
-    }
-    
-    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    //        if segue.identifier == "goToHomeScreen" {
-    //            let destinationVC = segue.destination as! HomeScreenController
-    //            // destinationVC.bmiValue = calculatorBrain.getBMIValue()
-    //            // destinationVC.advice = calculatorBrain.getAdvice()
-    //            // destinationVC.color = calculatorBrain.getColor()
-    //        }
-    //    }
-    
-    @objc func textFieldDidChange(_ textField: UITextField) {
-        
-        if textField.text!.count == 10{
-            print(textField.text!)
-            globalMobile = textField.text!
-            let objectUsers = GetPojo();
-            objectUsers.url = Constants.url
-            objectUsers.methord = Constants.methordGetOTP
-            objectUsers.methordHash = (Constants.methordOTPToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
-            objectUsers.taskType = TaskType.GET_OTP_VIA_MOBILE
-            objectUsers.timeStamp = appUtilities.getDate()
-            
-            
-            var params = [String]()
-            params.append(textField.text!)
-            params.append(globalUserId)
-            params.append(globalRoleId)
-            
-            objectUsers.parametersList = params
-            objectUsers.activityIndicator = self.view
-            
-            networkUtility.getDataDialog(GetDataPojo: objectUsers) { response in
-                if let response = response {
-                    print(response.respnse!)
-                    do{
-                        //here dataResponse received from a network request
-                        
-                        let jsonResponse = try  JSONSerialization.jsonObject(with: response.respnse!, options: []) as? [String:AnyObject]
-                        print("kush")
-                        let statusMessage: String = jsonResponse!["StatusMessage"]! as! String
-                        
-                        DispatchQueue.main.async(execute: {
-                            
-                            let alertVC = self.alertService.alert(title: "Success?", body: statusMessage.base64Decoded!, buttonTitle: "Confirm")
-                            { [weak self] in
-                                //Functionality of Confirm Button Goes Here
-                            }
-                            self.present(alertVC, animated: true)
-                        })
-                        
-                        
-                    } catch let parsingError {
-                        print("Error", parsingError)
-                    }
-                }
-            }
-            
-            
-            
             
             
         }else{
-            print("Please enter a Valid 10 digit mobile number!")
+            DispatchQueue.main.async(execute: {
+                          let alertVC = self.alertService.alert(title: "Input Message", body: "Please enter a valid OTP Number that has been sent to your Mobile Number", buttonTitle: "OK")
+                          { [weak self] in
+                              //Go to the Next Story Board
+                              
+                          }
+                          self.present(alertVC, animated: true)
+                          
+                      })
         }
+        
+    }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        
+        //Check User Id and Role ID
+      //  if  !globalRoleId.isEmpty || !globalUserId.isEmpty{
+            
+            if textField.text!.count == 10{
+                       
+                       if Reachability.isConnectedToNetwork(){
+                           print(textField.text!)
+                           globalMobile = textField.text!
+                           let objectUsers = GetPojo();
+                           objectUsers.url = Constants.url
+                           objectUsers.methord = Constants.methordGetOTP
+                           objectUsers.methordHash = (Constants.methordOTPToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
+                           objectUsers.taskType = TaskType.GET_OTP_VIA_MOBILE
+                           objectUsers.timeStamp = appUtilities.getDate()
+                           
+                           
+                           var params = [String]()
+                           params.append(textField.text!)
+                           params.append(globalUserId)
+                           params.append(globalRoleId)
+                           
+                           objectUsers.parametersList = params
+                           objectUsers.activityIndicator = self.view
+                           
+                           networkUtility.getDataDialog(GetDataPojo: objectUsers) { response in
+                               if let response = response {
+                                   print(response.respnse!)
+                                   do{
+                                       //here dataResponse received from a network request
+                                       
+                                       let jsonResponse = try  JSONSerialization.jsonObject(with: response.respnse!, options: []) as? [String:AnyObject]
+                                       print("kush")
+                                       let statusMessage: String = jsonResponse!["StatusMessage"]! as! String
+                                       
+                                       DispatchQueue.main.async(execute: {
+                                           
+                                           let alertVC = self.alertService.alert(title: "Success?", body: statusMessage.base64Decoded!, buttonTitle: "Confirm")
+                                           { [weak self] in
+                                               //Functionality of Confirm Button Goes Here
+                                           }
+                                           self.present(alertVC, animated: true)
+                                       })
+                                       
+                                       
+                                   } catch let parsingError {
+                                       print("Error", parsingError)
+                                   }
+                               }
+                           }
+                           
+                           
+                           
+                       }
+                       else{
+                           DispatchQueue.main.async(execute: {
+                               let alertVC = self.alertService.alert(title: "Network Message", body: Constants.internetNotAvailable!, buttonTitle: "OK")
+                               { [weak self] in
+                                   //Go to the Next Story Board
+                                   
+                               }
+                               self.present(alertVC, animated: true)
+                               
+                           })
+                       }
+                       
+                       
+                       
+                       
+                       
+                       
+                   }else{
+                       print("Please Enter a Valid 10 Digit Mobile Number.")
+                   }
+//        }else{
+//            DispatchQueue.main.async(execute: {
+//                let alertVC = self.alertService.alert(title: "Input Message", body: "Please Select Role and User", buttonTitle: "OK")
+//                { [weak self] in
+//                    //Go to the Next Story Board
+//
+//                }
+//                self.present(alertVC, animated: true)
+//
+//            })
+//        }
+        
+       
         
     }
     
@@ -401,86 +459,118 @@ extension LoginViewController: UIPickerViewDelegate,UIPickerViewDataSource {
             globalRoleId = roles[row].Roleid.base64Decoded!;
             
             if globalRoleId.caseInsensitiveCompare("7") == .orderedSame || globalRoleId.caseInsensitiveCompare("6") == .orderedSame{
-                DepartmentsTextView.isHidden = true
-                BranchesTextView.isHidden = true
-                
-                let objectUsers = GetPojo();
-                objectUsers.url = Constants.url
-                objectUsers.methord = Constants.methordUsers
-                objectUsers.methordHash = (Constants.methordUsersToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
-                objectUsers.taskType = TaskType.GET_USERS
-                objectUsers.timeStamp = appUtilities.getDate()
                 
                 
-                var params = [String]()
-                params.append("0")
-                params.append("0")
-                params.append(globalRoleId)
-                
-                objectUsers.parametersList = params
-                objectUsers.activityIndicator = self.view
-                
-                networkUtility.getDataDialog(GetDataPojo: objectUsers) { response in
-                    if let response = response {
-                        do{
-                            //here dataResponse received from a network request
-                            let jsonResponse = try JSONSerialization.jsonObject(with: response.respnse!, options: [])
-                            guard let jsonArray = jsonResponse as? [[String: Any]] else {
-                                return
-                            }
-                            do {
-                                var model = [UserViaRoles]()
-                                for dic in jsonArray{
-                                    model.append(UserViaRoles(dic))
+                if Reachability.isConnectedToNetwork(){
+                    DepartmentsTextView.isHidden = true
+                    BranchesTextView.isHidden = true
+                    
+                    let objectUsers = GetPojo();
+                    objectUsers.url = Constants.url
+                    objectUsers.methord = Constants.methordUsers
+                    objectUsers.methordHash = (Constants.methordUsersToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
+                    objectUsers.taskType = TaskType.GET_USERS
+                    objectUsers.timeStamp = appUtilities.getDate()
+                    
+                    
+                    var params = [String]()
+                    params.append("0")
+                    params.append("0")
+                    params.append(globalRoleId)
+                    
+                    objectUsers.parametersList = params
+                    objectUsers.activityIndicator = self.view
+                    
+                    networkUtility.getDataDialog(GetDataPojo: objectUsers) { response in
+                        if let response = response {
+                            do{
+                                //here dataResponse received from a network request
+                                let jsonResponse = try JSONSerialization.jsonObject(with: response.respnse!, options: [])
+                                guard let jsonArray = jsonResponse as? [[String: Any]] else {
+                                    return
                                 }
-                                self.usersViaRoles = model;
-                                //self.globalPhoto = model[0].Photo.base64Decoded!
-                                // print(model[0].RoleName.base64Decoded!) // 1211
+                                do {
+                                    var model = [UserViaRoles]()
+                                    for dic in jsonArray{
+                                        model.append(UserViaRoles(dic))
+                                    }
+                                    self.usersViaRoles = model;
+                                    //self.globalPhoto = model[0].Photo.base64Decoded!
+                                    // print(model[0].RoleName.base64Decoded!) // 1211
+                                }
+                            } catch let parsingError {
+                                print("Error", parsingError)
                             }
-                        } catch let parsingError {
-                            print("Error", parsingError)
                         }
                     }
                 }
+                else{
+                    DispatchQueue.main.async(execute: {
+                        let alertVC = self.alertService.alert(title: "Network Message", body: Constants.internetNotAvailable!, buttonTitle: "OK")
+                        { [weak self] in
+                            //Go to the Next Story Board
+                            
+                        }
+                        self.present(alertVC, animated: true)
+                        
+                    })
+                }
+                
             }else{
-                //Get Departments
-                DepartmentsTextView.isHidden = false
-                BranchesTextView.isHidden = false
-                let objectUserDepartments = GetPojo();
-                objectUserDepartments.url = Constants.url
-                objectUserDepartments.methord = Constants.methordDepartmentsViaRoles
-                objectUserDepartments.methordHash = (Constants.methordDepartmentsToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
-                objectUserDepartments.taskType = TaskType.GET_DEPARTMENTS_VIA_ROLES
-                objectUserDepartments.timeStamp = appUtilities.getDate()
                 
-                
-                var params = [String]()
-                params.append(globalRoleId)
-                
-                objectUserDepartments.parametersList = params
-                objectUserDepartments.activityIndicator = self.view
-                
-                networkUtility.getDataDialog(GetDataPojo: objectUserDepartments) { response in
-                    if let response = response {
-                        do{
-                            //here dataResponse received from a network request
-                            let jsonResponse = try JSONSerialization.jsonObject(with: response.respnse!, options: [])
-                            guard let jsonArray = jsonResponse as? [[String: Any]] else {
-                                return
-                            }
-                            do {
-                                var model = [Departments]()
-                                for dic in jsonArray{
-                                    model.append(Departments(dic))
+                if Reachability.isConnectedToNetwork(){
+                    DepartmentsTextView.isHidden = false
+                    BranchesTextView.isHidden = false
+                    let objectUserDepartments = GetPojo();
+                    objectUserDepartments.url = Constants.url
+                    objectUserDepartments.methord = Constants.methordDepartmentsViaRoles
+                    objectUserDepartments.methordHash = (Constants.methordDepartmentsToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
+                    objectUserDepartments.taskType = TaskType.GET_DEPARTMENTS_VIA_ROLES
+                    objectUserDepartments.timeStamp = appUtilities.getDate()
+                    
+                    
+                    var params = [String]()
+                    params.append(globalRoleId)
+                    
+                    objectUserDepartments.parametersList = params
+                    objectUserDepartments.activityIndicator = self.view
+                    
+                    networkUtility.getDataDialog(GetDataPojo: objectUserDepartments) { response in
+                        if let response = response {
+                            do{
+                                //here dataResponse received from a network request
+                                let jsonResponse = try JSONSerialization.jsonObject(with: response.respnse!, options: [])
+                                guard let jsonArray = jsonResponse as? [[String: Any]] else {
+                                    return
                                 }
-                                self.departments = model;
-                                // print(model[0].RoleName.base64Decoded!) // 1211
+                                do {
+                                    var model = [Departments]()
+                                    for dic in jsonArray{
+                                        model.append(Departments(dic))
+                                    }
+                                    self.departments = model;
+                                    // print(model[0].RoleName.base64Decoded!) // 1211
+                                }
+                            } catch let parsingError {
+                                print("Error", parsingError)
                             }
-                        } catch let parsingError {
-                            print("Error", parsingError)
                         }
                     }
+                    
                 }
+                else{
+                    DispatchQueue.main.async(execute: {
+                        let alertVC = self.alertService.alert(title: "Network Message", body: Constants.internetNotAvailable!, buttonTitle: "OK")
+                        { [weak self] in
+                            //Go to the Next Story Board
+                            
+                        }
+                        self.present(alertVC, animated: true)
+                        
+                    })
+                }
+                
+                
             }
             
             
@@ -497,8 +587,127 @@ extension LoginViewController: UIPickerViewDelegate,UIPickerViewDataSource {
             globalUserDepartmentId = departments[row].DeptId.base64Decoded!;
             
             if globalRoleId.caseInsensitiveCompare("4") == .orderedSame || globalRoleId.caseInsensitiveCompare("5") == .orderedSame {
-                //Get USers
-                BranchesTextView.isHidden=true
+                
+                if Reachability.isConnectedToNetwork(){
+                    //Get USers
+                    BranchesTextView.isHidden=true
+                    let objectUsers = GetPojo();
+                    objectUsers.url = Constants.url
+                    objectUsers.methord = Constants.methordUsers
+                    objectUsers.methordHash = (Constants.methordUsersToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
+                    objectUsers.taskType = TaskType.GET_USERS
+                    objectUsers.timeStamp = appUtilities.getDate()
+                    
+                    
+                    var params = [String]()
+                    params.append(globalUserDepartmentId)
+                    params.append("0")
+                    params.append(globalRoleId)
+                    
+                    objectUsers.parametersList = params
+                    objectUsers.activityIndicator = self.view
+                    
+                    networkUtility.getDataDialog(GetDataPojo: objectUsers) { response in
+                        if let response = response {
+                            do{
+                                //here dataResponse received from a network request
+                                let jsonResponse = try JSONSerialization.jsonObject(with: response.respnse!, options: [])
+                                guard let jsonArray = jsonResponse as? [[String: Any]] else {
+                                    return
+                                }
+                                do {
+                                    var model = [UserViaRoles]()
+                                    for dic in jsonArray{
+                                        model.append(UserViaRoles(dic))
+                                    }
+                                    self.usersViaRoles = model;
+                                    // print(model[0].RoleName.base64Decoded!) // 1211
+                                }
+                            } catch let parsingError {
+                                print("Error", parsingError)
+                            }
+                        }
+                    }
+                }
+                else{
+                    DispatchQueue.main.async(execute: {
+                        let alertVC = self.alertService.alert(title: "Network Message", body: Constants.internetNotAvailable!, buttonTitle: "OK")
+                        { [weak self] in
+                            //Go to the Next Story Board
+                            
+                        }
+                        self.present(alertVC, animated: true)
+                        
+                    })
+                }
+                
+            }else{
+                
+                
+                if Reachability.isConnectedToNetwork(){
+                    let objectBranches = GetPojo();
+                    objectBranches.url = Constants.url
+                    objectBranches.methord = Constants.methordBranchesViaDept
+                    objectBranches.methordHash = (Constants.methordBranchesToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
+                    objectBranches.taskType = TaskType.GET_BRANCHES
+                    objectBranches.timeStamp = appUtilities.getDate()
+                    
+                    
+                    var params = [String]()
+                    params.append(globalUserDepartmentId)
+                    
+                    objectBranches.parametersList = params
+                    objectBranches.activityIndicator = self.view
+                    
+                    networkUtility.getDataDialog(GetDataPojo: objectBranches) { response in
+                        if let response = response {
+                            do{
+                                //here dataResponse received from a network request
+                                let jsonResponse = try JSONSerialization.jsonObject(with: response.respnse!, options: [])
+                                guard let jsonArray = jsonResponse as? [[String: Any]] else {
+                                    return
+                                }
+                                do {
+                                    var model = [Branches]()
+                                    for dic in jsonArray{
+                                        model.append(Branches(dic))
+                                    }
+                                    self.branches = model;
+                                    // print(model[0].RoleName.base64Decoded!) // 1211
+                                }
+                            } catch let parsingError {
+                                print("Error", parsingError)
+                            }
+                        }
+                        
+                    }
+                }
+                else{
+                    DispatchQueue.main.async(execute: {
+                        let alertVC = self.alertService.alert(title: "Network Message", body: Constants.internetNotAvailable!, buttonTitle: "OK")
+                        { [weak self] in
+                            //Go to the Next Story Board
+                            
+                        }
+                        self.present(alertVC, animated: true)
+                        
+                    })
+                }
+                
+                
+                
+                
+                
+                
+            }
+        }else if pickerView == pickerBranches{
+            
+            BranchesTextView.text = branches[row].BranchName.base64Decoded
+            BranchesTextView.resignFirstResponder()
+            globalBranches = branches[row].BranchID.base64Decoded!;
+            
+            
+            if Reachability.isConnectedToNetwork(){
                 let objectUsers = GetPojo();
                 objectUsers.url = Constants.url
                 objectUsers.methord = Constants.methordUsers
@@ -509,7 +718,7 @@ extension LoginViewController: UIPickerViewDelegate,UIPickerViewDataSource {
                 
                 var params = [String]()
                 params.append(globalUserDepartmentId)
-                params.append("0")
+                params.append(globalBranches)
                 params.append(globalRoleId)
                 
                 objectUsers.parametersList = params
@@ -536,88 +745,20 @@ extension LoginViewController: UIPickerViewDelegate,UIPickerViewDataSource {
                         }
                     }
                 }
-            }else{
-                //Branches
-                let objectBranches = GetPojo();
-                objectBranches.url = Constants.url
-                objectBranches.methord = Constants.methordBranchesViaDept
-                objectBranches.methordHash = (Constants.methordBranchesToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
-                objectBranches.taskType = TaskType.GET_BRANCHES
-                objectBranches.timeStamp = appUtilities.getDate()
-                
-                
-                var params = [String]()
-                params.append(globalUserDepartmentId)
-                
-                objectBranches.parametersList = params
-                objectBranches.activityIndicator = self.view
-                
-                networkUtility.getDataDialog(GetDataPojo: objectBranches) { response in
-                    if let response = response {
-                        do{
-                            //here dataResponse received from a network request
-                            let jsonResponse = try JSONSerialization.jsonObject(with: response.respnse!, options: [])
-                            guard let jsonArray = jsonResponse as? [[String: Any]] else {
-                                return
-                            }
-                            do {
-                                var model = [Branches]()
-                                for dic in jsonArray{
-                                    model.append(Branches(dic))
-                                }
-                                self.branches = model;
-                                // print(model[0].RoleName.base64Decoded!) // 1211
-                            }
-                        } catch let parsingError {
-                            print("Error", parsingError)
-                        }
+            }
+            else{
+                DispatchQueue.main.async(execute: {
+                    let alertVC = self.alertService.alert(title: "Network Message", body: Constants.internetNotAvailable!, buttonTitle: "OK")
+                    { [weak self] in
+                        //Go to the Next Story Board
+                        
                     }
+                    self.present(alertVC, animated: true)
                     
-                }
+                })
             }
-        }else if pickerView == pickerBranches{
-            
-            BranchesTextView.text = branches[row].BranchName.base64Decoded
-            BranchesTextView.resignFirstResponder()
-            globalBranches = branches[row].BranchID.base64Decoded!;
-            
-            let objectUsers = GetPojo();
-            objectUsers.url = Constants.url
-            objectUsers.methord = Constants.methordUsers
-            objectUsers.methordHash = (Constants.methordUsersToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
-            objectUsers.taskType = TaskType.GET_USERS
-            objectUsers.timeStamp = appUtilities.getDate()
             
             
-            var params = [String]()
-            params.append(globalUserDepartmentId)
-            params.append(globalBranches)
-            params.append(globalRoleId)
-            
-            objectUsers.parametersList = params
-            objectUsers.activityIndicator = self.view
-            
-            networkUtility.getDataDialog(GetDataPojo: objectUsers) { response in
-                if let response = response {
-                    do{
-                        //here dataResponse received from a network request
-                        let jsonResponse = try JSONSerialization.jsonObject(with: response.respnse!, options: [])
-                        guard let jsonArray = jsonResponse as? [[String: Any]] else {
-                            return
-                        }
-                        do {
-                            var model = [UserViaRoles]()
-                            for dic in jsonArray{
-                                model.append(UserViaRoles(dic))
-                            }
-                            self.usersViaRoles = model;
-                            // print(model[0].RoleName.base64Decoded!) // 1211
-                        }
-                    } catch let parsingError {
-                        print("Error", parsingError)
-                    }
-                }
-            }
         }
         
         
