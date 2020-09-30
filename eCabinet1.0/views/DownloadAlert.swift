@@ -49,10 +49,10 @@ class DownloadAlert : UIViewController {
 
     func setupView() {
         
-       // appUtilities.setHorizontalGradientColorPopUp(view: self.TopView)
+        appUtilities.setHorizontalGradientColorPopUp(view: self.TopView)
         titleLabel.text = alertTitle
         bodyLabel.text = alertBody
-       // actionButton.setTitle(actionButtonTitle, for: .normal)
+        actionButton.setTitle(actionButtonTitle, for: .normal)
           let downloadManager = SDDownloadManager.shared
           let _ = DownloadManager.shared.activate()
         directoryName.append(appUtilities.getDatess())
@@ -100,5 +100,10 @@ class DownloadAlert : UIViewController {
                    print("The key is \(downloadKey!)")
     }
     
+    @IBAction func close(_ sender: Any) {
+        dismiss(animated: true)
+               
+               buttonAction?()
+    }
 }
 

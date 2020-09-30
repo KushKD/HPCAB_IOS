@@ -566,17 +566,25 @@
         }
         
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            print(cabinetMemos[indexPath.row])
-            //            let cabinetMemoDetailsController = CabinetMemoDetailsController.instantiate(from: .CabinetMemoDetials)
-            //            cabinetMemoDetailsController.cellData = cabinetMemos[indexPath.row]
-            //            cabinetMemoDetailsController.memoType = param
-            //            UIApplication.setRootView(cabinetMemoDetailsController)
-            
-            let storyBoard : UIStoryboard = UIStoryboard(name: "CabinetMemoDetailsStoryBoard", bundle:nil)
-            let cabinetMemoDetailsController = storyBoard.instantiateViewController(withIdentifier: "CabinetMemoDetailsController") as! CabinetMemoDetailsController
-            cabinetMemoDetailsController.cellData = cabinetMemos[indexPath.row]
-            cabinetMemoDetailsController.memoType = param
-            self.present(cabinetMemoDetailsController, animated:true, completion:nil)
+       
+            if Reachability.isConnectedToNetwork(){
+                let storyBoard : UIStoryboard = UIStoryboard(name: "CabinetMemoDetailsStoryBoard", bundle:nil)
+                           let cabinetMemoDetailsController = storyBoard.instantiateViewController(withIdentifier: "CabinetMemoDetailsController") as! CabinetMemoDetailsController
+                           cabinetMemoDetailsController.cellData = cabinetMemos[indexPath.row]
+                           cabinetMemoDetailsController.memoType = param
+                           self.present(cabinetMemoDetailsController, animated:true, completion:nil)
+            }
+            else{
+                         DispatchQueue.main.async(execute: {
+                        let alertVC = self.alertService.alert(title: "Network Message", body: Constants.internetNotAvailable!, buttonTitle: "OK")
+                                                       { [weak self] in
+                                                           //Go to the Next Story Board
+                                                          
+                                                       }
+                                                       self.present(alertVC, animated: true)
+                             
+                    })
+                    }
         }
         
     }
