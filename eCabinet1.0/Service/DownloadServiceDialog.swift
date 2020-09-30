@@ -11,13 +11,15 @@ import UIKit
 
 class DownloadServiceDialog {
     
-    func downloadAlert(title: String, body: String, buttonTitle: String, completion: @escaping () -> Void) -> DownloadAlert {
+    func downloadAlert(title: String, body: String, buttonTitle: String, url_: String, completion: @escaping () -> Void) -> DownloadAlert {
         
         let storyboard = UIStoryboard(name: "DownloadAlert", bundle: .main)
         
         let alertVC = storyboard.instantiateViewController(withIdentifier: "AlertDownload") as! DownloadAlert
         
         alertVC.alertTitle = title
+        
+        alertVC.urlServer = url_
         
         alertVC.alertBody = body
         

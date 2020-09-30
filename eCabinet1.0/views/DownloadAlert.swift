@@ -37,7 +37,7 @@ class DownloadAlert : UIViewController {
     
     var buttonAction: (() -> Void)?
     
-    var url: String  = ""
+    var urlServer: String  = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +57,7 @@ class DownloadAlert : UIViewController {
           let _ = DownloadManager.shared.activate()
         directoryName.append(appUtilities.getDatess())
         //
-        let url = URL(string: "http://legislative.gov.in/sites/default/files/A1956-32_0.pdf")!
+        let url = URL(string: urlServer)!
         let request = URLRequest(url: url)
         let downloadKey = downloadManager.downloadFile(withRequest: request,
                                                                        inDirectory: directoryName,

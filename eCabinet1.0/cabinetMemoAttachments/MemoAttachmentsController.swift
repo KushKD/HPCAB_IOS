@@ -77,7 +77,7 @@ extension MemoAttachmentsController: UITableViewDelegate, UITableViewDataSource{
             if Reachability.isConnectedToNetwork(){
                 DispatchQueue.main.async(execute: {
                     
-                    let downloadAlert = self.downloadServiceDialog.downloadAlert(title: "Downloading Attachment", body: self.listToShow[indexPath.row].Attachment.base64Decoded!  , buttonTitle: "OK")
+                    let downloadAlert = self.downloadServiceDialog.downloadAlert(title: "Downloading Attachment", body: self.listToShow[indexPath.row].AnnexureName.base64Decoded!  , buttonTitle: "OK", url_ : self.listToShow[indexPath.row].Attachment.base64Decoded!)
                     { [weak self] in
                         self?.dismiss(animated: true, completion: nil)
                     }
