@@ -67,7 +67,6 @@ class LoginViewController: UIViewController {
         pickerViewDepartments.dataSource = self
         pickerBranches.dataSource = self
         pickerBranches.delegate = self
-        //   MobileNumber.delegate = self
         RolesTextView.inputView = pickerViewRoles
         UsersTextView.inputView = pickerViewUsers
         
@@ -80,21 +79,26 @@ class LoginViewController: UIViewController {
         DepartmentsTextView.addBorder(toSide: .Bottom, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
         DepartmentsTextView.addBorder(toSide: .Left, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
         DepartmentsTextView.addBorder(toSide: .Right, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+        DepartmentsTextView.isUserInteractionEnabled = false
         
         BranchesTextView.addBorder(toSide: .Top, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
         BranchesTextView.addBorder(toSide: .Bottom, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
         BranchesTextView.addBorder(toSide: .Left, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
         BranchesTextView.addBorder(toSide: .Right, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+          BranchesTextView.isUserInteractionEnabled = false
+        
         
         UsersTextView.addBorder(toSide: .Top, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
         UsersTextView.addBorder(toSide: .Bottom, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
         UsersTextView.addBorder(toSide: .Left, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
         UsersTextView.addBorder(toSide: .Right, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+         UsersTextView.isUserInteractionEnabled = false
         
         MobileNumber.addBorder(toSide: .Top, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
         MobileNumber.addBorder(toSide: .Bottom, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
         MobileNumber.addBorder(toSide: .Left, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
         MobileNumber.addBorder(toSide: .Right, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+        
         
         OTP.addBorder(toSide: .Top, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
         OTP.addBorder(toSide: .Bottom, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
@@ -109,6 +113,7 @@ class LoginViewController: UIViewController {
         BranchesTextView.textAlignment = .center
         
         MobileNumber.addTarget(self, action: #selector(LoginViewController.textFieldDidChange(_:)), for: .editingChanged)
+        MobileNumber.maxLength  = 10
         
         /**
          Get Roles via Token on Screen Load
@@ -319,71 +324,85 @@ class LoginViewController: UIViewController {
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
-        
-        //Check User Id and Role ID
-      //  if  !globalRoleId.isEmpty || !globalUserId.isEmpty{
-            
+     
             if textField.text!.count == 10{
+                
+                
+                     //Check User Id and Role ID
+                     if  !globalRoleId.isEmpty && !globalUserId.isEmpty{
+                            if Reachability.isConnectedToNetwork(){
+                                                      print(textField.text!)
+                                                      globalMobile = textField.text!
+                                                      let objectUsers = GetPojo();
+                                                      objectUsers.url = Constants.url
+                                                      objectUsers.methord = Constants.methordGetOTP
+                                                      objectUsers.methordHash = (Constants.methordOTPToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
+                                                      objectUsers.taskType = TaskType.GET_OTP_VIA_MOBILE
+                                                      objectUsers.timeStamp = appUtilities.getDate()
+                                                      
+                                                      
+                                                      var params = [String]()
+                                                      params.append(textField.text!)
+                                                      params.append(globalUserId)
+                                                      params.append(globalRoleId)
+                                                      
+                                                      objectUsers.parametersList = params
+                                                      objectUsers.activityIndicator = self.view
+                                                      
+                                                      networkUtility.getDataDialog(GetDataPojo: objectUsers) { response in
+                                                          if let response = response {
+                                                              print(response.respnse!)
+                                                              do{
+                                                                  //here dataResponse received from a network request
+                                                                  
+                                                                  let jsonResponse = try  JSONSerialization.jsonObject(with: response.respnse!, options: []) as? [String:AnyObject]
+                                                                  print("kush")
+                                                                  let statusMessage: String = jsonResponse!["StatusMessage"]! as! String
+                                                                  
+                                                                  DispatchQueue.main.async(execute: {
+                                                                      
+                                                                      let alertVC = self.alertService.alert(title: "Success?", body: statusMessage.base64Decoded!, buttonTitle: "Confirm")
+                                                                      { [weak self] in
+                                                                          //Functionality of Confirm Button Goes Here
+                                                                      }
+                                                                      self.present(alertVC, animated: true)
+                                                                  })
+                                                                  
+                                                                  
+                                                              } catch let parsingError {
+                                                                  print("Error", parsingError)
+                                                              }
+                                                          }
+                                                      }
+                                                      
+                                                      
+                                                      
+                                                  }
+                                                  else{
+                                                      DispatchQueue.main.async(execute: {
+                                                          let alertVC = self.alertService.alert(title: "Network Message", body: Constants.internetNotAvailable!, buttonTitle: "OK")
+                                                          { [weak self] in
+                                                              //Go to the Next Story Board
+                                                              
+                                                          }
+                                                          self.present(alertVC, animated: true)
+                                                          
+                                                      })
+                                                  }
+                        }else{
+                            DispatchQueue.main.async(execute: {
+                                let alertVC = self.alertService.alert(title: "Input Message", body: "Please Select Role and User", buttonTitle: "OK")
+                                { [weak self] in
+                                    //Go to the Next Story Board
+                
+                                }
+                                self.present(alertVC, animated: true)
+                
+                            })
+                        }
+                         
                        
-                       if Reachability.isConnectedToNetwork(){
-                           print(textField.text!)
-                           globalMobile = textField.text!
-                           let objectUsers = GetPojo();
-                           objectUsers.url = Constants.url
-                           objectUsers.methord = Constants.methordGetOTP
-                           objectUsers.methordHash = (Constants.methordOTPToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
-                           objectUsers.taskType = TaskType.GET_OTP_VIA_MOBILE
-                           objectUsers.timeStamp = appUtilities.getDate()
-                           
-                           
-                           var params = [String]()
-                           params.append(textField.text!)
-                           params.append(globalUserId)
-                           params.append(globalRoleId)
-                           
-                           objectUsers.parametersList = params
-                           objectUsers.activityIndicator = self.view
-                           
-                           networkUtility.getDataDialog(GetDataPojo: objectUsers) { response in
-                               if let response = response {
-                                   print(response.respnse!)
-                                   do{
-                                       //here dataResponse received from a network request
-                                       
-                                       let jsonResponse = try  JSONSerialization.jsonObject(with: response.respnse!, options: []) as? [String:AnyObject]
-                                       print("kush")
-                                       let statusMessage: String = jsonResponse!["StatusMessage"]! as! String
-                                       
-                                       DispatchQueue.main.async(execute: {
-                                           
-                                           let alertVC = self.alertService.alert(title: "Success?", body: statusMessage.base64Decoded!, buttonTitle: "Confirm")
-                                           { [weak self] in
-                                               //Functionality of Confirm Button Goes Here
-                                           }
-                                           self.present(alertVC, animated: true)
-                                       })
-                                       
-                                       
-                                   } catch let parsingError {
-                                       print("Error", parsingError)
-                                   }
-                               }
-                           }
-                           
-                           
-                           
-                       }
-                       else{
-                           DispatchQueue.main.async(execute: {
-                               let alertVC = self.alertService.alert(title: "Network Message", body: Constants.internetNotAvailable!, buttonTitle: "OK")
-                               { [weak self] in
-                                   //Go to the Next Story Board
-                                   
-                               }
-                               self.present(alertVC, animated: true)
-                               
-                           })
-                       }
+                      
                        
                        
                        
@@ -393,17 +412,7 @@ class LoginViewController: UIViewController {
                    }else{
                        print("Please Enter a Valid 10 Digit Mobile Number.")
                    }
-//        }else{
-//            DispatchQueue.main.async(execute: {
-//                let alertVC = self.alertService.alert(title: "Input Message", body: "Please Select Role and User", buttonTitle: "OK")
-//                { [weak self] in
-//                    //Go to the Next Story Board
-//
-//                }
-//                self.present(alertVC, animated: true)
-//
-//            })
-//        }
+
         
        
         
@@ -520,7 +529,9 @@ extension LoginViewController: UIPickerViewDelegate,UIPickerViewDataSource {
                 
                 if Reachability.isConnectedToNetwork(){
                     DepartmentsTextView.isHidden = false
+                    DepartmentsTextView.isUserInteractionEnabled = true
                     BranchesTextView.isHidden = false
+                    BranchesTextView.isUserInteractionEnabled = true
                     let objectUserDepartments = GetPojo();
                     objectUserDepartments.url = Constants.url
                     objectUserDepartments.methord = Constants.methordDepartmentsViaRoles
@@ -645,6 +656,7 @@ extension LoginViewController: UIPickerViewDelegate,UIPickerViewDataSource {
                 
                 
                 if Reachability.isConnectedToNetwork(){
+                    BranchesTextView.isUserInteractionEnabled = true
                     let objectBranches = GetPojo();
                     objectBranches.url = Constants.url
                     objectBranches.methord = Constants.methordBranchesViaDept
@@ -723,6 +735,7 @@ extension LoginViewController: UIPickerViewDelegate,UIPickerViewDataSource {
                 
                 objectUsers.parametersList = params
                 objectUsers.activityIndicator = self.view
+                UsersTextView.isUserInteractionEnabled = true
                 
                 networkUtility.getDataDialog(GetDataPojo: objectUsers) { response in
                     if let response = response {

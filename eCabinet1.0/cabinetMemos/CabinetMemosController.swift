@@ -22,7 +22,7 @@
         @IBOutlet weak var headingView: UILabel!
         @IBOutlet weak var heading: UILabel!
         @IBOutlet weak var back: UIButton!
-               @IBOutlet weak var tableView: UITableView!
+        @IBOutlet weak var tableView: UITableView!
         var dept_id: String = ""
         var param: String = ""
         var meetingID : String = ""
@@ -51,7 +51,7 @@
         //CabinetMemo
         var cabinetMemos = [CabinetMemo]()
         
-       
+        
         override func viewDidLoad() {
             super.viewDidLoad()
             
@@ -62,23 +62,19 @@
             globalMappedDepartments = UserDefaults.standard.string(forKey: mapped_departments_id_key)!
             globalBranchedMapped = UserDefaults.standard.string(forKey: branchMappedkey_)!
             
-            print(dept_id)
-            print(param)
-            print(globalUserId)
-            print(globalRoleId)
-            print(globalMappedDepartments)
+            
             
             if param.caseInsensitiveCompare("Backwarded") == .orderedSame {
                 headingView.text = "Sent Back Memos"
-                   }else  if param.caseInsensitiveCompare("Forwarded") == .orderedSame{
-                       headingView.text = "Forwarded Cabinet Memos"
-                   }else  if param.caseInsensitiveCompare("Current") == .orderedSame{
-                      headingView.text = "Current Memos"
-                     
-                   }else  if param.caseInsensitiveCompare("PlacedInCabinet") == .orderedSame{
-                      headingView.text = "Memos Placed In Cabinet"
-                     
-                   }//CabinetDecisions
+            }else  if param.caseInsensitiveCompare("Forwarded") == .orderedSame{
+                headingView.text = "Forwarded Cabinet Memos"
+            }else  if param.caseInsensitiveCompare("Current") == .orderedSame{
+                headingView.text = "Current Memos"
+                
+            }else  if param.caseInsensitiveCompare("PlacedInCabinet") == .orderedSame{
+                headingView.text = "Memos Placed In Cabinet"
+                
+            }//CabinetDecisions
             else if param.caseInsensitiveCompare("CabinetDecisions") == .orderedSame{
                 headingView.text = "Cabinet Decisions (Department Wise)"
             }
@@ -91,129 +87,158 @@
             
             if param.caseInsensitiveCompare("Forwarded") == .orderedSame {
                 
-                //Check Internet Pending
-                let objectMenu = GetPojo();
-                objectMenu.url = Constants.url
-                objectMenu.methord = Constants.methordForwardedCabinetMemoListByRole
-                objectMenu.methordHash = (Constants.methordForwardedCabinetMemoListByRoleToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
-                objectMenu.taskType = TaskType.GET_PENDING_MEMO_LIST_CABINET
-                objectMenu.timeStamp = appUtilities.getDate()
-                var params2 = [String]()
-                params2.append(dept_id)
-                params2.append(globalUserId)
-                params2.append(globalRoleId)
-                params2.append(globalMappedDepartments)
-                objectMenu.parametersList = params2
-                objectMenu.activityIndicator = self.view
-                
-                networkUtility.getDataDialog(GetDataPojo: objectMenu) { response in
-                    if let response = response {
-                        print(response.respnse!)
-                        do{
-                            let jsonResponse = try JSONSerialization.jsonObject(with: response.respnse!, options: [])
-                            guard let jsonArray = jsonResponse as? [[String: Any]] else {
-                                return
-                            }
-                            
-                            do {
-                                var model = [CabinetMemo]()
-                                for dic in jsonArray{
-                                   
-                                    model.append(CabinetMemo(dic))
-                                    
-                                   
+                if Reachability.isConnectedToNetwork(){
+                    let objectMenu = GetPojo();
+                    objectMenu.url = Constants.url
+                    objectMenu.methord = Constants.methordForwardedCabinetMemoListByRole
+                    objectMenu.methordHash = (Constants.methordForwardedCabinetMemoListByRoleToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
+                    objectMenu.taskType = TaskType.GET_PENDING_MEMO_LIST_CABINET
+                    objectMenu.timeStamp = appUtilities.getDate()
+                    var params2 = [String]()
+                    params2.append(dept_id)
+                    params2.append(globalUserId)
+                    params2.append(globalRoleId)
+                    params2.append(globalMappedDepartments)
+                    objectMenu.parametersList = params2
+                    objectMenu.activityIndicator = self.view
+                    
+                    networkUtility.getDataDialog(GetDataPojo: objectMenu) { response in
+                        if let response = response {
+                            print(response.respnse!)
+                            do{
+                                let jsonResponse = try JSONSerialization.jsonObject(with: response.respnse!, options: [])
+                                guard let jsonArray = jsonResponse as? [[String: Any]] else {
+                                    return
                                 }
                                 
-                                if model[0].StatusMessage.base64Decoded!.caseInsensitiveCompare("No Record Found") == .orderedSame{
-                                    DispatchQueue.main.async(execute: {
+                                do {
+                                    var model = [CabinetMemo]()
+                                    for dic in jsonArray{
                                         
-                                        let alertVC = self.alertService.alert(title: "Success Message", body: "No Record Found", buttonTitle: "OK")
-                                        { [weak self] in
-                                            //Go to the Next Story Board
-                                            UIApplication.setRootView(MainViewController.instantiate(from:.Main))
-                                        }
-                                        self.present(alertVC, animated: true)
-                                    })
-                                }else{
-                                    self.cabinetMemos = model;
-                                    dump(self.cabinetMemos)
-                                    DispatchQueue.main.async {
-                                        self.tableView.reloadData()
+                                        model.append(CabinetMemo(dic))
+                                        
+                                        
                                     }
+                                    
+                                    if model[0].StatusMessage.base64Decoded!.caseInsensitiveCompare("No Record Found") == .orderedSame{
+                                        DispatchQueue.main.async(execute: {
+                                            
+                                            let alertVC = self.alertService.alert(title: "Success Message", body: "No Record Found", buttonTitle: "OK")
+                                            { [weak self] in
+                                                //Go to the Next Story Board
+                                                UIApplication.setRootView(MainViewController.instantiate(from:.Main))
+                                            }
+                                            self.present(alertVC, animated: true)
+                                        })
+                                    }else{
+                                        self.cabinetMemos = model;
+                                        dump(self.cabinetMemos)
+                                        DispatchQueue.main.async {
+                                            self.tableView.reloadData()
+                                        }
+                                    }
+                                    
+                                    
                                 }
-                                
-                                
+                            } catch let parsingError {
+                                print("Error", parsingError)
                             }
-                        } catch let parsingError {
-                            print("Error", parsingError)
                         }
                     }
                 }
+                else{
+                    DispatchQueue.main.async(execute: {
+                        let alertVC = self.alertService.alert(title: "Network Message", body: Constants.internetNotAvailable!, buttonTitle: "OK")
+                        { [weak self] in
+                            //Go to the Next Story Board
+                             UIApplication.setRootView(MainViewController.instantiate(from:.Main))
+                        }
+                        self.present(alertVC, animated: true)
+                        
+                    })
+                }
+                
+                
+                
                 
             } else if param.caseInsensitiveCompare("Backwarded") == .orderedSame {
                 
-                //Check Internet Pending
-                let objectMenu = GetPojo();
-                objectMenu.url = Constants.url
-                objectMenu.methord = Constants.methordSentBackCabinetMemoListByRole
-                objectMenu.methordHash = (Constants.methordSentBackCabinetMemoListByRoleToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
-                objectMenu.taskType = TaskType.GET_PENDING_MEMO_LIST_CABINET
-                objectMenu.timeStamp = appUtilities.getDate()
-                var params2 = [String]()
-                params2.append(dept_id)
-                params2.append(globalUserId)
-                params2.append(globalRoleId)
-                params2.append(globalMappedDepartments)
-                
-                objectMenu.parametersList = params2
-                objectMenu.activityIndicator = self.view
-                
-                networkUtility.getDataDialog(GetDataPojo: objectMenu) { response in
-                    if let response = response {
-                        print(response.respnse!)
-                        do{
-                            let jsonResponse = try JSONSerialization.jsonObject(with: response.respnse!, options: [])
-                            guard let jsonArray = jsonResponse as? [[String: Any]] else {
-                                return
-                            }
-                            
-                            do {
-                                var model = [CabinetMemo]()
-                                for dic in jsonArray{
-                                    model.append(CabinetMemo(dic))
+                if Reachability.isConnectedToNetwork(){
+                    let objectMenu = GetPojo();
+                    objectMenu.url = Constants.url
+                    objectMenu.methord = Constants.methordSentBackCabinetMemoListByRole
+                    objectMenu.methordHash = (Constants.methordSentBackCabinetMemoListByRoleToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
+                    objectMenu.taskType = TaskType.GET_PENDING_MEMO_LIST_CABINET
+                    objectMenu.timeStamp = appUtilities.getDate()
+                    var params2 = [String]()
+                    params2.append(dept_id)
+                    params2.append(globalUserId)
+                    params2.append(globalRoleId)
+                    params2.append(globalMappedDepartments)
+                    
+                    objectMenu.parametersList = params2
+                    objectMenu.activityIndicator = self.view
+                    
+                    networkUtility.getDataDialog(GetDataPojo: objectMenu) { response in
+                        if let response = response {
+                            print(response.respnse!)
+                            do{
+                                let jsonResponse = try JSONSerialization.jsonObject(with: response.respnse!, options: [])
+                                guard let jsonArray = jsonResponse as? [[String: Any]] else {
+                                    return
                                 }
                                 
-                                if model[0].StatusMessage.base64Decoded!.caseInsensitiveCompare("No Record Found") == .orderedSame{
-                                    DispatchQueue.main.async(execute: {
-                                        
-                                        let alertVC = self.alertService.alert(title: "Success Message", body: "No Record Found", buttonTitle: "OK")
-                                        { [weak self] in
-                                            //Go to the Next Story Board
-                                            UIApplication.setRootView(MainViewController.instantiate(from:.Main))
-                                        }
-                                        self.present(alertVC, animated: true)
-                                    })
-                                }else{
-                                    self.cabinetMemos = model;
-                                    dump(self.cabinetMemos)
-                                    DispatchQueue.main.async {
-                                        self.tableView.reloadData()
+                                do {
+                                    var model = [CabinetMemo]()
+                                    for dic in jsonArray{
+                                        model.append(CabinetMemo(dic))
                                     }
+                                    
+                                    if model[0].StatusMessage.base64Decoded!.caseInsensitiveCompare("No Record Found") == .orderedSame{
+                                        DispatchQueue.main.async(execute: {
+                                            
+                                            let alertVC = self.alertService.alert(title: "Success Message", body: "No Record Found", buttonTitle: "OK")
+                                            { [weak self] in
+                                                //Go to the Next Story Board
+                                                UIApplication.setRootView(MainViewController.instantiate(from:.Main))
+                                            }
+                                            self.present(alertVC, animated: true)
+                                        })
+                                    }else{
+                                        self.cabinetMemos = model;
+                                        dump(self.cabinetMemos)
+                                        DispatchQueue.main.async {
+                                            self.tableView.reloadData()
+                                        }
+                                    }
+                                    
+                                    
                                 }
-                                
-                                
+                            } catch let parsingError {
+                                print("Error", parsingError)
                             }
-                        } catch let parsingError {
-                            print("Error", parsingError)
                         }
                     }
                 }
+                else{
+                    DispatchQueue.main.async(execute: {
+                        let alertVC = self.alertService.alert(title: "Network Message", body: Constants.internetNotAvailable!, buttonTitle: "OK")
+                        { [weak self] in
+                            //Go to the Next Story Board
+                             UIApplication.setRootView(MainViewController.instantiate(from:.Main))
+                        }
+                        self.present(alertVC, animated: true)
+                        
+                    })
+                }
                 
                 
-            }  //PlacedInCabinet
-                else if param.caseInsensitiveCompare("PlacedInCabinet") == .orderedSame {
-                    
-                    //Check Internet Pending
+                
+                
+            }
+            else if param.caseInsensitiveCompare("PlacedInCabinet") == .orderedSame {
+                
+                if Reachability.isConnectedToNetwork(){
                     let objectMenu = GetPojo();
                     objectMenu.url = Constants.url
                     objectMenu.methord = Constants.PlaceinCabinetagendalists
@@ -270,14 +295,29 @@
                         }
                     }
                     
-                    
+                }
+                else{
+                    DispatchQueue.main.async(execute: {
+                        let alertVC = self.alertService.alert(title: "Network Message", body: Constants.internetNotAvailable!, buttonTitle: "OK")
+                        { [weak self] in
+                            //Go to the Next Story Board
+                             UIApplication.setRootView(MainViewController.instantiate(from:.Main))
+                        }
+                        self.present(alertVC, animated: true)
+                        
+                    })
                 }
                 
+                
+                
+                
+            }
+                
                 //CabinetDecisions
-                else if param.caseInsensitiveCompare("CabinetDecisions") == .orderedSame {
-                    
-                    //Check Internet Pending
-                   let objectMenu = GetPojo();
+            else if param.caseInsensitiveCompare("CabinetDecisions") == .orderedSame {
+                
+                if Reachability.isConnectedToNetwork(){
+                    let objectMenu = GetPojo();
                     objectMenu.url = Constants.url
                     objectMenu.methord = Constants.CabinetDecisionlists
                     objectMenu.methordHash = (Constants.CabinetDecisionlistsToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
@@ -332,128 +372,171 @@
                             }
                         }
                     }
-                    
-                    
                 }
+                else{
+                    DispatchQueue.main.async(execute: {
+                        let alertVC = self.alertService.alert(title: "Network Message", body: Constants.internetNotAvailable!, buttonTitle: "OK")
+                        { [weak self] in
+                            //Go to the Next Story Board
+                             UIApplication.setRootView(MainViewController.instantiate(from:.Main))
+                        }
+                        self.present(alertVC, animated: true)
+                        
+                    })
+                }
+                
+                
+                
+                
+            }
                 
             else if param.caseInsensitiveCompare("allowedCabinetMemos") == .orderedSame {
                 
-                //Check Internet Pending
-                let objectMenu = GetPojo();
-                objectMenu.url = Constants.url
-                objectMenu.methord = Constants.methordAllowedCabinetMemo
-                objectMenu.methordHash = (Constants.methordAllowedCabinetMemoToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
-                objectMenu.taskType = TaskType.GET_PENDING_MEMO_LIST_CABINET
-                objectMenu.timeStamp = appUtilities.getDate()
-                var params2 = [String]()
-                params2.append(dept_id)
-                params2.append(globalUserId)
-                params2.append(globalRoleId)
-                objectMenu.parametersList = params2
-                objectMenu.activityIndicator = self.view
-                
-                networkUtility.getDataDialog(GetDataPojo: objectMenu) { response in
-                    if let response = response {
-                        print(response.respnse!)
-                        do{
-                            let jsonResponse = try JSONSerialization.jsonObject(with: response.respnse!, options: [])
-                            guard let jsonArray = jsonResponse as? [[String: Any]] else {
-                                return
-                            }
-                            
-                            do {
-                                var model = [CabinetMemo]()
-                                for dic in jsonArray{
-                                    model.append(CabinetMemo(dic))
+                if Reachability.isConnectedToNetwork(){
+                    let objectMenu = GetPojo();
+                    objectMenu.url = Constants.url
+                    objectMenu.methord = Constants.methordAllowedCabinetMemo
+                    objectMenu.methordHash = (Constants.methordAllowedCabinetMemoToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
+                    objectMenu.taskType = TaskType.GET_PENDING_MEMO_LIST_CABINET
+                    objectMenu.timeStamp = appUtilities.getDate()
+                    var params2 = [String]()
+                    params2.append(dept_id)
+                    params2.append(globalUserId)
+                    params2.append(globalRoleId)
+                    objectMenu.parametersList = params2
+                    objectMenu.activityIndicator = self.view
+                    
+                    networkUtility.getDataDialog(GetDataPojo: objectMenu) { response in
+                        if let response = response {
+                            print(response.respnse!)
+                            do{
+                                let jsonResponse = try JSONSerialization.jsonObject(with: response.respnse!, options: [])
+                                guard let jsonArray = jsonResponse as? [[String: Any]] else {
+                                    return
                                 }
                                 
-                                
-                                
-                                if model[0].StatusMessage.base64Decoded!.caseInsensitiveCompare("No Record Found") == .orderedSame{
-                                    DispatchQueue.main.async(execute: {
-                                        
-                                        let alertVC = self.alertService.alert(title: "Success Message", body: "No Record Found", buttonTitle: "OK")
-                                        { [weak self] in
-                                            //Go to the Next Story Board
-                                            UIApplication.setRootView(MainViewController.instantiate(from:.Main))
-                                        }
-                                        self.present(alertVC, animated: true)
-                                    })
-                                }else{
-                                    self.cabinetMemos = model;
-                                    dump(self.cabinetMemos)
-                                    DispatchQueue.main.async {
-                                        self.tableView.reloadData()
+                                do {
+                                    var model = [CabinetMemo]()
+                                    for dic in jsonArray{
+                                        model.append(CabinetMemo(dic))
                                     }
+                                    
+                                    
+                                    
+                                    if model[0].StatusMessage.base64Decoded!.caseInsensitiveCompare("No Record Found") == .orderedSame{
+                                        DispatchQueue.main.async(execute: {
+                                            
+                                            let alertVC = self.alertService.alert(title: "Success Message", body: "No Record Found", buttonTitle: "OK")
+                                            { [weak self] in
+                                                //Go to the Next Story Board
+                                                UIApplication.setRootView(MainViewController.instantiate(from:.Main))
+                                            }
+                                            self.present(alertVC, animated: true)
+                                        })
+                                    }else{
+                                        self.cabinetMemos = model;
+                                        dump(self.cabinetMemos)
+                                        DispatchQueue.main.async {
+                                            self.tableView.reloadData()
+                                        }
+                                    }
+                                    
+                                    
                                 }
-                                
-                                
+                            } catch let parsingError {
+                                print("Error", parsingError)
                             }
-                        } catch let parsingError {
-                            print("Error", parsingError)
                         }
                     }
                 }
+                else{
+                    DispatchQueue.main.async(execute: {
+                        let alertVC = self.alertService.alert(title: "Network Message", body: Constants.internetNotAvailable!, buttonTitle: "OK")
+                        { [weak self] in
+                            //Go to the Next Story Board
+                             UIApplication.setRootView(MainViewController.instantiate(from:.Main))
+                        }
+                        self.present(alertVC, animated: true)
+                        
+                    })
+                }
+                
+                
             }else{
                 
-                //Check Internet Pending
-                let objectMenu = GetPojo();
-                objectMenu.url = Constants.url
-                objectMenu.methord = Constants.methordCabinetMemoListByRole
-                objectMenu.methordHash = (Constants.methordCabinetMemoListByToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
-                objectMenu.taskType = TaskType.GET_PENDING_MEMO_LIST_CABINET
-                objectMenu.timeStamp = appUtilities.getDate()
-                var params2 = [String]()
-                params2.append(dept_id)
-                params2.append(globalUserId)
-                params2.append(globalRoleId)
-                params2.append(globalMappedDepartments)
-                params2.append(globalBranchedMapped)
-                objectMenu.parametersList = params2
-                objectMenu.activityIndicator = self.view
-                
-                networkUtility.getDataDialog(GetDataPojo: objectMenu) { response in
-                    if let response = response {
-                        
-                        do{
-                            let jsonResponse = try JSONSerialization.jsonObject(with: response.respnse!, options: [])
-                            guard let jsonArray = jsonResponse as? [[String: Any]] else {
-                                return
-                            }
+                if Reachability.isConnectedToNetwork(){
+                    
+                    let objectMenu = GetPojo();
+                    objectMenu.url = Constants.url
+                    objectMenu.methord = Constants.methordCabinetMemoListByRole
+                    objectMenu.methordHash = (Constants.methordCabinetMemoListByToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
+                    objectMenu.taskType = TaskType.GET_PENDING_MEMO_LIST_CABINET
+                    objectMenu.timeStamp = appUtilities.getDate()
+                    var params2 = [String]()
+                    params2.append(dept_id)
+                    params2.append(globalUserId)
+                    params2.append(globalRoleId)
+                    params2.append(globalMappedDepartments)
+                    params2.append(globalBranchedMapped)
+                    objectMenu.parametersList = params2
+                    objectMenu.activityIndicator = self.view
+                    
+                    networkUtility.getDataDialog(GetDataPojo: objectMenu) { response in
+                        if let response = response {
                             
-                            do {
-                                var model = [CabinetMemo]()
-                                for dic in jsonArray{
-                                    model.append(CabinetMemo(dic))
+                            do{
+                                let jsonResponse = try JSONSerialization.jsonObject(with: response.respnse!, options: [])
+                                guard let jsonArray = jsonResponse as? [[String: Any]] else {
+                                    return
                                 }
                                 
-                                if model[0].StatusMessage.base64Decoded!.caseInsensitiveCompare("No Record Found") == .orderedSame{
-                                    DispatchQueue.main.async(execute: {
-                                        
-                                        let alertVC = self.alertService.alert(title: "Success Message", body: "No Record Found", buttonTitle: "OK")
-                                        { [weak self] in
-                                            //Go to the Next Story Board
-                                            UIApplication.setRootView(MainViewController.instantiate(from:.Main))
-                                        }
-                                        self.present(alertVC, animated: true)
-                                    })
-                                }else{
-                                    self.cabinetMemos = model;
-                                    dump(self.cabinetMemos)
-                                    DispatchQueue.main.async {
-                                        self.tableView.reloadData()
+                                do {
+                                    var model = [CabinetMemo]()
+                                    for dic in jsonArray{
+                                        model.append(CabinetMemo(dic))
                                     }
+                                    
+                                    if model[0].StatusMessage.base64Decoded!.caseInsensitiveCompare("No Record Found") == .orderedSame{
+                                        DispatchQueue.main.async(execute: {
+                                            
+                                            let alertVC = self.alertService.alert(title: "Success Message", body: "No Record Found", buttonTitle: "OK")
+                                            { [weak self] in
+                                                //Go to the Next Story Board
+                                                UIApplication.setRootView(MainViewController.instantiate(from:.Main))
+                                            }
+                                            self.present(alertVC, animated: true)
+                                        })
+                                    }else{
+                                        self.cabinetMemos = model;
+                                        dump(self.cabinetMemos)
+                                        DispatchQueue.main.async {
+                                            self.tableView.reloadData()
+                                        }
+                                    }
+                                    
+                                    
+                                    
+                                    
                                 }
-                                
-                                
-                                
-                                
+                            } catch let parsingError {
+                                print("Error", parsingError)
                             }
-                        } catch let parsingError {
-                            print("Error", parsingError)
                         }
                     }
                 }
+                else{
+                    DispatchQueue.main.async(execute: {
+                        let alertVC = self.alertService.alert(title: "Network Message", body: Constants.internetNotAvailable!, buttonTitle: "OK")
+                        { [weak self] in
+                            //Go to the Next Story Board
+                             UIApplication.setRootView(MainViewController.instantiate(from:.Main))
+                            
+                        }
+                        self.present(alertVC, animated: true)
+                        
+                    })
+                }
+                
                 
                 
             }
@@ -484,16 +567,16 @@
         
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             print(cabinetMemos[indexPath.row])
-//            let cabinetMemoDetailsController = CabinetMemoDetailsController.instantiate(from: .CabinetMemoDetials)
-//            cabinetMemoDetailsController.cellData = cabinetMemos[indexPath.row]
-//            cabinetMemoDetailsController.memoType = param
-//            UIApplication.setRootView(cabinetMemoDetailsController)
+            //            let cabinetMemoDetailsController = CabinetMemoDetailsController.instantiate(from: .CabinetMemoDetials)
+            //            cabinetMemoDetailsController.cellData = cabinetMemos[indexPath.row]
+            //            cabinetMemoDetailsController.memoType = param
+            //            UIApplication.setRootView(cabinetMemoDetailsController)
             
             let storyBoard : UIStoryboard = UIStoryboard(name: "CabinetMemoDetailsStoryBoard", bundle:nil)
-                       let cabinetMemoDetailsController = storyBoard.instantiateViewController(withIdentifier: "CabinetMemoDetailsController") as! CabinetMemoDetailsController
-                                  cabinetMemoDetailsController.cellData = cabinetMemos[indexPath.row]
-                                   cabinetMemoDetailsController.memoType = param
-                       self.present(cabinetMemoDetailsController, animated:true, completion:nil)
+            let cabinetMemoDetailsController = storyBoard.instantiateViewController(withIdentifier: "CabinetMemoDetailsController") as! CabinetMemoDetailsController
+            cabinetMemoDetailsController.cellData = cabinetMemos[indexPath.row]
+            cabinetMemoDetailsController.memoType = param
+            self.present(cabinetMemoDetailsController, animated:true, completion:nil)
         }
         
     }
