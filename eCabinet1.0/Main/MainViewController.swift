@@ -283,13 +283,13 @@
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
             cell.backgroundColor = appUtilities.hexStringToUIColor(hex: "#F2F2F2")
-            cell.layer.cornerRadius = 10
+            cell.layer.cornerRadius = 5
             cell.layer.borderWidth = 1.0
             cell.layer.borderColor = UIColor.lightGray.cgColor
             cell.layer.backgroundColor = UIColor.white.cgColor
             cell.layer.shadowColor = UIColor.gray.cgColor
             cell.layer.shadowOffset = CGSize(width: 2.0, height: 4.0)
-            cell.layer.shadowRadius = 3.0
+            cell.layer.shadowRadius = 1.5   //2.0
             cell.layer.shadowOpacity = 1.0
             cell.layer.masksToBounds = false
             cell.configure(with: menu[indexPath.row].MenuIcon.base64Decoded!, within:  menu[indexPath.row].MenuName.base64Decoded!)
@@ -391,6 +391,17 @@
                 cabinetViewController.param = "Cabinet_Decisions"
                 
                 UIApplication.setRootView(cabinetViewController)
+                
+            }else if menu[indexPath.row].Menuid.base64Decoded!.caseInsensitiveCompare("10") == .orderedSame{
+                
+                DispatchQueue.main.async(execute: {
+                    
+                    let alertVC = self.alertService.alert(title: "Success Message", body: "Under Process ", buttonTitle: "OK")
+                    { [weak self] in
+                       
+                    }
+                    self.present(alertVC, animated: true)
+                })
                 
             }
             
