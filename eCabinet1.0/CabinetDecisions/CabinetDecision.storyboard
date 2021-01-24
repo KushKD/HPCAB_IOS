@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -43,10 +45,10 @@
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3nw-AV-VNp">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="656"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </tableView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="3nw-AV-VNp" firstAttribute="leading" secondItem="9e3-Td-ddK" secondAttribute="leading" id="kSA-KP-NYg"/>
                                             <constraint firstAttribute="bottom" secondItem="3nw-AV-VNp" secondAttribute="bottom" id="ldH-zI-pdQ"/>
@@ -57,7 +59,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xHn-o8-1hl" userLabel="footer">
                                         <rect key="frame" x="0.0" y="738" width="414" height="82"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f2h-1F-9IE">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f2h-1F-9IE">
                                                 <rect key="frame" x="10" y="10" width="394" height="62"/>
                                                 <color key="backgroundColor" name="RedMaroon"/>
                                                 <state key="normal" title="Back">
@@ -68,7 +70,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="f2h-1F-9IE" firstAttribute="leading" secondItem="xHn-o8-1hl" secondAttribute="leading" constant="10" id="Ixa-Ub-cCS"/>
                                             <constraint firstItem="f2h-1F-9IE" firstAttribute="top" secondItem="xHn-o8-1hl" secondAttribute="top" constant="10" id="aTN-wd-8ml"/>
@@ -91,14 +93,14 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="V7B-Hg-TlG"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ami-qe-aJH" firstAttribute="centerX" secondItem="ZKS-d0-pXx" secondAttribute="centerX" id="EVn-vM-Oof"/>
                             <constraint firstItem="ami-qe-aJH" firstAttribute="top" secondItem="ZKS-d0-pXx" secondAttribute="topMargin" constant="-5" id="O4p-8h-RYQ"/>
                             <constraint firstItem="V7B-Hg-TlG" firstAttribute="bottom" secondItem="ami-qe-aJH" secondAttribute="bottom" constant="3" id="f81-uh-Thb"/>
                             <constraint firstItem="ami-qe-aJH" firstAttribute="leading" secondItem="V7B-Hg-TlG" secondAttribute="leading" id="l2v-Dn-gVF"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="V7B-Hg-TlG"/>
                     </view>
                     <connections>
                         <outlet property="backButton" destination="f2h-1F-9IE" id="t2e-nG-K9a"/>
@@ -114,5 +116,8 @@
         <namedColor name="RedMaroon">
             <color red="0.69800001382827759" green="0.19599999487400055" blue="0.36500000953674316" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
