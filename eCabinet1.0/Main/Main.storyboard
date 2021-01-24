@@ -138,13 +138,13 @@
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Department" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lNm-pP-KSA">
                                                                         <rect key="frame" x="0.0" y="0.0" width="20" height="0.0"/>
                                                                         <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
-                                                                        <color key="textColor" name="darkRed"/>
+                                                                        <color key="textColor" name="grey_dark"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" text="All" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="IFb-k3-D8h">
+                                                                    <textView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="All" textAlignment="center" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IFb-k3-D8h">
                                                                         <rect key="frame" x="20" y="0.0" width="20" height="0.0"/>
-                                                                        <color key="textColor" name="Blue"/>
-                                                                        <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
+                                                                        <color key="textColor" name="darkRed"/>
+                                                                        <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
                                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                                     </textView>
                                                                 </subviews>
@@ -184,7 +184,6 @@
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="jpM-RJ-6mE" firstAttribute="width" secondItem="a4b-tJ-SEY" secondAttribute="width" id="5Ko-cG-dXG"/>
-                                                    <constraint firstItem="unu-Ne-rtl" firstAttribute="top" secondItem="jpM-RJ-6mE" secondAttribute="bottom" constant="10" id="Emu-Yt-0z2"/>
                                                     <constraint firstItem="jpM-RJ-6mE" firstAttribute="height" secondItem="a4b-tJ-SEY" secondAttribute="height" multiplier="0.9" id="TCU-uC-KEe"/>
                                                     <constraint firstItem="unu-Ne-rtl" firstAttribute="width" secondItem="a4b-tJ-SEY" secondAttribute="width" id="eRV-it-Nha"/>
                                                     <constraint firstItem="unu-Ne-rtl" firstAttribute="height" secondItem="a4b-tJ-SEY" secondAttribute="height" multiplier="0.1" id="tqk-gM-pcg"/>
@@ -238,9 +237,6 @@
     </scenes>
     <resources>
         <image name="hp_logo" width="200" height="142"/>
-        <namedColor name="Blue">
-            <color red="0.27799999713897705" green="0.36899998784065247" blue="0.67100000381469727" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="MAroonTop">
             <color red="0.24699999392032623" green="0.17599999904632568" blue="0.23899999260902405" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -249,6 +245,9 @@
         </namedColor>
         <namedColor name="darkRed">
             <color red="0.84700000286102295" green="0.14499999582767487" blue="0.20399999618530273" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="grey_dark">
+            <color red="0.28600001335144043" green="0.28600001335144043" blue="0.28600001335144043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

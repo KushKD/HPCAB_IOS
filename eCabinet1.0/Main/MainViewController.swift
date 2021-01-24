@@ -15,13 +15,13 @@
         var networkUtility = NetworkUtility()
         var activirtIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
         
-       
-       
+        
+        
         @IBOutlet weak var slideView: ImageSlideshow!
         @IBOutlet weak var selectDepartment: UITextView!
         @IBOutlet weak var collectionView: UICollectionView!
-     //   @IBOutlet weak var name: UILabel!
-      //  @IBOutlet weak var designation: UILabel!
+        //   @IBOutlet weak var name: UILabel!
+        //  @IBOutlet weak var designation: UILabel!
         let alertService = AlertService();
         
         var pickerViewDepartments = UIPickerView()
@@ -34,7 +34,7 @@
         var menu = [Menu]()
         var window:UIWindow?
         let localSource = [BundleImageSource(imageString: "image1"), BundleImageSource(imageString: "image2")]
-          
+        
         
         override func viewDidLoad() {
             super.viewDidLoad()
@@ -42,18 +42,18 @@
             slideView.slideshowInterval = 5.0
             slideView.pageIndicatorPosition = .init(horizontal: .center, vertical: .bottom)
             slideView.contentScaleMode = UIViewContentMode.scaleAspectFill
-
+            
             let pageControl = UIPageControl()
             pageControl.currentPageIndicatorTintColor = UIColor.lightGray
             pageControl.pageIndicatorTintColor = UIColor.white
-
+            
             slideView.pageIndicator = pageControl
-
-                
+            
+            
             slideView.activityIndicator = DefaultActivityIndicator()
             slideView.delegate = self
-
-                  
+            
+            
             slideView.setImageInputs(localSource)
             
             let yourWidth = collectionView.bounds.width/3.0
@@ -64,13 +64,13 @@
             collectionView.register(CollectionViewCell.NIB(), forCellWithReuseIdentifier: "CollectionViewCell")
             // collectionView.layer.borderColor = UIColor.red.cgColor
             //collectionView.layer.borderWidth = 3.0
-            selectDepartment.addBorder(toSide: .Top, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
-            selectDepartment.addBorder(toSide: .Bottom, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
-            selectDepartment.addBorder(toSide: .Left, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
-            selectDepartment.addBorder(toSide: .Right, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+            //  selectDepartment.addBorder(toSide: .Top, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+            // selectDepartment.addBorder(toSide: .Bottom, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+            // selectDepartment.addBorder(toSide: .Left, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+            // selectDepartment.addBorder(toSide: .Right, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
             
-            collectionView.layer.cornerRadius = 3.0
-            collectionView.backgroundColor = UIColor.red
+            // collectionView.layer.cornerRadius = 5.0
+            // collectionView.backgroundColor = UIColor.red
             // self.collectionView.backgroundColor = appUtilities.hexStringToUIColor(hex: "#F2F2F2")
             collectionView.delegate = self
             collectionView.dataSource = self
@@ -78,6 +78,8 @@
             pickerViewDepartments.delegate = self
             pickerViewDepartments.dataSource = self
             selectDepartment.inputView = pickerViewDepartments
+            selectDepartment.contentInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5);
+            collectionView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0);
             
             
             
@@ -89,19 +91,12 @@
             let userRoleIdKey_ = "ROLE_ID"
             let mapped_departments_id_key  = "DEPARTMENTS_MAPPED"
             let photo_key = "PHOTO"
-            print(UserDefaults.standard.bool(forKey: mapped_loggedin_key))
-            print(UserDefaults.standard.string(forKey: mobileNumberKey_)!)
-            print(UserDefaults.standard.string(forKey: nameKey_)!)
-            print(UserDefaults.standard.string(forKey: userIdKey_)!)
-            print(UserDefaults.standard.string(forKey: designationKey_)!)
-            print(UserDefaults.standard.string(forKey: userRoleIdKey_)!)
-            print(UserDefaults.standard.string(forKey: mapped_departments_id_key)!)
-            // print(UserDefaults.standard.string(forKey: photo_key)!)
+            
             globalRoleID = UserDefaults.standard.string(forKey: userRoleIdKey_)!
             globalUserID = UserDefaults.standard.string(forKey: userIdKey_)!
             
-           // name.text = UserDefaults.standard.string(forKey: nameKey_)!
-           // designation.text = UserDefaults.standard.string(forKey: designationKey_)!
+            // name.text = UserDefaults.standard.string(forKey: nameKey_)!
+            // designation.text = UserDefaults.standard.string(forKey: designationKey_)!
             
             if Reachability.isConnectedToNetwork(){
                 let objectMenu = GetPojo();
@@ -311,9 +306,9 @@
             cell.layer.backgroundColor = UIColor.white.cgColor
             cell.layer.shadowColor = UIColor.gray.cgColor
             cell.layer.shadowOffset = CGSize(width: 2.0, height: 4.0)
-            cell.layer.shadowRadius = 1.5   //2.0
+            cell.layer.shadowRadius = 1  //2.0
             cell.layer.shadowOpacity = 1.0
-            cell.layer.masksToBounds = false
+            //cell.layer.masksToBounds = false
             cell.configure(with: menu[indexPath.row].MenuIcon.base64Decoded!, within:  menu[indexPath.row].MenuName.base64Decoded!)
             return cell
         }
