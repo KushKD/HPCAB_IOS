@@ -76,6 +76,8 @@ class CabinetDesicionViewController: UIViewController {
      var params2 = [String]()
      params2.append(globalUserId)
        params2.append(globalMappedDepartments)
+        //branch MApped
+        params2.append(globalBranchedMapped)
      params2.append(globalRoleId)
      
      objectMenu.parametersList = params2

@@ -11,10 +11,10 @@ import Foundation
 struct Constants{
     
     //URL Staging
-   // static let  url:String? = "http://164.100.138.114/eCabinetService.svc";
+    static let  url:String? = "http://164.100.138.114/eCabinetService.svc";
     
     //URL Production
-      static let url:String? = "http://ecabinetwcf.hp.gov.in/eCabinetService.svc";
+     // static let url:String? = "http://ecabinetwcf.hp.gov.in/eCabinetService.svc";
     
     static let  delemeter:String? = "/";
     static let  seperator:String? = "#";

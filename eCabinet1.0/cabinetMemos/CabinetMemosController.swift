@@ -99,6 +99,7 @@
                     params2.append(globalUserId)
                     params2.append(globalRoleId)
                     params2.append(globalMappedDepartments)
+                    params2.append(globalBranchedMapped)
                     objectMenu.parametersList = params2
                     objectMenu.activityIndicator = self.view
                     
@@ -175,6 +176,7 @@
                     params2.append(globalUserId)
                     params2.append(globalRoleId)
                     params2.append(globalMappedDepartments)
+                    params2.append(globalBranchedMapped)
                     
                     objectMenu.parametersList = params2
                     objectMenu.activityIndicator = self.view
@@ -250,6 +252,7 @@
                     params2.append(globalUserId)
                     params2.append(globalRoleId)
                     params2.append(globalMappedDepartments)
+                    params2.append(globalBranchedMapped)
                     
                     objectMenu.parametersList = params2
                     objectMenu.activityIndicator = self.view
@@ -324,11 +327,12 @@
                     objectMenu.taskType = TaskType.GET_PENDING_MEMO_LIST_CABINET
                     objectMenu.timeStamp = appUtilities.getDate()
                     var params2 = [String]()
-                    params2.append(dept_id)
+                   // params2.append(dept_id)
                     params2.append(globalUserId)
                     params2.append(globalRoleId)
                     params2.append(globalMappedDepartments)
                     params2.append(meetingID)
+                    params2.append(globalBranchedMapped)
                     objectMenu.parametersList = params2
                     objectMenu.activityIndicator = self.view
                     

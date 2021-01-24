@@ -110,8 +110,8 @@
             filePath = "eCabinet1.0/cabinetMemos/CabinetMemosController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "545"
-            endingLineNumber = "545"
+            startingLineNumber = "549"
+            endingLineNumber = "549"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>

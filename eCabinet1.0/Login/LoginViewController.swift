@@ -59,6 +59,8 @@ class LoginViewController: UIViewController {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
         
+       // Notifi
+        
         pickerViewRoles.dataSource = self
         pickerViewRoles.delegate = self
         pickerViewUsers.dataSource = self
@@ -79,20 +81,20 @@ class LoginViewController: UIViewController {
         DepartmentsTextView.addBorder(toSide: .Bottom, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
         DepartmentsTextView.addBorder(toSide: .Left, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
         DepartmentsTextView.addBorder(toSide: .Right, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
-        DepartmentsTextView.isUserInteractionEnabled = false
+       // DepartmentsTextView.isUserInteractionEnabled = false
         
         BranchesTextView.addBorder(toSide: .Top, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
         BranchesTextView.addBorder(toSide: .Bottom, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
         BranchesTextView.addBorder(toSide: .Left, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
         BranchesTextView.addBorder(toSide: .Right, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
-          BranchesTextView.isUserInteractionEnabled = false
+         // BranchesTextView.isUserInteractionEnabled = false
         
         
         UsersTextView.addBorder(toSide: .Top, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
         UsersTextView.addBorder(toSide: .Bottom, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
         UsersTextView.addBorder(toSide: .Left, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
         UsersTextView.addBorder(toSide: .Right, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
-         UsersTextView.isUserInteractionEnabled = false
+         //UsersTextView.isUserInteractionEnabled = false
         
         MobileNumber.addBorder(toSide: .Top, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
         MobileNumber.addBorder(toSide: .Bottom, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
@@ -467,7 +469,9 @@ extension LoginViewController: UIPickerViewDelegate,UIPickerViewDataSource {
             
             globalRoleId = roles[row].Roleid.base64Decoded!;
             
-            if globalRoleId.caseInsensitiveCompare("7") == .orderedSame || globalRoleId.caseInsensitiveCompare("6") == .orderedSame{
+            if globalRoleId.caseInsensitiveCompare("7") == .orderedSame || globalRoleId.caseInsensitiveCompare("6") == .orderedSame ||
+            globalRoleId.caseInsensitiveCompare("5") == .orderedSame || globalRoleId.caseInsensitiveCompare("4") == .orderedSame
+            {
                 
                 
                 if Reachability.isConnectedToNetwork(){

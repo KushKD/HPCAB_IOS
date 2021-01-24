@@ -28,6 +28,7 @@ struct CabinetMemo{
     var Date: String
     var StatusMessage: String
     var CabinetMemoType: String
+    var BranchId: String;
     
        
          init(_ dictionary: [String: Any]) {
@@ -49,6 +50,7 @@ struct CabinetMemo{
               self.Date = dictionary["Date"] as? String ?? ""
               self.StatusMessage = dictionary["StatusMessage"] as? String ?? ""
             self.CabinetMemoType = ""
+            self.BranchId = dictionary["BranchID"] as? String ?? ""
        
        }
     
