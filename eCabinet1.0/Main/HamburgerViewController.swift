@@ -17,8 +17,8 @@ class HamburgerViewController: UIViewController {
     
     @IBOutlet weak var profilePictureImage: UIImageView!
     @IBOutlet weak var mainBackgroundView: UIView!
-    @IBOutlet weak var mobile: UILabel!
     
+    @IBOutlet weak var mobile: UILabel!
     @IBOutlet weak var designation: UILabel!
     @IBOutlet weak var name: UILabel!
     override func viewDidLoad() {
