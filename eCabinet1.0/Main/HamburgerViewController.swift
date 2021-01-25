@@ -17,6 +17,10 @@ class HamburgerViewController: UIViewController {
     
     @IBOutlet weak var profilePictureImage: UIImageView!
     @IBOutlet weak var mainBackgroundView: UIView!
+    @IBOutlet weak var mobile: UILabel!
+    
+    @IBOutlet weak var designation: UILabel!
+    @IBOutlet weak var name: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,6 +35,19 @@ class HamburgerViewController: UIViewController {
         
         self.profilePictureImage.layer.cornerRadius = 40
         self.profilePictureImage.clipsToBounds = true
+        
+        let mapped_loggedin_key = "IS_LOGGED_IN"
+        let designationKey_ = "DESIGNATION"
+        let mobileNumberKey_ = "MOBILE_NUMBER"
+        let nameKey_ = "NAME"
+        let userIdKey_ = "USER_ID"
+        let userRoleIdKey_ = "ROLE_ID"
+        let mapped_departments_id_key  = "DEPARTMENTS_MAPPED"
+        let photo_key = "PHOTO"
+        
+         name.text = UserDefaults.standard.string(forKey: nameKey_)!
+        designation.text = UserDefaults.standard.string(forKey: designationKey_)!
+        mobile.text = UserDefaults.standard.string(forKey: mobileNumberKey_)!
     }
     
     @IBAction func clickedOnButton(_ sender: Any) {

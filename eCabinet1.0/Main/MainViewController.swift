@@ -217,7 +217,14 @@
         private var difference:CGFloat = 0.0
         
         func hideHamburgerMenu() {
+            //Logout
             self.hideHamburgerView()
+            let preferences = UserDefaults.standard
+            let mapped_loggedin_key = "IS_LOGGED_IN"
+            preferences.set(false, forKey: mapped_loggedin_key)
+            print(UserDefaults.standard.bool(forKey: mapped_loggedin_key))
+            UIApplication.setRootView(LoginViewController.instantiate(from: .Login), options: UIApplication.logoutAnimation)
+           
         }
         
         
@@ -228,7 +235,7 @@
         @IBAction func showHamburgerMenu(_ sender: Any) {
             
             UIView.animate(withDuration: 0.1) {
-                self.leadingConstraintForHamburgerView.constant = 10
+                self.leadingConstraintForHamburgerView.constant = -10
                 self.view.layoutIfNeeded()
             } completion: { (status) in
                 self.mainBackView.alpha = 0.75
@@ -251,7 +258,7 @@
         private func hideHamburgerView()
         {
             UIView.animate(withDuration: 0.1) {
-                self.leadingConstraintForHamburgerView.constant = 10
+                self.leadingConstraintForHamburgerView.constant = -10
                 self.view.layoutIfNeeded()
             } completion: { (status) in
                 self.mainBackView.alpha = 0.0
@@ -275,6 +282,7 @@
                 {
                     self.hamburgerViewController = controller
                     self.hamburgerViewController?.delegate = self
+                    
                 }
             }
         }
