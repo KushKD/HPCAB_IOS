@@ -10,13 +10,16 @@
     import Kingfisher
     import ImageSlideshow
     
-    class MainViewController: UIViewController {
+    class MainViewController: UIViewController, HamburgerViewControllerDelegate {
+        
         var appUtilities = UtilitiesApp();
         var networkUtility = NetworkUtility()
         var activirtIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
         
         
-        
+        @IBOutlet weak var leadingConstraintForHamburgerView: NSLayoutConstraint!
+        @IBOutlet weak var mainBackView: UIView!
+        @IBOutlet weak var hamburgerView: UIView!
         @IBOutlet weak var slideView: ImageSlideshow!
         @IBOutlet weak var selectDepartment: UITextView!
         @IBOutlet weak var collectionView: UICollectionView!
@@ -30,6 +33,7 @@
         var globalPhoto: String = ""
         var deptIDPickerView: String = "0"
         
+        
         var departments = [Departments]()
         var menu = [Menu]()
         var window:UIWindow?
@@ -38,7 +42,7 @@
         
         override func viewDidLoad() {
             super.viewDidLoad()
-            
+            self.mainBackView.isHidden = true
             slideView.slideshowInterval = 5.0
             slideView.pageIndicatorPosition = .init(horizontal: .center, vertical: .bottom)
             slideView.contentScaleMode = UIViewContentMode.scaleAspectFill
@@ -62,16 +66,6 @@
             layout.itemSize = CGSize(width: yourWidth-5, height: yourHeight)
             collectionView.collectionViewLayout = layout
             collectionView.register(CollectionViewCell.NIB(), forCellWithReuseIdentifier: "CollectionViewCell")
-            // collectionView.layer.borderColor = UIColor.red.cgColor
-            //collectionView.layer.borderWidth = 3.0
-            //  selectDepartment.addBorder(toSide: .Top, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
-            // selectDepartment.addBorder(toSide: .Bottom, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
-            // selectDepartment.addBorder(toSide: .Left, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
-            // selectDepartment.addBorder(toSide: .Right, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
-            
-            // collectionView.layer.cornerRadius = 5.0
-            // collectionView.backgroundColor = UIColor.red
-            // self.collectionView.backgroundColor = appUtilities.hexStringToUIColor(hex: "#F2F2F2")
             collectionView.delegate = self
             collectionView.dataSource = self
             collectionView.backgroundColor = .white
@@ -218,6 +212,129 @@
             pickerViewDepartments.selectRow(1, inComponent: 0, animated: true)
         }
         
+        private var isHamburgerMenuShown:Bool = false
+        private var beginPoint:CGFloat = 0.0
+        private var difference:CGFloat = 0.0
+        
+        func hideHamburgerMenu() {
+            self.hideHamburgerView()
+        }
+        
+        
+        @IBAction func tappedOnHamburgerbackView(_ sender: Any) {
+            self.hideHamburgerView()
+        }
+        
+        @IBAction func showHamburgerMenu(_ sender: Any) {
+            
+            UIView.animate(withDuration: 0.1) {
+                self.leadingConstraintForHamburgerView.constant = 10
+                self.view.layoutIfNeeded()
+            } completion: { (status) in
+                self.mainBackView.alpha = 0.75
+                self.mainBackView.isHidden = false
+                UIView.animate(withDuration: 0.1) {
+                    self.leadingConstraintForHamburgerView.constant = -10
+                    self.view.layoutIfNeeded()
+                } completion: { (status) in
+                    self.isHamburgerMenuShown = true
+                }
+
+            }
+
+            self.mainBackView.isHidden = false
+            
+            
+            
+        }
+        
+        private func hideHamburgerView()
+        {
+            UIView.animate(withDuration: 0.1) {
+                self.leadingConstraintForHamburgerView.constant = 10
+                self.view.layoutIfNeeded()
+            } completion: { (status) in
+                self.mainBackView.alpha = 0.0
+                UIView.animate(withDuration: 0.1) {
+                    self.leadingConstraintForHamburgerView.constant = -290
+                    self.view.layoutIfNeeded()
+                } completion: { (status) in
+                    self.mainBackView.isHidden = true
+                    self.isHamburgerMenuShown = false
+                }
+            }
+        }
+        
+        
+        var hamburgerViewController : HamburgerViewController?
+        
+        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if (segue.identifier == "hamburgerSegue")
+            {
+                if let controller = segue.destination as? HamburgerViewController
+                {
+                    self.hamburgerViewController = controller
+                    self.hamburgerViewController?.delegate = self
+                }
+            }
+        }
+        
+        
+        
+        override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+            if (isHamburgerMenuShown)
+            {
+                if let touch = touches.first
+                {
+                    let location = touch.location(in: mainBackView)
+                    beginPoint = location.x
+                }
+            }
+        }
+        
+        override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+            if (isHamburgerMenuShown)
+            {
+                if let touch = touches.first
+                {
+                    let location = touch.location(in: mainBackView)
+                    
+                    let differenceFromBeginPoint = beginPoint - location.x
+                    
+                    if (differenceFromBeginPoint>0 || differenceFromBeginPoint<290)
+                    {
+                        difference = differenceFromBeginPoint
+                        self.leadingConstraintForHamburgerView.constant = -differenceFromBeginPoint
+                        self.mainBackView.alpha = 0.75-(0.75*differenceFromBeginPoint/290)
+                    }
+                }
+            }
+        }
+        
+        override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+            if (isHamburgerMenuShown)
+            {
+                if (difference>140)
+                {
+                    UIView.animate(withDuration: 0.1) {
+                        self.leadingConstraintForHamburgerView.constant = -290
+                    } completion: { (status) in
+                        self.mainBackView.alpha = 0.0
+                        self.isHamburgerMenuShown = false
+                        self.mainBackView.isHidden = true
+                    }
+                }
+                else{
+                    UIView.animate(withDuration: 0.1) {
+                        self.leadingConstraintForHamburgerView.constant = -10
+                    } completion: { (status) in
+                        self.mainBackView.alpha = 0.75
+                        self.isHamburgerMenuShown = true
+                        self.mainBackView.isHidden = false
+                    }
+                }
+            }
+        }
         
         
         
