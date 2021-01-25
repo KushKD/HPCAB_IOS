@@ -19,6 +19,7 @@
          FinalAgendaList
          */
         
+        @IBOutlet weak var head: UIView!
         @IBOutlet weak var headingView: UILabel!
         @IBOutlet weak var heading: UILabel!
         @IBOutlet weak var back: UIButton!
@@ -55,6 +56,7 @@
         override func viewDidLoad() {
             super.viewDidLoad()
             
+            appUtilities.setHorizontalGradientColor(view: self.head)
             
             // print(UserDefaults.standard.string(forKey: photo_key)!)
             globalRoleId = UserDefaults.standard.string(forKey: userRoleIdKey_)!
@@ -564,7 +566,15 @@
         
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: "tableCellMemos", for: indexPath) as? CustomTableViewCell
-            print(param)
+            cell?.backgroundColor = appUtilities.hexStringToUIColor(hex: "#FFFFFF")
+            cell?.layer.cornerRadius = 5
+            cell?.layer.borderWidth = 0.5
+            cell?.layer.borderColor = UIColor.lightGray.cgColor
+            cell?.layer.backgroundColor = UIColor.white.cgColor
+            cell?.layer.shadowColor = UIColor.gray.cgColor
+            cell?.layer.shadowOffset = CGSize(width: 1.0, height: 2.0)
+            cell?.layer.shadowRadius = 0.5  //2.0
+            cell?.layer.shadowOpacity = 0.5
             cell?.commonInit(cabinetMemos[indexPath.row], param)
             return cell!
         }
