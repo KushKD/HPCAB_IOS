@@ -584,8 +584,9 @@
             if Reachability.isConnectedToNetwork(){
                 let storyBoard : UIStoryboard = UIStoryboard(name: "CabinetMemoDetailsStoryBoard", bundle:nil)
                            let cabinetMemoDetailsController = storyBoard.instantiateViewController(withIdentifier: "CabinetMemoDetailsController") as! CabinetMemoDetailsController
-                           cabinetMemoDetailsController.cellData = cabinetMemos[indexPath.row]
-                           cabinetMemoDetailsController.memoType = param
+                //Earlier Working
+                // cabinetMemoDetailsController.cellData = cabinetMemos[indexPath.row]
+                          // cabinetMemoDetailsController.memoType = param
                            self.present(cabinetMemoDetailsController, animated:true, completion:nil)
             }
             else{
