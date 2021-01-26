@@ -54,8 +54,8 @@ class CabinetMemoDetailsController: UIViewController {
     @IBOutlet weak var proposed_Details: UILabel!
     @IBOutlet weak var subject: UILabel!
     @IBOutlet weak var secIncharge: UILabel!
-//    @IBOutlet weak var buttonOne: UIStackView!
-//    @IBOutlet weak var buttonTwo: UIStackView!
+    @IBOutlet weak var buttonOne: UIStackView!
+    @IBOutlet weak var buttonTwo: UIStackView!
 
   //  @IBOutlet weak var enterRemarksLabel: UILabel!
    // @IBOutlet weak var enterRemarksTextView: UITextView!
@@ -94,16 +94,16 @@ class CabinetMemoDetailsController: UIViewController {
         print(globalRoleId)
         print(globalMappedDepartments)
 
-       // tapGesture = UITapGestureRecognizer(target: self, action: #selector(CabinetMemoDetailsController.history(_:)))
-        //tapGestureAttachments = UITapGestureRecognizer(target: self, action: #selector(CabinetMemoDetailsController.attachments(_:)))
-//        tapGesture.numberOfTapsRequired = 1
-//        tapGestureAttachments.numberOfTapsRequired = 1
-//        tapGesture.numberOfTouchesRequired = 1
-//        tapGestureAttachments.numberOfTouchesRequired = 1
-//        buttonOne.addGestureRecognizer(tapGesture)
-//        buttonTwo.addGestureRecognizer(tapGestureAttachments)
-//        buttonOne.isUserInteractionEnabled = true
-//        buttonTwo.isUserInteractionEnabled = true
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(CabinetMemoDetailsController.history(_:)))
+        tapGestureAttachments = UITapGestureRecognizer(target: self, action: #selector(CabinetMemoDetailsController.attachments(_:)))
+        tapGesture.numberOfTapsRequired = 1
+        tapGestureAttachments.numberOfTapsRequired = 1
+        tapGesture.numberOfTouchesRequired = 1
+        tapGestureAttachments.numberOfTouchesRequired = 1
+        buttonOne.addGestureRecognizer(tapGesture)
+        buttonTwo.addGestureRecognizer(tapGestureAttachments)
+        buttonOne.isUserInteractionEnabled = true
+        buttonTwo.isUserInteractionEnabled = true
 
 
 
@@ -951,49 +951,49 @@ class CabinetMemoDetailsController: UIViewController {
 
 
 
-//    @objc func history(_ sender: UITapGestureRecognizer) {
-//
-//        print("Button Clicked History")
-//        dump(listCabinetMemoTrackingHistoryLists)
-//        if listCabinetMemoTrackingHistoryLists.count > 0{
-//
-//            let storyBoard : UIStoryboard = UIStoryboard(name: "CabinetHistory", bundle:nil)
-//            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "CabinetHistoryController") as! CabinetHistoryController
-//            nextViewController.listToShow = listCabinetMemoTrackingHistoryLists
-//            self.present(nextViewController, animated:true, completion:nil)
-//
-//
-//        }else{
-//
-//            DispatchQueue.main.async(execute: {
-//                let alertVC = self.alertService.alert(title: "Success Message", body: "No Comments Found ", buttonTitle: "OK")
-//                { [weak self] in
-//                }
-//                self.present(alertVC, animated: true)
-//            })
-//        }
-//    }
+    @objc func history(_ sender: UITapGestureRecognizer) {
 
-//
-//    @objc func attachments(_ sender: UITapGestureRecognizer) {
-//
-//        print("Button Clicked attachments")
-//        dump(listAnnuxtures)
-//        if listAnnuxtures.count > 0{
-//            let storyBoard : UIStoryboard = UIStoryboard(name: "MemoAttachments", bundle:nil)
-//            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MemoAttachmentsController") as! MemoAttachmentsController
-//            nextViewController.listToShow = listAnnuxtures
-//            self.present(nextViewController, animated:true, completion:nil)
-//        }else{
-//            DispatchQueue.main.async(execute: {
-//
-//                let alertVC = self.alertService.alert(title: "Success Message", body: "No Attachments Found ", buttonTitle: "OK")
-//                { [weak self] in
-//                }
-//                self.present(alertVC, animated: true)
-//            })
-//        }
-//    }
+        print("Button Clicked History")
+        dump(listCabinetMemoTrackingHistoryLists)
+        if listCabinetMemoTrackingHistoryLists.count > 0{
+
+            let storyBoard : UIStoryboard = UIStoryboard(name: "CabinetHistory", bundle:nil)
+            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "CabinetHistoryController") as! CabinetHistoryController
+            nextViewController.listToShow = listCabinetMemoTrackingHistoryLists
+            self.present(nextViewController, animated:true, completion:nil)
+
+
+        }else{
+
+            DispatchQueue.main.async(execute: {
+                let alertVC = self.alertService.alert(title: "Success Message", body: "No Comments Found ", buttonTitle: "OK")
+                { [weak self] in
+                }
+                self.present(alertVC, animated: true)
+            })
+        }
+    }
+
+
+    @objc func attachments(_ sender: UITapGestureRecognizer) {
+
+        print("Button Clicked attachments")
+        dump(listAnnuxtures)
+        if listAnnuxtures.count > 0{
+            let storyBoard : UIStoryboard = UIStoryboard(name: "MemoAttachments", bundle:nil)
+            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MemoAttachmentsController") as! MemoAttachmentsController
+            nextViewController.listToShow = listAnnuxtures
+            self.present(nextViewController, animated:true, completion:nil)
+        }else{
+            DispatchQueue.main.async(execute: {
+
+                let alertVC = self.alertService.alert(title: "Success Message", body: "No Attachments Found ", buttonTitle: "OK")
+                { [weak self] in
+                }
+                self.present(alertVC, animated: true)
+            })
+        }
+    }
 
 
 
