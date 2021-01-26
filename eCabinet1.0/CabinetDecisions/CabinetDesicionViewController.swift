@@ -10,6 +10,7 @@ import UIKit
 
 class CabinetDesicionViewController: UIViewController {
 
+    @IBOutlet weak var head: UIView!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var tableContent: UITableView!
     
@@ -44,7 +45,7 @@ class CabinetDesicionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-      
+        appUtilities.setHorizontalGradientColor(view: head)
         
         tableContent.delegate = self
         tableContent.dataSource = self

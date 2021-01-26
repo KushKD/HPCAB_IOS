@@ -12,10 +12,13 @@ import PDFKit
 
 class MemoAttachmentsController: UIViewController {
     var listToShow = [ListAnnuxtures]()
+    @IBOutlet weak var head: UIView!
     @IBOutlet weak var heading: UILabel!
     @IBOutlet weak var back: UIButton!
     @IBOutlet weak var tableView: UITableView!
     let alertService = AlertService();
+    var appUtilities = UtilitiesApp();
+
     let downloadServiceDialog = DownloadServiceDialog();
     var activirtIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     
@@ -31,7 +34,7 @@ class MemoAttachmentsController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        
+        appUtilities.setHorizontalGradientColor(view: head)
         
         
         self.documentInteractionController?.delegate = self

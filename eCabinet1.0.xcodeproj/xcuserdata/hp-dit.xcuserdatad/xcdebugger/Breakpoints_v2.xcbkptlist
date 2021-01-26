@@ -180,5 +180,98 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5254E33C-0D12-43D9-B6FC-559C77B63867"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "eCabinet1.0/cabinetMemoHistory/CabinetHistoryController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "CabinetHistoryController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "5254E33C-0D12-43D9-B6FC-559C77B63867 - 417bc2e555378035"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "eCabinet1_0.CabinetHistoryController.__deallocating_deinit"
+                  moduleName = "eCabinet1.0"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hp-dit/Documents/Documents%20-%20HP-DIT%E2%80%99s%20MacBook%20Air/Iphone/eCabinet1.0/eCabinet1.0/cabinetMemoHistory/CabinetHistoryController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "5254E33C-0D12-43D9-B6FC-559C77B63867 - e81613db3774fc50"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "eCabinet1_0.CabinetHistoryController.__allocating_init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; eCabinet1_0.CabinetHistoryController"
+                  moduleName = "eCabinet1.0"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hp-dit/Documents/Documents%20-%20HP-DIT%E2%80%99s%20MacBook%20Air/Iphone/eCabinet1.0/eCabinet1.0/cabinetMemoHistory/CabinetHistoryController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  uuid = "5254E33C-0D12-43D9-B6FC-559C77B63867 - 7f0c02c26dddf83b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "eCabinet1_0.CabinetHistoryController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; eCabinet1_0.CabinetHistoryController"
+                  moduleName = "eCabinet1.0"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hp-dit/Documents/Documents%20-%20HP-DIT%E2%80%99s%20MacBook%20Air/Iphone/eCabinet1.0/eCabinet1.0/cabinetMemoHistory/CabinetHistoryController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "351">
+               </Location>
+               <Location
+                  uuid = "5254E33C-0D12-43D9-B6FC-559C77B63867 - dc45c70fd5b3310a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "eCabinet1_0.CabinetHistoryController.__allocating_init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;eCabinet1_0.CabinetHistoryController&gt;"
+                  moduleName = "eCabinet1.0"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hp-dit/Documents/Documents%20-%20HP-DIT%E2%80%99s%20MacBook%20Air/Iphone/eCabinet1.0/eCabinet1.0/cabinetMemoHistory/CabinetHistoryController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  uuid = "5254E33C-0D12-43D9-B6FC-559C77B63867 - 5be6a7bde047d9f9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "eCabinet1_0.CabinetHistoryController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;eCabinet1_0.CabinetHistoryController&gt;"
+                  moduleName = "eCabinet1.0"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hp-dit/Documents/Documents%20-%20HP-DIT%E2%80%99s%20MacBook%20Air/Iphone/eCabinet1.0/eCabinet1.0/cabinetMemoHistory/CabinetHistoryController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "292">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

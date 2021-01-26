@@ -45,6 +45,7 @@ class CabinetMemoDetailsController: UIViewController {
     
     var buttonName  = ""
     
+    @IBOutlet weak var head_cabinet_memo_details: UILabel!
     @IBOutlet weak var pointsOfConsideration: UILabel!
     @IBOutlet weak var additionalInformation: UILabel!
     @IBOutlet weak var ministerIncharge: UILabel!
@@ -74,14 +75,17 @@ class CabinetMemoDetailsController: UIViewController {
     var tapGesture = UITapGestureRecognizer()
     var tapGestureAttachments = UITapGestureRecognizer()
     
+    @IBOutlet weak var memorendun: UIView!
+    @IBOutlet weak var head_cab: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dump(cellData)
-        dump(memoType)
+        //dump(cellData)
+        //dump(memoType)
         
-        
+       // appUtilities.setgradient(view: head_cab)
+       // appUtilities.setgradient(view: memorendun)
         
         
         // print(UserDefaults.standard.string(forKey: photo_key)!)
@@ -997,9 +1001,7 @@ class CabinetMemoDetailsController: UIViewController {
     }
     
     
-    @IBAction func close(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
+  
     
 }
 

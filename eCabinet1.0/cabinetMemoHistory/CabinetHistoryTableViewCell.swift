@@ -26,6 +26,12 @@ class CabinetHistoryTableViewCell: UITableViewCell {
         
         func commonInit(_ one: ListCabinetMemoTrackingHistoryLists){
             print("Inside Table Cell")
+            
+            memoImage?.layer.masksToBounds = true
+            memoImage?.layer.borderWidth = 0.5
+            let margin:CGFloat = 16
+            
+            memoImage?.layer.borderColor = UIColor.white.cgColor
             contentOne.text = one.Action.base64Decoded!
             contentOne.contentMode = .scaleToFill
             contentOne.numberOfLines = 5

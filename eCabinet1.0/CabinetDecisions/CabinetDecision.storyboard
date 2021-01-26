@@ -32,9 +32,8 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cabinet Decisions" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1WD-1J-LyF" userLabel="label_head">
                                                 <rect key="frame" x="20" y="20" width="414" height="20.5"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="17"/>
-                                                <color key="textColor" name="RedMaroon"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -104,6 +103,7 @@
                     </view>
                     <connections>
                         <outlet property="backButton" destination="f2h-1F-9IE" id="t2e-nG-K9a"/>
+                        <outlet property="head" destination="QEg-D0-5m8" id="fnj-eF-wsH"/>
                         <outlet property="tableContent" destination="3nw-AV-VNp" id="30f-yx-xgK"/>
                     </connections>
                 </viewController>

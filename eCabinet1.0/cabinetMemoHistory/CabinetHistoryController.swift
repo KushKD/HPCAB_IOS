@@ -11,16 +11,18 @@ import Foundation
 
 class CabinetHistoryController: UIViewController {
     
+    @IBOutlet weak var head: UIView!
     var listToShow = [ListCabinetMemoTrackingHistoryLists]()
     @IBOutlet weak var heading: UILabel!
     @IBOutlet weak var back: UIButton!
     @IBOutlet weak var tableView: UITableView!
     let alertService = AlertService();
+    var appUtilities = UtilitiesApp();
     var activirtIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        appUtilities.setHorizontalGradientColor(view: head)
         dump(listToShow)
         tableView.delegate = self
         tableView.dataSource = self

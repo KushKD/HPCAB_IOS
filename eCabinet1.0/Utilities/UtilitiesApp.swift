@@ -185,4 +185,14 @@ class UtilitiesApp{
         gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
         view.layer.insertSublayer(gradientLayer, at: 0)
     }
+    
+    func setgradient(view: UIView) {
+        let gradientLayer = CAGradientLayer()
+        var updatedFrame = view.bounds
+        gradientLayer.frame = updatedFrame
+        gradientLayer.colors = [UIColor(named: "darkRed")?.cgColor, UIColor(named: "RedMaroon")?.cgColor, UIColor(named: "Maroon")?.cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
+        view.layer.insertSublayer(gradientLayer, at: 0)
+    }
 }
