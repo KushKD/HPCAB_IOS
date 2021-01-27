@@ -31,6 +31,13 @@ class CabinetMemoDetailsController: UIViewController {
     var globalMappedDepartments: String = ""
     var globalBranchedMapped: String = ""
     var globalPhoneNumber: String = ""
+    var globalActionId: String = ""
+    var globalSentBackTo: String = ""
+    var globalDeptID: String = ""
+    var globalBranchID: String = ""
+    var globalName:String = ""
+    var globalMinisterIncharge:String = ""
+    var globalSecretaryIncharge:String = ""
     
     let mapped_loggedin_key = "IS_LOGGED_IN"
     let designationKey_ = "DESIGNATION"
@@ -71,16 +78,35 @@ class CabinetMemoDetailsController: UIViewController {
     @IBOutlet weak var cancel: UIButton!
     @IBOutlet weak var proceed: UIButton!
     
+    @IBOutlet weak var actionChannel: UITextField!
+    @IBOutlet weak var sentBackTo: UITextField!
+    
+    @IBOutlet weak var actionLabel: UILabel!
+    @IBOutlet weak var SentBackLabel: UILabel!
+    
+    var pickerViewActions = UIPickerView()
+    var pickerViewSentBackTo = UIPickerView()
     
     var tapGesture = UITapGestureRecognizer()
     var tapGestureAttachments = UITapGestureRecognizer()
+    var actions = [Actions]()
+    var sentBackToData = [SentBack]()
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        pickerViewActions.dataSource = self
+        pickerViewActions.delegate = self
+        actionChannel.inputView = pickerViewActions
         
+        pickerViewSentBackTo.dataSource = self
+        pickerViewSentBackTo.delegate = self
+        sentBackTo.inputView = pickerViewSentBackTo
+        
+        print("Branch Id Below")
+        print(globalBranchID)
         
         
         // print(UserDefaults.standard.string(forKey: photo_key)!)
@@ -89,10 +115,12 @@ class CabinetMemoDetailsController: UIViewController {
         globalMappedDepartments = UserDefaults.standard.string(forKey: mapped_departments_id_key)!
         globalBranchedMapped = UserDefaults.standard.string(forKey: branchMappedkey_)!
         globalPhoneNumber  = UserDefaults.standard.string(forKey: mobileNumberKey_)!
+        globalName = UserDefaults.standard.string(forKey: nameKey_)!
         
         print(globalUserId)
         print(globalRoleId)
         print(globalMappedDepartments)
+        print(globalName)
         
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(CabinetMemoDetailsController.history(_:)))
         tapGestureAttachments = UITapGestureRecognizer(target: self, action: #selector(CabinetMemoDetailsController.attachments(_:)))
@@ -104,6 +132,54 @@ class CabinetMemoDetailsController: UIViewController {
         buttonTwo.addGestureRecognizer(tapGestureAttachments)
         buttonOne.isUserInteractionEnabled = true
         buttonTwo.isUserInteractionEnabled = true
+        
+        // action and sent back
+        if Reachability.isConnectedToNetwork(){
+            let object = GetPojo();
+            object.url = Constants.url
+            object.methord = Constants.GetChannelistbyRole
+            object.methordHash = (Constants.GetChannelistbyRoleToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
+            object.taskType = TaskType.GET_ACTION
+            object.timeStamp = appUtilities.getDate()
+            var params2 = [String]()
+            params2.append(globalRoleId);
+            
+            object.parametersList = params2
+            object.activityIndicator = self.view
+            
+            
+            networkUtility.getDataDialog(GetDataPojo: object) { response in
+                if let response = response {
+                    print(response.respnse!)
+                    do{
+                        let jsonResponse = try JSONSerialization.jsonObject(with: response.respnse!, options: [])
+                        guard let jsonArray = jsonResponse as? [[String: Any]] else {
+                            return
+                        }
+                        do {
+                            var model = [Actions]()
+                            for dic in jsonArray{
+                                model.append(Actions(dic))
+                            }
+                            self.actions = model;
+                            
+                        }
+                    } catch let parsingError {
+                        print("Error", parsingError)
+                    }
+                }
+            }
+        }else{
+            DispatchQueue.main.async(execute: {
+                let alertVC = self.alertService.alert(title: "Network Message", body: Constants.internetNotAvailable!, buttonTitle: "OK")
+                { [weak self] in
+                    //Go to the Next Story Board
+                    
+                }
+                self.present(alertVC, animated: true)
+                
+            })
+        }
         
         
         
@@ -134,15 +210,20 @@ class CabinetMemoDetailsController: UIViewController {
                         //here dataResponse received from a network request
                         
                         let jsonResponse = try  JSONSerialization.jsonObject(with: response.respnse!, options: []) as? [String:AnyObject]
+                        print(jsonResponse)
                         self.cabinetMemoDetailsObject.AdditionalInformation = jsonResponse!["AdditionalInformation"]! as? String
                         self.cabinetMemoDetailsObject.ApprovalStatus = jsonResponse!["ApprovalStatus"]! as? String
                         self.cabinetMemoDetailsObject.CabinetMemoID = jsonResponse!["CabinetMemoID"]! as? String
                         self.cabinetMemoDetailsObject.DeptName = jsonResponse!["DeptName"]! as? String
                         self.cabinetMemoDetailsObject.Deptid = jsonResponse!["Deptid"]! as? String
+                        self.globalDeptID = (self.cabinetMemoDetailsObject.Deptid?.base64Decoded!)!
+                        self.cabinetMemoDetailsObject.BranchID = jsonResponse!["BranchID"]! as? String
                         self.cabinetMemoDetailsObject.FileNo = jsonResponse!["FileNo"]! as? String
                         self.cabinetMemoDetailsObject.MinisterIncharge = jsonResponse!["MinisterIncharge"]! as? String
+                        self.globalMinisterIncharge = (self.cabinetMemoDetailsObject.MinisterIncharge?.base64Decoded!)!
                         self.cabinetMemoDetailsObject.ProposalDetails = jsonResponse!["ProposalDetails"]! as? String
                         self.cabinetMemoDetailsObject.SecIncharge = jsonResponse!["SecIncharge"]! as? String
+                        self.globalSecretaryIncharge = (self.cabinetMemoDetailsObject.SecIncharge?.base64Decoded!)!
                         self.cabinetMemoDetailsObject.StatusCode = jsonResponse!["StatusCode"]! as? Int
                         self.cabinetMemoDetailsObject.Subject = jsonResponse!["Subject"]! as? String
                         self.cabinetMemoDetailsObject.Title = jsonResponse!["Title"]! as? String
@@ -246,6 +327,11 @@ class CabinetMemoDetailsController: UIViewController {
                             self.secIncharge.text = self.cabinetMemoDetailsObject.SecIncharge!.base64Decoded!
                             self.departmentName.text = self.cabinetMemoDetailsObject.DeptName!.base64Decoded!
                             
+                            
+                            self.actionLabel.isHidden = false
+                            self.actionChannel.isHidden = false
+                            self.SentBackLabel.isHidden = false
+                            self.sentBackTo.isHidden = false
                             self.enterRemarksLabel.isHidden = false
                             self.enterRemarksTextView .isHidden = false
                             self.sendBack.isHidden = false
@@ -411,6 +497,10 @@ class CabinetMemoDetailsController: UIViewController {
                             self.enterOtpTextView.isHidden = true
                             self.cancel.isHidden = true
                             self.proceed.isHidden = true
+                            self.actionLabel.isHidden = true
+                            self.actionChannel.isHidden = true
+                            self.SentBackLabel.isHidden = true
+                            self.sentBackTo.isHidden = true
                             
                             
                         })
@@ -541,11 +631,16 @@ class CabinetMemoDetailsController: UIViewController {
                 postObject.otp = ""
                 postObject.token = (Constants.methordsendBackCabinetMemoListsToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
                 
+                postObject.PendingWithRoleID=globalSentBackTo
+                postObject.UserName=globalName
+                postObject.MinisterinCharge=globalMinisterIncharge
+                postObject.SecinIncharge = globalSecretaryIncharge
+                
                 
                 let methodName = Constants.url
                 let url = Constants.methordsendBackCabinetMemoLists
                 var activityIndicator: UIView? =  self.view
-                
+                print(postObject)
                 
                 
                 networkUtility.postDataDialog(PostObject: postObject, URL_: url!, methord: methodName!, uiview: activityIndicator!) { response in
@@ -724,9 +819,12 @@ class CabinetMemoDetailsController: UIViewController {
                 postObject.phone = ""
                 postObject.otp = ""
                 postObject.token = (Constants.methordForwardCabinetMemoToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
+                postObject.PendingWithRoleID=globalSentBackTo
+                postObject.UserName=globalName
+                postObject.MinisterinCharge=globalMinisterIncharge
+                postObject.SecinIncharge = globalSecretaryIncharge
                 
-                
-                
+                print(postObject)
                 let methodName = Constants.url
                 let url = Constants.methordForwardCabinetMemo
                 var activityIndicator: UIView? =  self.view
@@ -819,10 +917,14 @@ class CabinetMemoDetailsController: UIViewController {
             postObject.phone = globalPhoneNumber
             postObject.otp = enterOtpTextView.text!
             postObject.token = (Constants.methordsendBackCabinetMemoListsToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
+            postObject.PendingWithRoleID=globalSentBackTo
+            postObject.UserName=globalName
+            postObject.MinisterinCharge=globalMinisterIncharge
+            postObject.SecinIncharge = globalSecretaryIncharge
             let methodName = Constants.methordsendBackCabinetMemoLists
             let url = Constants.url
             let activityIndicator: UIView? =  self.view
-            
+            print(postObject)
             
             
             networkUtility.postDataDialog(PostObject: postObject, URL_: url!, methord: methodName!, uiview: activityIndicator!) { response in
@@ -889,8 +991,11 @@ class CabinetMemoDetailsController: UIViewController {
             postObject.phone = globalPhoneNumber
             postObject.otp = enterOtpTextView.text!
             postObject.token = (Constants.methordForwardCabinetMemoToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
-            
-            
+            postObject.PendingWithRoleID=globalSentBackTo
+            postObject.UserName=globalName
+            postObject.MinisterinCharge=globalMinisterIncharge
+            postObject.SecinIncharge = globalSecretaryIncharge
+            print(postObject)
             
             let methodName = Constants.methordForwardCabinetMemo
             let url = Constants.url
@@ -1000,5 +1105,165 @@ class CabinetMemoDetailsController: UIViewController {
     
 }
 
+
+extension CabinetMemoDetailsController: UIPickerViewDelegate,UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        if pickerView == pickerViewActions{
+            return actions.count
+        }else{
+            return sentBackToData.count
+        }
+    }
+        
+        
+        
+    
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        if pickerView == pickerViewActions{
+            return actions[row].StatusCode.base64Decoded
+        }else{
+            return sentBackToData[row].Name.base64Decoded
+        }
+        
+    }
+    
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        if pickerView == pickerViewActions{
+            actionChannel.text = ""
+            actionChannel.text = actions[row].StatusCode.base64Decoded
+            actionChannel.resignFirstResponder()
+            globalActionId = actions[row].ChannelID.base64Decoded!;
+            
+            if(actions[row].StatusCode.base64Decoded!.caseInsensitiveCompare("Send Back") == .orderedSame){
+                //GEt Sendback Data
+                sentBackTo.text = ""
+                if Reachability.isConnectedToNetwork(){
+                    let object = GetPojo();
+                    object.url = Constants.url
+                    object.methord = Constants.GetSentBackListsbyDeptBranch
+                    object.methordHash = (Constants.GetSentBackListsbyDeptBranchToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
+                    object.taskType = TaskType.SEND_BACK
+                    object.timeStamp = appUtilities.getDate()
+                    var params2 = [String]()
+                    params2.append(globalUserId);
+                    params2.append(globalDeptID)
+                    params2.append(globalBranchID)
+                    params2.append(globalRoleId);
+                    params2.append(globalActionId)
+                    
+                    object.parametersList = params2
+                    object.activityIndicator = self.view
+                    
+                    
+                    networkUtility.getDataDialog(GetDataPojo: object) { response in
+                        if let response = response {
+                            print(response.respnse!)
+                            do{
+                                let jsonResponse = try JSONSerialization.jsonObject(with: response.respnse!, options: [])
+                                guard let jsonArray = jsonResponse as? [[String: Any]] else {
+                                    return
+                                }
+                                do {
+                                    var model = [SentBack]()
+                                    for dic in jsonArray{
+                                        model.append(SentBack(dic))
+                                    }
+                                    self.sentBackToData = model;
+                                    
+                                }
+                            } catch let parsingError {
+                                print("Error", parsingError)
+                            }
+                        }
+                    }
+                }else{
+                    DispatchQueue.main.async(execute: {
+                        let alertVC = self.alertService.alert(title: "Network Message", body: Constants.internetNotAvailable!, buttonTitle: "OK")
+                        { [weak self] in
+                            //Go to the Next Story Board
+                            
+                        }
+                        self.present(alertVC, animated: true)
+                        
+                    })
+                }
+            }else{
+                //GEt Other Channel Data
+                sentBackTo.text = ""
+                if Reachability.isConnectedToNetwork(){
+                    let object = GetPojo();
+                    object.url = Constants.url
+                    object.methord = Constants.GetSectListsbyDeptBranch
+                    object.methordHash = (Constants.GetSectListsbyDeptBranchToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
+                    object.taskType = TaskType.SEND_BACK
+                    object.timeStamp = appUtilities.getDate()
+                    var params2 = [String]()
+                    params2.append(globalUserId);
+                    params2.append(globalDeptID)
+                    params2.append(globalBranchID)
+                    params2.append(globalRoleId);
+                    params2.append(globalActionId)
+                    
+                    object.parametersList = params2
+                    object.activityIndicator = self.view
+                    
+                    
+                    networkUtility.getDataDialog(GetDataPojo: object) { response in
+                        if let response = response {
+                            print(response.respnse!)
+                            do{
+                                let jsonResponse = try JSONSerialization.jsonObject(with: response.respnse!, options: [])
+                                guard let jsonArray = jsonResponse as? [[String: Any]] else {
+                                    return
+                                }
+                                do {
+                                    var model = [SentBack]()
+                                    for dic in jsonArray{
+                                        model.append(SentBack(dic))
+                                    }
+                                    self.sentBackToData = model;
+                                    
+                                }
+                            } catch let parsingError {
+                                print("Error", parsingError)
+                            }
+                        }
+                    }
+                }else{
+                    DispatchQueue.main.async(execute: {
+                        let alertVC = self.alertService.alert(title: "Network Message", body: Constants.internetNotAvailable!, buttonTitle: "OK")
+                        { [weak self] in
+                            //Go to the Next Story Board
+                            
+                        }
+                        self.present(alertVC, animated: true)
+                        
+                    })
+                }
+            }
+        
+        }else {
+            sentBackTo.text = ""
+            sentBackTo.text = sentBackToData[row].Name.base64Decoded
+            sentBackTo.resignFirstResponder()
+            globalSentBackTo = sentBackToData[row].Pendingwithroleid.base64Decoded!;
+            print(globalActionId)
+            print(globalSentBackTo)
+            
+        }
+    
+    }
+}
+    
 
 

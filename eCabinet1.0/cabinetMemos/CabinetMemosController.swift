@@ -587,6 +587,7 @@
                 //Earlier Working
                  cabinetMemoDetailsController.cellData = cabinetMemos[indexPath.row]
                            cabinetMemoDetailsController.memoType = param
+                cabinetMemoDetailsController.globalBranchID = cabinetMemos[indexPath.row].BranchId.base64Decoded!
                            self.present(cabinetMemoDetailsController, animated:true, completion:nil)
             }
             else{

@@ -22,6 +22,7 @@ struct CabinetMemoDetailsObject{
     var StatusCode: Int?
     var Subject: String?
     var Title: String?
+    var BranchID: String?
   
     
     

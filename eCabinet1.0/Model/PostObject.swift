@@ -18,6 +18,14 @@ struct PostObject : Encodable{
     var  token: String?
     var  phone: String?
     var  otp: String?
+    var PendingWithRoleID: String?
+    var UserName: String?
+    var MinisterinCharge: String?
+    var SecinIncharge: String?
+    
+    
+    
+ 
     
     
     

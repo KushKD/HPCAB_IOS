@@ -126,8 +126,8 @@
             filePath = "eCabinet1.0/Network/NetworkUtility.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "226"
-            endingLineNumber = "226"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
             landmarkName = "postDataDialogx(PostObject:URL_:methord:uiview:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -271,6 +271,22 @@
                   offsetFromSymbolStart = "292">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DB477BFC-DC31-430D-BA79-D601737E9719"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "eCabinet1.0/Network/NetworkUtility.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "postDataDialog(PostObject:URL_:methord:uiview:completion:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

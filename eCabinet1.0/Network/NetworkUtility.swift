@@ -108,26 +108,38 @@ class NetworkUtility  {
               
                var responseObject = ResponseObject()
                 //declare parameter as a dictionary which contains string as key and value combination.
-                let parameters = ["UserId": object.userid!,
+                let parameters = [    "UserId": object.userid!,
                                       "CabinetMemoID": object.cabinetMemoId! ,
                                       "DeptId": object.deptId!,
                                       "RoleID": object.roleid! ,
                                       "Token": object.token!,
                                       "remarks": object.remarks!,
                                       "OTP": object.otp!,
-                                      "MobileNO": object.phone! ] as [String : Any]
+                                      "MobileNO": object.phone!,
+                                      "PendingWithRoleID": object.PendingWithRoleID!,
+                                      "LoginUsername": object.UserName!,
+                                      "MinisterinCharge": object.MinisterinCharge!,
+                                      "SecinIncharge": object.SecinIncharge! ] as [String : Any]
+        
+        
+       
+        
+        print(parameters)
+        
+     
+                               
+                               
+                               
+                               
                     
+       
                    
 
                     var x : String = url
                     x.append("/")
                     x.append(methodName)
             
-           
-                 
-
-                   
-
+      
                    
             
               let url = URL(string: x)!
@@ -137,6 +149,7 @@ class NetworkUtility  {
               request.addValue("application/json", forHTTPHeaderField: "Accept")
             do {
                  request.httpBody = try JSONSerialization.data(withJSONObject: parameters ,options: .prettyPrinted)
+                
                    
              } catch let error {
                  print(error.localizedDescription)

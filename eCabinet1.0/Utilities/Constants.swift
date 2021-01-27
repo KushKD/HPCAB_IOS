@@ -97,6 +97,18 @@ struct Constants{
     static let CabinetDecisionlists: String? = "CabinetDecisionlists"
        static let CabinetDecisionlistsToken: String? = "69FBBF62A31CBC7C761B0AB96696C9EB"
     
+    //GetChannelistbyRole Action
+    static let GetChannelistbyRole: String? = "GetChannelistbyRole";
+    static let GetChannelistbyRoleToken: String? = "3GFHF5BE7CB28FF963C57D51E6D3FGHYGTRDF";
+
+       //GetSectListsbyDeptBranch Sent back to
+    static let GetSectListsbyDeptBranch: String? = "GetSectListsbyDeptBranch";
+    static let GetSectListsbyDeptBranchToken: String? = "893GFHF5BE7CB28FF963C57D51E6D3FGHYGTRDF";
+
+       //GetSentBackListsbyDeptBranch
+    static let GetSentBackListsbyDeptBranch: String? = "GetSentBackListsbyDeptBranch";
+    static let GetSentBackListsbyDeptBranchToken: String? = "3000GFHF5BE7CB2IJHUGYHJIKKKIJJOKKJIKKOIK";
+    
     static let   success:String? = "SUCCESS";
     static let   failure:String? = "FAILURE";
     
