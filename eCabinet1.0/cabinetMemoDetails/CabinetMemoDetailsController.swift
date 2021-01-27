@@ -708,7 +708,12 @@ class CabinetMemoDetailsController: UIViewController {
     @IBAction func forwardToNextLevel(_ sender: Any) {
         
         buttonName = "forward"
-        if globalRoleId.caseInsensitiveCompare("4") == .orderedSame || globalRoleId.caseInsensitiveCompare("11") == .orderedSame {
+        if globalRoleId.caseInsensitiveCompare("4") == .orderedSame ||
+            globalRoleId.caseInsensitiveCompare("11") == .orderedSame ||
+            globalRoleId.caseInsensitiveCompare("12") == .orderedSame ||
+            globalRoleId.caseInsensitiveCompare("13") == .orderedSame ||
+            globalRoleId.caseInsensitiveCompare("14") == .orderedSame ||
+            globalRoleId.caseInsensitiveCompare("15") == .orderedSame{
             
             if !enterRemarksTextView.text.isEmpty {
                 
