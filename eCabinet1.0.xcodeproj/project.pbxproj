@@ -13,6 +13,7 @@
 		BD0123EF251DBE7500C79B06 /* CustomCabinetDecisionTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0123ED251DBE7500C79B06 /* CustomCabinetDecisionTableCell.swift */; };
 		BD0123F0251DBE7500C79B06 /* CustomCabinetDecisionTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD0123EE251DBE7500C79B06 /* CustomCabinetDecisionTableCell.xib */; };
 		BD1C50FA251C8CD300B0FA78 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1C50F9251C8CD300B0FA78 /* Reachability.swift */; };
+		BD1E2DEF25C3C2FB00689AC5 /* ActiveAgenda.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1E2DEE25C3C2FA00689AC5 /* ActiveAgenda.swift */; };
 		BD2BD0AB250F850000C6798C /* CabinetMemosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2BD0AA250F850000C6798C /* CabinetMemosController.swift */; };
 		BD3D4DD925C12F2D00390B3F /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3D4DD825C12F2D00390B3F /* Actions.swift */; };
 		BD3D4DDE25C136F000390B3F /* SentBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3D4DDD25C136F000390B3F /* SentBack.swift */; };
@@ -122,6 +123,7 @@
 		BD0123ED251DBE7500C79B06 /* CustomCabinetDecisionTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCabinetDecisionTableCell.swift; sourceTree = "<group>"; };
 		BD0123EE251DBE7500C79B06 /* CustomCabinetDecisionTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCabinetDecisionTableCell.xib; sourceTree = "<group>"; };
 		BD1C50F9251C8CD300B0FA78 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		BD1E2DEE25C3C2FA00689AC5 /* ActiveAgenda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveAgenda.swift; sourceTree = "<group>"; };
 		BD2BD0AA250F850000C6798C /* CabinetMemosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinetMemosController.swift; sourceTree = "<group>"; };
 		BD3D4DD825C12F2D00390B3F /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
 		BD3D4DDD25C136F000390B3F /* SentBack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentBack.swift; sourceTree = "<group>"; };
@@ -425,6 +427,7 @@
 				BD0123E7251DB9B100C79B06 /* Dates.swift */,
 				BD3D4DD825C12F2D00390B3F /* Actions.swift */,
 				BD3D4DDD25C136F000390B3F /* SentBack.swift */,
+				BD1E2DEE25C3C2FA00689AC5 /* ActiveAgenda.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -707,6 +710,7 @@
 				BD87A31A252419D40074FE69 /* TextFieldSize.swift in Sources */,
 				BD671FDC250B8E30002A9639 /* SavedUser.swift in Sources */,
 				BD9FA9D22520369300A11A25 /* SDDownloadManager.swift in Sources */,
+				BD1E2DEF25C3C2FB00689AC5 /* ActiveAgenda.swift in Sources */,
 				BD671FB3250B8A55002A9639 /* UIViewController.swift in Sources */,
 				BD3D4DDE25C136F000390B3F /* SentBack.swift in Sources */,
 				BD9FA9CC25202BBE00A11A25 /* DownloadManager.swift in Sources */,
@@ -877,7 +881,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 8V72THF3KT;
 				INFOPLIST_FILE = eCabinet1.0/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -885,7 +889,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hp.dit.eCabinet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -900,7 +904,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 8V72THF3KT;
 				INFOPLIST_FILE = eCabinet1.0/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -908,7 +912,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hp.ecabinet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -36,6 +36,7 @@
         
         var departments = [Departments]()
         var menu = [Menu]()
+        var activeAgenda = [ActiveAgenda]()
         var window:UIWindow?
         let localSource = [BundleImageSource(imageString: "image1"), BundleImageSource(imageString: "image2")]
         
@@ -500,11 +501,60 @@
                 
             }else if menu[indexPath.row].Menuid.base64Decoded!.caseInsensitiveCompare("4") == .orderedSame{
                 
-                //                let cabinetViewController = CabinetMemosController.instantiate(from: .CabinetMemos)
-                //                           cabinetViewController.dept_id = deptIDPickerView
-                //                           cabinetViewController.param = "getAgenda"
-                //
-                //                           UIApplication.setRootView(cabinetViewController)
+                //Get Active Agenda TODO
+                if Reachability.isConnectedToNetwork(){
+                    let objectMenu = GetPojo();
+                    objectMenu.url = Constants.url
+                    objectMenu.methord = Constants.methordGetOnlineCabinetIDMeetingStatus
+                    objectMenu.methordHash = (Constants.methordGetOnlineCabinetIDMeetingToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
+                    objectMenu.taskType = TaskType.GET_ACTIVE_AGENDA
+                    objectMenu.timeStamp = appUtilities.getDate()
+                    
+                    objectMenu.activityIndicator = self.view
+                    
+                    networkUtility.getDataDialog(GetDataPojo: objectMenu) { response in
+                        if let response = response {
+                            print(response.respnse!)
+                            do{
+                                let jsonResponse = try JSONSerialization.jsonObject(with: response.respnse!, options: [])
+                                guard let jsonArray = jsonResponse as? [[String: Any]] else {
+                                    return
+                                }
+                                
+                                do {
+                                    var model = [ActiveAgenda]()
+                                    for dic in jsonArray{
+                                        model.append(ActiveAgenda(dic))
+                                    }
+                                    
+                                    self.activeAgenda = model;
+                                    print("kush")
+                                    dump(self.activeAgenda)
+                                    DispatchQueue.main.async {
+                                        print(self.activeAgenda[0].AgendaItemNo)
+                                    }
+                                    
+                                    
+                                }
+                            } catch let parsingError {
+                                print("Error", parsingError)
+                            }
+                        }
+                    }
+                    
+                }
+                else{
+                    DispatchQueue.main.async(execute: {
+                        let alertVC = self.alertService.alert(title: "Network Message", body: Constants.internetNotAvailable!, buttonTitle: "OK")
+                        { [weak self] in
+                            //Go to the Next Story Board
+                            
+                        }
+                        self.present(alertVC, animated: true)
+                        
+                    })
+                }
+                
                 
             }else if menu[indexPath.row].Menuid.base64Decoded!.caseInsensitiveCompare("6") == .orderedSame{
                 

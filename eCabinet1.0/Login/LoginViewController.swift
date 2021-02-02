@@ -72,41 +72,41 @@ class LoginViewController: UIViewController {
         RolesTextView.inputView = pickerViewRoles
         UsersTextView.inputView = pickerViewUsers
         
-        RolesTextView.addBorder(toSide: .Top, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
-        RolesTextView.addBorder(toSide: .Bottom, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
-        RolesTextView.addBorder(toSide: .Left, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
-        RolesTextView.addBorder(toSide: .Right, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+//        RolesTextView.addBorder(toSide: .Top, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+//        RolesTextView.addBorder(toSide: .Bottom, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+//        RolesTextView.addBorder(toSide: .Left, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+//        RolesTextView.addBorder(toSide: .Right, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
         
-        DepartmentsTextView.addBorder(toSide: .Top, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
-        DepartmentsTextView.addBorder(toSide: .Bottom, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
-        DepartmentsTextView.addBorder(toSide: .Left, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
-        DepartmentsTextView.addBorder(toSide: .Right, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+//        DepartmentsTextView.addBorder(toSide: .Top, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+//        DepartmentsTextView.addBorder(toSide: .Bottom, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+//        DepartmentsTextView.addBorder(toSide: .Left, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+//        DepartmentsTextView.addBorder(toSide: .Right, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
        // DepartmentsTextView.isUserInteractionEnabled = false
         
-        BranchesTextView.addBorder(toSide: .Top, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
-        BranchesTextView.addBorder(toSide: .Bottom, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
-        BranchesTextView.addBorder(toSide: .Left, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
-        BranchesTextView.addBorder(toSide: .Right, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+//        BranchesTextView.addBorder(toSide: .Top, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+//        BranchesTextView.addBorder(toSide: .Bottom, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+//        BranchesTextView.addBorder(toSide: .Left, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+//        BranchesTextView.addBorder(toSide: .Right, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
          // BranchesTextView.isUserInteractionEnabled = false
         
         
-        UsersTextView.addBorder(toSide: .Top, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
-        UsersTextView.addBorder(toSide: .Bottom, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
-        UsersTextView.addBorder(toSide: .Left, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
-        UsersTextView.addBorder(toSide: .Right, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+//        UsersTextView.addBorder(toSide: .Top, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+//        UsersTextView.addBorder(toSide: .Bottom, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+//        UsersTextView.addBorder(toSide: .Left, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+//        UsersTextView.addBorder(toSide: .Right, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
          //UsersTextView.isUserInteractionEnabled = false
         
-        MobileNumber.addBorder(toSide: .Top, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
-        MobileNumber.addBorder(toSide: .Bottom, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
-        MobileNumber.addBorder(toSide: .Left, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
-        MobileNumber.addBorder(toSide: .Right, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+//        MobileNumber.addBorder(toSide: .Top, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+//        MobileNumber.addBorder(toSide: .Bottom, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+//        MobileNumber.addBorder(toSide: .Left, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+//        MobileNumber.addBorder(toSide: .Right, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
         
         
-        OTP.addBorder(toSide: .Top, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
-        OTP.addBorder(toSide: .Bottom, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
-        OTP.addBorder(toSide: .Left, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
-        OTP.addBorder(toSide: .Right, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
-        
+//        OTP.addBorder(toSide: .Top, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+//        OTP.addBorder(toSide: .Bottom, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+//        OTP.addBorder(toSide: .Left, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+//        OTP.addBorder(toSide: .Right, withColor: UIColor(named: "RedMaroon")!.cgColor, andThickness: 1.0)
+//
         DepartmentsTextView.inputView = pickerViewDepartments
         BranchesTextView.inputView = pickerBranches
         RolesTextView.textAlignment = .center
@@ -114,7 +114,7 @@ class LoginViewController: UIViewController {
         DepartmentsTextView.textAlignment = .center
         BranchesTextView.textAlignment = .center
         
-        MobileNumber.addTarget(self, action: #selector(LoginViewController.textFieldDidChange(_:)), for: .editingChanged)
+      //  MobileNumber.addTarget(self, action: #selector(LoginViewController.textFieldDidChange(_:)), for: .editingChanged)
         MobileNumber.maxLength  = 10
         
         /**
@@ -181,6 +181,97 @@ class LoginViewController: UIViewController {
     }
     
     
+    @IBAction func getOtp(_ sender: Any) {
+        if MobileNumber.text!.count == 10{
+            
+            
+                 //Check User Id and Role ID
+                 if  !globalRoleId.isEmpty && !globalUserId.isEmpty{
+                        if Reachability.isConnectedToNetwork(){
+                                                  print(MobileNumber.text!)
+                                                  globalMobile = MobileNumber.text!
+                                                  let objectUsers = GetPojo();
+                                                  objectUsers.url = Constants.url
+                                                  objectUsers.methord = Constants.methordGetOTP
+                                                  objectUsers.methordHash = (Constants.methordOTPToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
+                                                  objectUsers.taskType = TaskType.GET_OTP_VIA_MOBILE
+                                                  objectUsers.timeStamp = appUtilities.getDate()
+                                                  
+                                                  
+                                                  var params = [String]()
+                                                  params.append(MobileNumber.text!)
+                                                  params.append(globalUserId)
+                                                  params.append(globalRoleId)
+                                                  
+                                                  objectUsers.parametersList = params
+                                                  objectUsers.activityIndicator = self.view
+                                                  
+                                                  networkUtility.getDataDialog(GetDataPojo: objectUsers) { response in
+                                                      if let response = response {
+                                                          print(response.respnse!)
+                                                          do{
+                                                              //here dataResponse received from a network request
+                                                              
+                                                              let jsonResponse = try  JSONSerialization.jsonObject(with: response.respnse!, options: []) as? [String:AnyObject]
+                                                              print("kush")
+                                                              let statusMessage: String = jsonResponse!["StatusMessage"]! as! String
+                                                              
+                                                              DispatchQueue.main.async(execute: {
+                                                                  
+                                                                  let alertVC = self.alertService.alert(title: "Success?", body: statusMessage.base64Decoded!, buttonTitle: "Confirm")
+                                                                  { [weak self] in
+                                                                      //Functionality of Confirm Button Goes Here
+                                                                  }
+                                                                  self.present(alertVC, animated: true)
+                                                              })
+                                                              
+                                                              
+                                                          } catch let parsingError {
+                                                              print("Error", parsingError)
+                                                          }
+                                                      }
+                                                  }
+                                                  
+                                                  
+                                                  
+                                              }
+                                              else{
+                                                  DispatchQueue.main.async(execute: {
+                                                      let alertVC = self.alertService.alert(title: "Network Message", body: Constants.internetNotAvailable!, buttonTitle: "OK")
+                                                      { [weak self] in
+                                                          //Go to the Next Story Board
+                                                          
+                                                      }
+                                                      self.present(alertVC, animated: true)
+                                                      
+                                                  })
+                                              }
+                    }else{
+                        DispatchQueue.main.async(execute: {
+                            let alertVC = self.alertService.alert(title: "Input Message", body: "Please Select Role and User", buttonTitle: "OK")
+                            { [weak self] in
+                                //Go to the Next Story Board
+            
+                            }
+                            self.present(alertVC, animated: true)
+            
+                        })
+                    }
+                     
+                   
+                  
+                   
+                   
+                   
+                   
+                   
+                   
+               }else{
+                   print("Please Enter a Valid 10 Digit Mobile Number.")
+               }
+
+        
+    }
     /**
      Login Button
      */
@@ -325,100 +416,100 @@ class LoginViewController: UIViewController {
         
     }
     
-    @objc func textFieldDidChange(_ textField: UITextField) {
-     
-            if textField.text!.count == 10{
-                
-                
-                     //Check User Id and Role ID
-                     if  !globalRoleId.isEmpty && !globalUserId.isEmpty{
-                            if Reachability.isConnectedToNetwork(){
-                                                      print(textField.text!)
-                                                      globalMobile = textField.text!
-                                                      let objectUsers = GetPojo();
-                                                      objectUsers.url = Constants.url
-                                                      objectUsers.methord = Constants.methordGetOTP
-                                                      objectUsers.methordHash = (Constants.methordOTPToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
-                                                      objectUsers.taskType = TaskType.GET_OTP_VIA_MOBILE
-                                                      objectUsers.timeStamp = appUtilities.getDate()
-                                                      
-                                                      
-                                                      var params = [String]()
-                                                      params.append(textField.text!)
-                                                      params.append(globalUserId)
-                                                      params.append(globalRoleId)
-                                                      
-                                                      objectUsers.parametersList = params
-                                                      objectUsers.activityIndicator = self.view
-                                                      
-                                                      networkUtility.getDataDialog(GetDataPojo: objectUsers) { response in
-                                                          if let response = response {
-                                                              print(response.respnse!)
-                                                              do{
-                                                                  //here dataResponse received from a network request
-                                                                  
-                                                                  let jsonResponse = try  JSONSerialization.jsonObject(with: response.respnse!, options: []) as? [String:AnyObject]
-                                                                  print("kush")
-                                                                  let statusMessage: String = jsonResponse!["StatusMessage"]! as! String
-                                                                  
-                                                                  DispatchQueue.main.async(execute: {
-                                                                      
-                                                                      let alertVC = self.alertService.alert(title: "Success?", body: statusMessage.base64Decoded!, buttonTitle: "Confirm")
-                                                                      { [weak self] in
-                                                                          //Functionality of Confirm Button Goes Here
-                                                                      }
-                                                                      self.present(alertVC, animated: true)
-                                                                  })
-                                                                  
-                                                                  
-                                                              } catch let parsingError {
-                                                                  print("Error", parsingError)
-                                                              }
-                                                          }
-                                                      }
-                                                      
-                                                      
-                                                      
-                                                  }
-                                                  else{
-                                                      DispatchQueue.main.async(execute: {
-                                                          let alertVC = self.alertService.alert(title: "Network Message", body: Constants.internetNotAvailable!, buttonTitle: "OK")
-                                                          { [weak self] in
-                                                              //Go to the Next Story Board
-                                                              
-                                                          }
-                                                          self.present(alertVC, animated: true)
-                                                          
-                                                      })
-                                                  }
-                        }else{
-                            DispatchQueue.main.async(execute: {
-                                let alertVC = self.alertService.alert(title: "Input Message", body: "Please Select Role and User", buttonTitle: "OK")
-                                { [weak self] in
-                                    //Go to the Next Story Board
-                
-                                }
-                                self.present(alertVC, animated: true)
-                
-                            })
-                        }
-                         
-                       
-                      
-                       
-                       
-                       
-                       
-                       
-                       
-                   }else{
-                       print("Please Enter a Valid 10 Digit Mobile Number.")
-                   }
-
-        
-       
-        
-    }
+//    @objc func textFieldDidChange(_ textField: UITextField) {
+//
+//            if textField.text!.count == 10{
+//
+//
+//                     //Check User Id and Role ID
+//                     if  !globalRoleId.isEmpty && !globalUserId.isEmpty{
+//                            if Reachability.isConnectedToNetwork(){
+//                                                      print(textField.text!)
+//                                                      globalMobile = textField.text!
+//                                                      let objectUsers = GetPojo();
+//                                                      objectUsers.url = Constants.url
+//                                                      objectUsers.methord = Constants.methordGetOTP
+//                                                      objectUsers.methordHash = (Constants.methordOTPToken! + Constants.seperator! + appUtilities.getDate()).base64Encoded!
+//                                                      objectUsers.taskType = TaskType.GET_OTP_VIA_MOBILE
+//                                                      objectUsers.timeStamp = appUtilities.getDate()
+//
+//
+//                                                      var params = [String]()
+//                                                      params.append(textField.text!)
+//                                                      params.append(globalUserId)
+//                                                      params.append(globalRoleId)
+//
+//                                                      objectUsers.parametersList = params
+//                                                      objectUsers.activityIndicator = self.view
+//
+//                                                      networkUtility.getDataDialog(GetDataPojo: objectUsers) { response in
+//                                                          if let response = response {
+//                                                              print(response.respnse!)
+//                                                              do{
+//                                                                  //here dataResponse received from a network request
+//
+//                                                                  let jsonResponse = try  JSONSerialization.jsonObject(with: response.respnse!, options: []) as? [String:AnyObject]
+//                                                                  print("kush")
+//                                                                  let statusMessage: String = jsonResponse!["StatusMessage"]! as! String
+//
+//                                                                  DispatchQueue.main.async(execute: {
+//
+//                                                                      let alertVC = self.alertService.alert(title: "Success?", body: statusMessage.base64Decoded!, buttonTitle: "Confirm")
+//                                                                      { [weak self] in
+//                                                                          //Functionality of Confirm Button Goes Here
+//                                                                      }
+//                                                                      self.present(alertVC, animated: true)
+//                                                                  })
+//
+//
+//                                                              } catch let parsingError {
+//                                                                  print("Error", parsingError)
+//                                                              }
+//                                                          }
+//                                                      }
+//
+//
+//
+//                                                  }
+//                                                  else{
+//                                                      DispatchQueue.main.async(execute: {
+//                                                          let alertVC = self.alertService.alert(title: "Network Message", body: Constants.internetNotAvailable!, buttonTitle: "OK")
+//                                                          { [weak self] in
+//                                                              //Go to the Next Story Board
+//
+//                                                          }
+//                                                          self.present(alertVC, animated: true)
+//
+//                                                      })
+//                                                  }
+//                        }else{
+//                            DispatchQueue.main.async(execute: {
+//                                let alertVC = self.alertService.alert(title: "Input Message", body: "Please Select Role and User", buttonTitle: "OK")
+//                                { [weak self] in
+//                                    //Go to the Next Story Board
+//
+//                                }
+//                                self.present(alertVC, animated: true)
+//
+//                            })
+//                        }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//                   }else{
+//                       print("Please Enter a Valid 10 Digit Mobile Number.")
+//                   }
+//
+//
+//
+//
+//    }
     
     
 }

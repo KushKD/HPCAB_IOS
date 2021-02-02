@@ -11,10 +11,10 @@ import Foundation
 struct Constants{
     
     //URL Staging
-    static let  url:String? = "http://164.100.138.114/eCabinetService.svc";
+    //static let  url:String? = "http://164.100.138.114/eCabinetService.svc";
     
     //URL Production
-     // static let url:String? = "http://ecabinetwcf.hp.gov.in/eCabinetService.svc";
+    static let url:String? = "http://ecabinetwcf.hp.gov.in/eCabinetService.svc";
     
     static let  delemeter:String? = "/";
     static let  seperator:String? = "#";
@@ -24,9 +24,6 @@ struct Constants{
     
     static let  methordDepartmentsViaRoles:String? = "GetMappedDepartmentsListByUserRole";
     static let  methordDepartmentsToken:String? = "klhkhughiknbv12f5cf7171081a0dddss";
-    
-    // public static final String methordGetDepartments="DepartmentsList";
-    // public static final String methordGetDepartmentsToken="aaccaa314e7421e7e12f5cf7171081rr";
     
     static let  methordBranchesViaDept:String? = "GetBranchDetails";
     static let  methordBranchesToken:String? = "ckhijjkkjjhjdddii990001e7e12f5cf71710";
@@ -79,33 +76,24 @@ struct Constants{
     static let  methordAllowedCabinetMemo:String? = "AllowedCabinetMemo";
     static let  methordAllowedCabinetMemoToken:String? = "ghsssaccaa314e7421e7e12f5cf0sseeddd";
     
-   // METHOD SIGNATURE: PlaceinCabinetagendalists/{Token}/{DeptID}/{UserID}/{RoleID}/{LoginDeptID}
-   // TOKEN: ssdaccaa314e7421e7e12f5cf7171081a0ss
-    
     static let PlaceinCabinetagendalists: String? = "PlaceinCabinetagendalists"
     static let PlaceinCabinetagendalistsToken: String? = "ssdaccaa314e7421e7e12f5cf7171081a0ss"
     
-    //GetClosedMeetingDates_API Token,Role
     static let GetClosedMeetingDates_API: String? = "GetClosedMeetingDates_API"
     static let GetClosedMeetingDates_API_TOKEN: String? = "da314e7421e7e12f5cf7171081a0ddd"
     
-    //GetCabinetDecisionbyMeetingDates
     static let GetCabinetDecisionbyMeetingDates: String? = "GetCabinetDecisionbyMeetingDates"
-       static let GetCabinetDecisionbyMeetingDatesToken: String? = "da314e7421e7e12f5cf7171081a0ddd"
+    static let GetCabinetDecisionbyMeetingDatesToken: String? = "da314e7421e7e12f5cf7171081a0ddd"
     
-    //CabinetDecisionlists/{Token}/{DeptID}/{UserID}/{RoleID}/{LoginDeptID}/{Meetingid}
     static let CabinetDecisionlists: String? = "CabinetDecisionlists"
-       static let CabinetDecisionlistsToken: String? = "69FBBF62A31CBC7C761B0AB96696C9EB"
+    static let CabinetDecisionlistsToken: String? = "69FBBF62A31CBC7C761B0AB96696C9EB"
     
-    //GetChannelistbyRole Action
     static let GetChannelistbyRole: String? = "GetChannelistbyRole";
     static let GetChannelistbyRoleToken: String? = "3GFHF5BE7CB28FF963C57D51E6D3FGHYGTRDF";
-
-       //GetSectListsbyDeptBranch Sent back to
+    
     static let GetSectListsbyDeptBranch: String? = "GetSectListsbyDeptBranch";
     static let GetSectListsbyDeptBranchToken: String? = "893GFHF5BE7CB28FF963C57D51E6D3FGHYGTRDF";
-
-       //GetSentBackListsbyDeptBranch
+    
     static let GetSentBackListsbyDeptBranch: String? = "GetSentBackListsbyDeptBranch";
     static let GetSentBackListsbyDeptBranchToken: String? = "3000GFHF5BE7CB2IJHUGYHJIKKKIJJOKKJIKKOIK";
     
