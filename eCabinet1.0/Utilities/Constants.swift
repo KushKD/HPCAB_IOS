@@ -16,6 +16,9 @@ struct Constants{
     //URL Production
     static let url:String? = "http://ecabinetwcf.hp.gov.in/eCabinetService.svc";
     
+    static let usernameAdmin:String? = "ecabinetadmin";
+    static let passwordAdmin:String? = "ecabinetadmin";
+    
     static let  delemeter:String? = "/";
     static let  seperator:String? = "#";
     
@@ -105,6 +108,17 @@ struct Constants{
     let respnse:String?;
     
     static let internetNotAvailable: String? = "Internet Not Available. Please Connect to Internet and try again."
+    
+    
+    
+    static let branchMappedLevel:String? = "8" //Branchmapped
+    static let designationLevel:String? = "SO"//DEsignation
+    static let isCabinetMinisterLevel:String? = "n" //IsCabinetMinister
+    static let nameLevel:String? = "Raksha Sharma" //Name
+    static let userIdLevel:String? = "169"  //USerID
+    static let mobileLevel:String? = "9418323265"
+    static let mapped_departments_id_Level:String? = "8"  //departmentID
+    static let userRoleIdLevel:String? = "11" //roleID
     
     
     

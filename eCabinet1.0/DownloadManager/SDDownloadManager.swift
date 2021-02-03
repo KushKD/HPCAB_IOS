@@ -165,6 +165,7 @@ final public class SDDownloadManager: NSObject {
         return (false, nil)
     }
     
+    
     private func showLocalNotification(withText text:String) {
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.getNotificationSettings { (settings) in

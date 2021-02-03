@@ -157,6 +157,8 @@ class LoginViewController: UIViewController {
                 let alertVC = self.alertService.alert(title: "Network Message", body: Constants.internetNotAvailable!, buttonTitle: "OK")
                 { [weak self] in
                     //Go to the Next Story Board
+                    print("Close Here");
+                    UIApplication.setRootView(NoInternetController.instantiate(from:.NoInternet))
                     
                 }
                 self.present(alertVC, animated: true)
@@ -271,6 +273,11 @@ class LoginViewController: UIViewController {
                }
 
         
+    }
+    @IBAction func adminLogin(_ sender: Any) {
+        
+        print("Admin Login");
+        UIApplication.setRootView(AdminLoginController.instantiate(from:.AdminLogin))
     }
     /**
      Login Button
@@ -612,10 +619,16 @@ extension LoginViewController: UIPickerViewDelegate,UIPickerViewDataSource {
                     DispatchQueue.main.async(execute: {
                         let alertVC = self.alertService.alert(title: "Network Message", body: Constants.internetNotAvailable!, buttonTitle: "OK")
                         { [weak self] in
-                            //Go to the Next Story Board
+                           // Go to the Next Story Board
+                           // present(UIViewController(), animated: true, completion: nil)
+//                            if Constants.internetNotAvailable{
+//
+//                            }
+                            UIApplication.setRootView(NoInternetController.instantiate(from:.NoInternet))
                             
                         }
                         self.present(alertVC, animated: true)
+                       
                         
                     })
                 }
@@ -669,7 +682,7 @@ extension LoginViewController: UIPickerViewDelegate,UIPickerViewDataSource {
                         let alertVC = self.alertService.alert(title: "Network Message", body: Constants.internetNotAvailable!, buttonTitle: "OK")
                         { [weak self] in
                             //Go to the Next Story Board
-                            
+                            UIApplication.setRootView(NoInternetController.instantiate(from:.NoInternet))
                         }
                         self.present(alertVC, animated: true)
                         
@@ -740,7 +753,7 @@ extension LoginViewController: UIPickerViewDelegate,UIPickerViewDataSource {
                         let alertVC = self.alertService.alert(title: "Network Message", body: Constants.internetNotAvailable!, buttonTitle: "OK")
                         { [weak self] in
                             //Go to the Next Story Board
-                            
+                            UIApplication.setRootView(NoInternetController.instantiate(from:.NoInternet))
                         }
                         self.present(alertVC, animated: true)
                         
@@ -794,6 +807,7 @@ extension LoginViewController: UIPickerViewDelegate,UIPickerViewDataSource {
                         let alertVC = self.alertService.alert(title: "Network Message", body: Constants.internetNotAvailable!, buttonTitle: "OK")
                         { [weak self] in
                             //Go to the Next Story Board
+                            UIApplication.setRootView(NoInternetController.instantiate(from:.NoInternet))
                             
                         }
                         self.present(alertVC, animated: true)
@@ -859,6 +873,7 @@ extension LoginViewController: UIPickerViewDelegate,UIPickerViewDataSource {
                     let alertVC = self.alertService.alert(title: "Network Message", body: Constants.internetNotAvailable!, buttonTitle: "OK")
                     { [weak self] in
                         //Go to the Next Story Board
+                        UIApplication.setRootView(NoInternetController.instantiate(from:.NoInternet))
                         
                     }
                     self.present(alertVC, animated: true)

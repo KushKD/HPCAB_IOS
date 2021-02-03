@@ -29,13 +29,26 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Snx-hA-DVp">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="163.5"/>
                                         <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ng7-Xh-21v">
+                                                <rect key="frame" x="312" y="0.0" width="102" height="33"/>
+                                                <color key="backgroundColor" name="grey_dark"/>
+                                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="18"/>
+                                                <state key="normal" title="Admin Login">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="adminLogin:" destination="nzB-o6-5jC" eventType="touchUpInside" id="9nj-zy-2T1"/>
+                                                </connections>
+                                            </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userIcon" translatesAutoresizingMaskIntoConstraints="NO" id="fgB-lg-5gL">
-                                                <rect key="frame" x="0.0" y="20" width="414" height="123.5"/>
+                                                <rect key="frame" x="0.0" y="30" width="414" height="113.5"/>
                                             </imageView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="fgB-lg-5gL" firstAttribute="centerX" secondItem="Snx-hA-DVp" secondAttribute="centerX" id="VHx-rW-tcL"/>
-                                            <constraint firstItem="fgB-lg-5gL" firstAttribute="top" secondItem="Snx-hA-DVp" secondAttribute="top" constant="20" id="W7w-pX-93t"/>
+                                            <constraint firstItem="fgB-lg-5gL" firstAttribute="top" secondItem="Snx-hA-DVp" secondAttribute="top" constant="30" id="W7w-pX-93t"/>
+                                            <constraint firstItem="Ng7-Xh-21v" firstAttribute="top" secondItem="Snx-hA-DVp" secondAttribute="top" id="diu-TD-0od"/>
+                                            <constraint firstAttribute="trailing" secondItem="Ng7-Xh-21v" secondAttribute="trailing" id="ebL-VA-ni4"/>
                                             <constraint firstAttribute="bottom" secondItem="fgB-lg-5gL" secondAttribute="bottom" constant="20" id="hhv-Ei-AwQ"/>
                                             <constraint firstItem="fgB-lg-5gL" firstAttribute="leading" secondItem="Snx-hA-DVp" secondAttribute="leading" id="yai-Sf-WjP"/>
                                         </constraints>
