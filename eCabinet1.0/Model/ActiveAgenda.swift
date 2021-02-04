@@ -8,19 +8,25 @@
 
 import Foundation
 
-struct ActiveAgenda{
+struct ActiveAgenda: Decodable{
+    
+    enum Category: String, Decodable {
+            case swift, combine, debugging, xcode
+        }
       
     var AgendaItemNo:String;
     var AgendaItemType:String
     var DeptName:String
     var FileNo:String
     var Subject: String
+    var StatusMessage:String
+  //  var StatusCode:String
    
-    init(_ dictionary: [String: Any]) {
-      self.AgendaItemNo = dictionary["AgendaItemNo"] as? String ?? ""
-        self.AgendaItemType = dictionary["AgendaItemType"] as? String ?? ""
-        self.DeptName = dictionary["DeptName"] as? String ?? ""
-        self.FileNo = dictionary["FileNo"] as? String ?? ""
-        self.Subject = dictionary["Subject"] as? String ?? ""
-    }
+//    init(_ dictionary: [String: Any]) {
+//      self.AgendaItemNo = dictionary["AgendaItemNo"] as? String ?? ""
+//        self.AgendaItemType = dictionary["AgendaItemType"] as? String ?? ""
+//        self.DeptName = dictionary["DeptName"] as? String ?? ""
+//        self.FileNo = dictionary["FileNo"] as? String ?? ""
+//        self.Subject = dictionary["Subject"] as? String ?? ""
+//    }
 }

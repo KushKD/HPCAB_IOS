@@ -2,8 +2,6 @@
     //  MainViewController.swift
     //  login
     //
-    //  Created by Oğulcan on 11/05/2018.
-    //  Copyright © 2018 ogulcan. All rights reserved.
     //
     
     import UIKit
@@ -14,7 +12,10 @@
         
         var appUtilities = UtilitiesApp();
         var networkUtility = NetworkUtility()
+        let activeAgendaDialogController = ActiveAgendaDialogController();
         var activirtIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
+        
+        var refresher:UIRefreshControl!
         
         
         @IBOutlet weak var leadingConstraintForHamburgerView: NSLayoutConstraint!
@@ -43,6 +44,11 @@
         
         override func viewDidLoad() {
             super.viewDidLoad()
+           // self.refresher = UIRefreshControl()
+           // self.collectionView!.alwaysBounceVertical = true
+           // self.refresher.tintColor = UIColor.red
+           // self.refresher.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+           // self.collectionView!.addSubview(refresher)
             self.mainBackView.isHidden = true
             slideView.slideshowInterval = 5.0
             slideView.pageIndicatorPosition = .init(horizontal: .center, vertical: .bottom)
@@ -212,6 +218,19 @@
             
             pickerViewDepartments.selectRow(1, inComponent: 0, animated: true)
         }
+        
+       
+//        @objc func refreshData() {
+//           self.collectionView!.refreshControl?.beginRefreshing()
+//
+//            DispatchQueue.main.async {
+//                self.collectionView!.refreshControl!.endRefreshing()
+//            }
+//         }
+
+//        func stopRefresher() {
+//            self.collectionView!.refreshControl?.endRefreshing()
+//         }
         
         private var isHamburgerMenuShown:Bool = false
         private var beginPoint:CGFloat = 0.0
@@ -515,30 +534,50 @@
                     networkUtility.getDataDialog(GetDataPojo: objectMenu) { response in
                         if let response = response {
                             print(response.respnse!)
-                            do{
-                                let jsonResponse = try JSONSerialization.jsonObject(with: response.respnse!, options: [])
-                                guard let jsonArray = jsonResponse as? [[String: Any]] else {
-                                    return
-                                }
+                            
+                            let agenda:ActiveAgenda =   try! JSONDecoder().decode(ActiveAgenda.self, from: response.respnse!)
+                            print(agenda.AgendaItemNo)
+                            print(agenda.StatusMessage.base64Decoded!)
+         
+                            
+                            if(agenda.AgendaItemNo.count>0){
+                                //Open Active Agenda Pop Up
                                 
-                                do {
-                                    var model = [ActiveAgenda]()
-                                    for dic in jsonArray{
-                                        model.append(ActiveAgenda(dic))
+                                DispatchQueue.main.async(execute: {
+                                    let alertVC = self.alertService.alert(title: "Active Agenda Message", body: agenda.Subject.base64Decoded!, buttonTitle: "OK")
+                                    { [weak self] in
+                                        //Go to the Next Story Board
+
                                     }
-                                    
-                                    self.activeAgenda = model;
-                                    print("kush")
-                                    dump(self.activeAgenda)
-                                    DispatchQueue.main.async {
-                                        print(self.activeAgenda[0].AgendaItemNo)
+                                    self.present(alertVC, animated: true)
+
+                                })
+                                
+                                
+                                
+                            }else{
+//                                DispatchQueue.main.async(execute: {
+//                                    let alertVC = self.activeAgendaDialogController.alert(data: agenda)
+//                                    { [weak self] in
+//                                        //Go to the Next Story Board
+//
+//                                    }
+//                                    self.present(alertVC, animated: true)
+//
+//                                })
+                                DispatchQueue.main.async(execute: {
+                                    let alertVC = self.alertService.alert(title: "Active Agenda Message", body: agenda.StatusMessage.base64Decoded!, buttonTitle: "OK")
+                                    { [weak self] in
+                                        //Go to the Next Story Board
+
                                     }
-                                    
-                                    
-                                }
-                            } catch let parsingError {
-                                print("Error", parsingError)
+                                    self.present(alertVC, animated: true)
+
+                                })
                             }
+                            
+                            
+                            
                         }
                     }
                     

@@ -101,6 +101,9 @@
 		BDFC178325CA6E8600E9781C /* AdminLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFC178225CA6E8600E9781C /* AdminLoginController.swift */; };
 		BDFC178C25CA99E900E9781C /* NoInternet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDFC178B25CA99E900E9781C /* NoInternet.storyboard */; };
 		BDFC179C25CA9A5900E9781C /* NoInternetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFC179B25CA9A5900E9781C /* NoInternetController.swift */; };
+		BDFC17A125CABA5600E9781C /* ActiveAgendaDialogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFC17A025CABA5600E9781C /* ActiveAgendaDialogController.swift */; };
+		BDFC17AE25CABB1A00E9781C /* ActiveAgendaStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDFC17AD25CABB1A00E9781C /* ActiveAgendaStoryBoard.storyboard */; };
+		BDFC17B325CABB7100E9781C /* ActiveAgendaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFC17B225CABB7100E9781C /* ActiveAgendaController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -211,6 +214,9 @@
 		BDFC178225CA6E8600E9781C /* AdminLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminLoginController.swift; sourceTree = "<group>"; };
 		BDFC178B25CA99E900E9781C /* NoInternet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NoInternet.storyboard; sourceTree = "<group>"; };
 		BDFC179B25CA9A5900E9781C /* NoInternetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetController.swift; sourceTree = "<group>"; };
+		BDFC17A025CABA5600E9781C /* ActiveAgendaDialogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveAgendaDialogController.swift; sourceTree = "<group>"; };
+		BDFC17AD25CABB1A00E9781C /* ActiveAgendaStoryBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ActiveAgendaStoryBoard.storyboard; sourceTree = "<group>"; };
+		BDFC17B225CABB7100E9781C /* ActiveAgendaController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveAgendaController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -457,6 +463,7 @@
 			children = (
 				BD671FE9250B8E8E002A9639 /* AlertService.swift */,
 				BD9FA9D725204F1700A11A25 /* DownloadServiceDialog.swift */,
+				BDFC17A025CABA5600E9781C /* ActiveAgendaDialogController.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -480,6 +487,8 @@
 				BDFB3425250CE73A0044BE8D /* CollectionViewCell.xib */,
 				BD9FA9D3252048BA00A11A25 /* DownloadAlert.swift */,
 				BD9FA9D5252048F500A11A25 /* DownloadAlert.storyboard */,
+				BDFC17AD25CABB1A00E9781C /* ActiveAgendaStoryBoard.storyboard */,
+				BDFC17B225CABB7100E9781C /* ActiveAgendaController.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -647,6 +656,7 @@
 				BDA05107251B001500FA5F51 /* MemoAttachments.storyboard in Resources */,
 				BD671FC5250B8C04002A9639 /* LaunchScreen.storyboard in Resources */,
 				BDA05102251A26A700FA5F51 /* CabinetHistoryTableViewCell.xib in Resources */,
+				BDFC17AE25CABB1A00E9781C /* ActiveAgendaStoryBoard.storyboard in Resources */,
 				BDFB3427250CE73A0044BE8D /* CollectionViewCell.xib in Resources */,
 				BD591AA4251322BA00880A25 /* CustomTableViewCell.xib in Resources */,
 				BDFC177E25CA6E4400E9781C /* AdminLogin.storyboard in Resources */,
@@ -686,6 +696,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD74746025BF230300B62B98 /* ImageView+Insets.swift in Sources */,
+				BDFC17A125CABA5600E9781C /* ActiveAgendaDialogController.swift in Sources */,
 				BD41D3022519CB4F007B4EE6 /* ListAnnuxtures.swift in Sources */,
 				BD671FEA250B8E8E002A9639 /* AlertService.swift in Sources */,
 				BD671FC0250B8B87002A9639 /* MainViewController.swift in Sources */,
@@ -722,6 +733,7 @@
 				BD41D309251A1F93007B4EE6 /* CabinetHistoryController.swift in Sources */,
 				BDA0510A251B014300FA5F51 /* AttachmentTableViewCell.swift in Sources */,
 				BD671FF1250B8EC3002A9639 /* UtilitiesApp.swift in Sources */,
+				BDFC17B325CABB7100E9781C /* ActiveAgendaController.swift in Sources */,
 				BD671FC7250B8CFD002A9639 /* AppDelegate.swift in Sources */,
 				BD853329251F399000156C5B /* FileDownloader.swift in Sources */,
 				BD831F5F25147B7E00AD3206 /* CabinetMemoDetailsController.swift in Sources */,
@@ -905,7 +917,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 8V72THF3KT;
 				INFOPLIST_FILE = eCabinet1.0/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -913,7 +925,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hp.dit.eCabinet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -928,7 +940,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 8V72THF3KT;
 				INFOPLIST_FILE = eCabinet1.0/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -936,7 +948,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hp.ecabinet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
