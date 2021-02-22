@@ -9,6 +9,7 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var contentOne: UILabel!
     @IBOutlet weak var contentThree: UILabel!
     
+    @IBOutlet weak var currentlyWithTime: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -35,12 +36,16 @@ class CustomTableViewCell: UITableViewCell {
             contentThree.isHidden = false
             contentThree.text = "\(one.DeptName.base64Decoded!)"
             contentTwo.isHidden = true
+            currentlyWithTime.isHidden = true
         }else  if two.caseInsensitiveCompare("Forwarded") == .orderedSame{
           //  memoImage?.image = UIImage(named:"forward_memos")!
             self.memoImage.image = UIImage(named:"forward_memos")!.withInset(UIEdgeInsets(top: margin, left: margin, bottom: margin, right: margin))
             contentThree.isHidden = false
             contentThree.text = "\(one.DeptName.base64Decoded!)"
+           // contentThree.text = "\(one.Currentlywith.base64Decoded!)"
             contentTwo.isHidden = true
+            currentlyWithTime.isHidden = false
+            currentlyWithTime.text = "Currently With:- \(one.Currentlywith.base64Decoded!)"
              // contentTwo.text = "\(one.DeptName.base64Decoded!)"
              //memoImage!.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
         }else  if two.caseInsensitiveCompare("Current") == .orderedSame{
@@ -51,13 +56,16 @@ class CustomTableViewCell: UITableViewCell {
             contentTwo.isHidden = false
             contentTwo.text = "\(one.DeptName.base64Decoded!)"
              memoImage!.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
+            currentlyWithTime.isHidden = true
         }else if two.caseInsensitiveCompare("CabinetDecisions") == .orderedSame{
+            currentlyWithTime.isHidden = true
             contentThree.text = "Agenda Number:- \(one.AgendaItemType.base64Decoded!)"
             
             contentTwo.text = "Agenda Type:- \(one.AgendaItemNo.base64Decoded!)"
             contentThree.isHidden = false
             contentTwo.isHidden = true
         }else if two.caseInsensitiveCompare("PlacedInCabinet") == .orderedSame{
+            currentlyWithTime.isHidden = true
             contentThree.text = "Date:- \(one.Meetingdate.base64Decoded!)   Item Number:- \(one.AgendaItemType.base64Decoded!)"
             contentTwo.text = "Agenda Type:- \(one.AgendaItemNo.base64Decoded!)"
             contentThree.isHidden = false
