@@ -31,6 +31,8 @@ struct CabinetMemo{
     var BranchId: String;
     var Currentlywith: String;
     var ForwardedOnDated: String;
+   
+   
     
        
          init(_ dictionary: [String: Any]) {
@@ -55,6 +57,7 @@ struct CabinetMemo{
             self.BranchId = dictionary["BranchID"] as? String ?? ""
             self.Currentlywith = dictionary["Currentlywith"] as? String ?? ""
             self.ForwardedOnDated = dictionary["ForwardedOnDated"] as? String ?? ""
+           
        
        }
     

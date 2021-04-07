@@ -44,14 +44,14 @@ class CustomTableViewCell: UITableViewCell {
             contentThree.text = "\(one.DeptName.base64Decoded!)"
            // contentThree.text = "\(one.Currentlywith.base64Decoded!)"
             contentTwo.isHidden = true
-            currentlyWithTime.isHidden = false
+            currentlyWithTime.isHidden = true
             currentlyWithTime.text = "Currently With:- \(one.Currentlywith.base64Decoded!)"
              // contentTwo.text = "\(one.DeptName.base64Decoded!)"
              //memoImage!.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
         }else  if two.caseInsensitiveCompare("Current") == .orderedSame{
             //memoImage?.image = UIImage(named:"cabinet_memos")!
             self.memoImage.image = UIImage(named:"cabinet_memos")!.withInset(UIEdgeInsets(top: margin, left: margin, bottom: margin, right: margin))
-            contentThree.isHidden = false
+            contentThree.isHidden = true
             contentThree.text = "Item Number:- \(one.AgendaItemType.base64Decoded!)"
             contentTwo.isHidden = false
             contentTwo.text = "\(one.DeptName.base64Decoded!)"
@@ -59,7 +59,8 @@ class CustomTableViewCell: UITableViewCell {
             currentlyWithTime.isHidden = true
         }else if two.caseInsensitiveCompare("CabinetDecisions") == .orderedSame{
             currentlyWithTime.isHidden = true
-            contentThree.text = "Agenda Number:- \(one.AgendaItemType.base64Decoded!)"
+            //contentThree.text = "Agenda Number:- \(one.AgendaItemType.base64Decoded!)"
+            contentThree.text = "\(one.DeptName.base64Decoded!)"
             
             contentTwo.text = "Agenda Type:- \(one.AgendaItemNo.base64Decoded!)"
             contentThree.isHidden = false
@@ -67,9 +68,10 @@ class CustomTableViewCell: UITableViewCell {
         }else if two.caseInsensitiveCompare("PlacedInCabinet") == .orderedSame{
             currentlyWithTime.isHidden = true
             contentThree.text = "Date:- \(one.Meetingdate.base64Decoded!)   Item Number:- \(one.AgendaItemType.base64Decoded!)"
-            contentTwo.text = "Agenda Type:- \(one.AgendaItemNo.base64Decoded!)"
+           // contentTwo.text = "Agenda Type:- \(one.AgendaItemNo.base64Decoded!)"
+            contentTwo.text = "\(one.DeptName.base64Decoded!)"
             contentThree.isHidden = false
-            contentTwo.isHidden = true
+            contentTwo.isHidden = false
         }
         
         contentOne.text = one.Subject.base64Decoded!

@@ -84,6 +84,9 @@ class CabinetMemoDetailsController: UIViewController {
     @IBOutlet weak var actionLabel: UILabel!
     @IBOutlet weak var SentBackLabel: UILabel!
     
+    
+    @IBOutlet weak var currentlyWithV: UILabel!
+    
     var pickerViewActions = UIPickerView()
     var pickerViewSentBackTo = UIPickerView()
     
@@ -227,7 +230,7 @@ class CabinetMemoDetailsController: UIViewController {
                         self.cabinetMemoDetailsObject.StatusCode = jsonResponse!["StatusCode"]! as? Int
                         self.cabinetMemoDetailsObject.Subject = jsonResponse!["Subject"]! as? String
                         self.cabinetMemoDetailsObject.Title = jsonResponse!["Title"]! as? String
-                        
+                        self.cabinetMemoDetailsObject.Currentlywith = jsonResponse!["Currentlywith"]! as? String
                         
                         //Consideration Points
                         if let considerationPointsServer = jsonResponse!["ListConsiderationPoints"]! as? NSArray{
@@ -252,6 +255,11 @@ class CabinetMemoDetailsController: UIViewController {
                                         self.pointsconsiderationServer.append("). ")
                                         self.pointsconsiderationServer.append(x.Title.base64Decoded!)
                                         self.pointsconsiderationServer.append("\n")
+                                        self.pointsconsiderationServer.append("\n \n \t");
+                                        self.pointsconsiderationServer.append("Status:- " + x.ConsiderationPtFinalStatus.base64Decoded!);
+                                        self.pointsconsiderationServer.append("\n \n \t");
+                                        self.pointsconsiderationServer.append("Remarks:- " + x.ConsiderationPtFinalRemarks.base64Decoded!);
+                                        self.pointsconsiderationServer.append("\n");
                                     }
                                     
                                     
@@ -326,7 +334,10 @@ class CabinetMemoDetailsController: UIViewController {
                             self.subject.text = self.cabinetMemoDetailsObject.Subject?.base64Decoded!
                             self.secIncharge.text = self.cabinetMemoDetailsObject.SecIncharge!.base64Decoded!
                             self.departmentName.text = self.cabinetMemoDetailsObject.DeptName!.base64Decoded!
+                            self.currentlyWithV.text = self.cabinetMemoDetailsObject.Currentlywith!.base64Decoded!
                             
+                           
+                           
                             
                             self.actionLabel.isHidden = false
                             self.actionChannel.isHidden = false
@@ -388,6 +399,8 @@ class CabinetMemoDetailsController: UIViewController {
                         self.cabinetMemoDetailsObject.StatusCode = jsonResponse!["StatusCode"]! as? Int
                         self.cabinetMemoDetailsObject.Subject = jsonResponse!["Subject"]! as? String
                         self.cabinetMemoDetailsObject.Title = jsonResponse!["Title"]! as? String
+                        self.cabinetMemoDetailsObject.Currentlywith = jsonResponse!["Currentlywith"]! as? String
+
                         
                         //Consideration Points
                         if let considerationPointsServer = jsonResponse!["ListConsiderationPoints"]! as? NSArray{
@@ -412,8 +425,15 @@ class CabinetMemoDetailsController: UIViewController {
                                         self.pointsconsiderationServer.append("). ")
                                         self.pointsconsiderationServer.append(x.Title.base64Decoded!)
                                         self.pointsconsiderationServer.append("\n")
+                                        self.pointsconsiderationServer.append("\n \n \t");
+                                        self.pointsconsiderationServer.append("Status:- " + x.ConsiderationPtFinalStatus.base64Decoded!);
+                                        self.pointsconsiderationServer.append("\n \n \t");
+                                        self.pointsconsiderationServer.append("Remarks:- " + x.ConsiderationPtFinalRemarks.base64Decoded!);
+                                        self.pointsconsiderationServer.append("\n");
                                     }
                                     
+                                    
+                                   
                                     
                                     
                                 }
@@ -485,6 +505,9 @@ class CabinetMemoDetailsController: UIViewController {
                             self.subject.text = self.cabinetMemoDetailsObject.Subject?.base64Decoded!
                             self.secIncharge.text = self.cabinetMemoDetailsObject.SecIncharge!.base64Decoded!
                             self.departmentName.text = self.cabinetMemoDetailsObject.DeptName!.base64Decoded!
+                            self.currentlyWithV.text = self.cabinetMemoDetailsObject.Currentlywith!.base64Decoded!
+                            
+                          
                             
                             
                             self.enterRemarksLabel.isHidden = true

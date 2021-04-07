@@ -16,13 +16,14 @@ struct CabinetMemoDetailsObject{
     var DeptName: String?;
     var Deptid: String?;
     var FileNo: String?;
-    var MinisterIncharge : String?
-    var ProposalDetails: String?
-    var SecIncharge: String?
-    var StatusCode: Int?
-    var Subject: String?
-    var Title: String?
-    var BranchID: String?
+    var MinisterIncharge : String?;
+    var ProposalDetails: String?;
+    var SecIncharge: String?;
+    var StatusCode: Int?;
+    var Subject: String?;
+    var Title: String?;
+    var BranchID: String?;
+    var Currentlywith: String?;
   
     
     
