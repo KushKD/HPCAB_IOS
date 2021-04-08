@@ -20,6 +20,7 @@ enum AppStoryboard: String {
     case CabinetDecisions = "CabinetDecision"
     case AdminLogin = "AdminLogin"
     case NoInternet = "NoInternet"
+    case MeetingAgendaList = "MeetingAgendaList"
     
     var instance: UIStoryboard {
         return UIStoryboard(name: self.rawValue, bundle: Bundle.main)

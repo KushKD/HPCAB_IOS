@@ -604,11 +604,11 @@
                 
             }else if menu[indexPath.row].Menuid.base64Decoded!.caseInsensitiveCompare("7") == .orderedSame{
                 
-                let cabinetViewController = CabinetMemosController.instantiate(from: .CabinetMemos)
-                cabinetViewController.dept_id = deptIDPickerView
-                cabinetViewController.param = "FinalAgendaList"
+                let agendaListController = MeetingAgendaListViewController.instantiate(from: .MeetingAgendaList)
+                agendaListController.dept_id = deptIDPickerView
+                agendaListController.param = "FinalAgendaList"
                 
-                UIApplication.setRootView(cabinetViewController)
+                UIApplication.setRootView(agendaListController)
                 
             }else if menu[indexPath.row].Menuid.base64Decoded!.caseInsensitiveCompare("8") == .orderedSame{
                 

@@ -17,6 +17,8 @@
 		BD2BD0AB250F850000C6798C /* CabinetMemosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2BD0AA250F850000C6798C /* CabinetMemosController.swift */; };
 		BD3D4DD925C12F2D00390B3F /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3D4DD825C12F2D00390B3F /* Actions.swift */; };
 		BD3D4DDE25C136F000390B3F /* SentBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3D4DDD25C136F000390B3F /* SentBack.swift */; };
+		BD3F6A00261DC0D100F4B10A /* MeetingAgendaListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3F69FF261DC0D100F4B10A /* MeetingAgendaListViewController.swift */; };
+		BD3F6A10261DC6F600F4B10A /* MeetingAgendaList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD3F6A0F261DC6F600F4B10A /* MeetingAgendaList.storyboard */; };
 		BD41D2FE25189B9B007B4EE6 /* CabinetMemoDetailsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD41D2FD25189B9B007B4EE6 /* CabinetMemoDetailsObject.swift */; };
 		BD41D3002518B58B007B4EE6 /* String+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD41D2FF2518B58B007B4EE6 /* String+HTML.swift */; };
 		BD41D3022519CB4F007B4EE6 /* ListAnnuxtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD41D3012519CB4F007B4EE6 /* ListAnnuxtures.swift */; };
@@ -91,6 +93,8 @@
 		BDA05107251B001500FA5F51 /* MemoAttachments.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDA05106251B001500FA5F51 /* MemoAttachments.storyboard */; };
 		BDA0510A251B014300FA5F51 /* AttachmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA05108251B014300FA5F51 /* AttachmentTableViewCell.swift */; };
 		BDA0510B251B014300FA5F51 /* AttachmentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BDA05109251B014300FA5F51 /* AttachmentTableViewCell.xib */; };
+		BDA2B93E261F8D240080CCF2 /* ViewSwiftController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA2B93D261F8D240080CCF2 /* ViewSwiftController.swift */; };
+		BDA2B946261F8F6A0080CCF2 /* FinalAgendaList.xib in Resources */ = {isa = PBXBuildFile; fileRef = BDA2B945261F8F6A0080CCF2 /* FinalAgendaList.xib */; };
 		BDADE127250DDC34006244FB /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDADE126250DDC34006244FB /* Menu.swift */; };
 		BDFB341E250C76920044BE8D /* ImageView+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFB341D250C76920044BE8D /* ImageView+URL.swift */; };
 		BDFB3421250C7A0D0044BE8D /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BDFB3420250C7A0D0044BE8D /* Kingfisher */; };
@@ -134,6 +138,8 @@
 		BD2BD0AA250F850000C6798C /* CabinetMemosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinetMemosController.swift; sourceTree = "<group>"; };
 		BD3D4DD825C12F2D00390B3F /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
 		BD3D4DDD25C136F000390B3F /* SentBack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentBack.swift; sourceTree = "<group>"; };
+		BD3F69FF261DC0D100F4B10A /* MeetingAgendaListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingAgendaListViewController.swift; sourceTree = "<group>"; };
+		BD3F6A0F261DC6F600F4B10A /* MeetingAgendaList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MeetingAgendaList.storyboard; sourceTree = "<group>"; };
 		BD41D2FD25189B9B007B4EE6 /* CabinetMemoDetailsObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinetMemoDetailsObject.swift; sourceTree = "<group>"; };
 		BD41D2FF2518B58B007B4EE6 /* String+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+HTML.swift"; sourceTree = "<group>"; };
 		BD41D3012519CB4F007B4EE6 /* ListAnnuxtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAnnuxtures.swift; sourceTree = "<group>"; };
@@ -206,6 +212,8 @@
 		BDA05106251B001500FA5F51 /* MemoAttachments.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MemoAttachments.storyboard; sourceTree = "<group>"; };
 		BDA05108251B014300FA5F51 /* AttachmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentTableViewCell.swift; sourceTree = "<group>"; };
 		BDA05109251B014300FA5F51 /* AttachmentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AttachmentTableViewCell.xib; sourceTree = "<group>"; };
+		BDA2B93D261F8D240080CCF2 /* ViewSwiftController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSwiftController.swift; sourceTree = "<group>"; };
+		BDA2B945261F8F6A0080CCF2 /* FinalAgendaList.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinalAgendaList.xib; sourceTree = "<group>"; };
 		BDADE126250DDC34006244FB /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		BDFB341D250C76920044BE8D /* ImageView+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageView+URL.swift"; sourceTree = "<group>"; };
 		BDFB3424250CE73A0044BE8D /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
@@ -272,6 +280,17 @@
 			path = cabinetMemos;
 			sourceTree = "<group>";
 		};
+		BD3F69F9261DAEFE00F4B10A /* agendaList */ = {
+			isa = PBXGroup;
+			children = (
+				BD3F69FF261DC0D100F4B10A /* MeetingAgendaListViewController.swift */,
+				BD3F6A0F261DC6F600F4B10A /* MeetingAgendaList.storyboard */,
+				BDA2B93D261F8D240080CCF2 /* ViewSwiftController.swift */,
+				BDA2B945261F8F6A0080CCF2 /* FinalAgendaList.xib */,
+			);
+			path = agendaList;
+			sourceTree = "<group>";
+		};
 		BD41D307251A1F3D007B4EE6 /* cabinetMemoHistory */ = {
 			isa = PBXGroup;
 			children = (
@@ -314,6 +333,7 @@
 		BD671F7F250B893B002A9639 /* eCabinet1.0 */ = {
 			isa = PBXGroup;
 			children = (
+				BD3F69F9261DAEFE00F4B10A /* agendaList */,
 				BDFC178A25CA99AB00E9781C /* NoInternet */,
 				BD9FA9CA252026CA00A11A25 /* DownloadManager */,
 				BD0123E2251DB00600C79B06 /* CabinetDecisions */,
@@ -661,6 +681,7 @@
 				BD591AA4251322BA00880A25 /* CustomTableViewCell.xib in Resources */,
 				BDFC177E25CA6E4400E9781C /* AdminLogin.storyboard in Resources */,
 				BD671FC3250B8BA5002A9639 /* Main.storyboard in Resources */,
+				BD3F6A10261DC6F600F4B10A /* MeetingAgendaList.storyboard in Resources */,
 				BD671F8A250B8943002A9639 /* Assets.xcassets in Resources */,
 				BD57AA2425137B5F008ED65C /* CabinetMemosStoryBoard.storyboard in Resources */,
 				BD671FF4250B8EE5002A9639 /* AlertStoryboard.storyboard in Resources */,
@@ -668,6 +689,7 @@
 				BDA0510B251B014300FA5F51 /* AttachmentTableViewCell.xib in Resources */,
 				BD41D30B251A1FE5007B4EE6 /* CabinetHistory.storyboard in Resources */,
 				BD9FA9D6252048F500A11A25 /* DownloadAlert.storyboard in Resources */,
+				BDA2B946261F8F6A0080CCF2 /* FinalAgendaList.xib in Resources */,
 				BD0123E6251DB09D00C79B06 /* CabinetDecision.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -697,6 +719,7 @@
 			files = (
 				BD74746025BF230300B62B98 /* ImageView+Insets.swift in Sources */,
 				BDFC17A125CABA5600E9781C /* ActiveAgendaDialogController.swift in Sources */,
+				BD3F6A00261DC0D100F4B10A /* MeetingAgendaListViewController.swift in Sources */,
 				BD41D3022519CB4F007B4EE6 /* ListAnnuxtures.swift in Sources */,
 				BD671FEA250B8E8E002A9639 /* AlertService.swift in Sources */,
 				BD671FC0250B8B87002A9639 /* MainViewController.swift in Sources */,
@@ -746,6 +769,7 @@
 				BD87A31A252419D40074FE69 /* TextFieldSize.swift in Sources */,
 				BD671FDC250B8E30002A9639 /* SavedUser.swift in Sources */,
 				BD9FA9D22520369300A11A25 /* SDDownloadManager.swift in Sources */,
+				BDA2B93E261F8D240080CCF2 /* ViewSwiftController.swift in Sources */,
 				BD1E2DEF25C3C2FB00689AC5 /* ActiveAgenda.swift in Sources */,
 				BD671FB3250B8A55002A9639 /* UIViewController.swift in Sources */,
 				BD3D4DDE25C136F000390B3F /* SentBack.swift in Sources */,
@@ -917,7 +941,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 8V72THF3KT;
 				INFOPLIST_FILE = eCabinet1.0/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -925,7 +949,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hp.dit.eCabinet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -940,7 +964,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 8V72THF3KT;
 				INFOPLIST_FILE = eCabinet1.0/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -948,7 +972,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hp.ecabinet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -59,7 +59,7 @@
                                         <rect key="frame" x="0.0" y="738" width="414" height="82"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f2h-1F-9IE">
-                                                <rect key="frame" x="10" y="10" width="394" height="62"/>
+                                                <rect key="frame" x="10" y="10" width="394" height="30"/>
                                                 <color key="backgroundColor" name="RedMaroon"/>
                                                 <state key="normal" title="Back">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
