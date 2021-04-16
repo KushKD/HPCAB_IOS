@@ -17,6 +17,7 @@
         
         var refresher:UIRefreshControl!
         
+        @IBOutlet weak var subject: UILabel!
         
         @IBOutlet weak var leadingConstraintForHamburgerView: NSLayoutConstraint!
         @IBOutlet weak var mainBackView: UIView!
@@ -26,8 +27,11 @@
         @IBOutlet weak var collectionView: UICollectionView!
         //   @IBOutlet weak var name: UILabel!
         //  @IBOutlet weak var designation: UILabel!
+        @IBOutlet weak var agendaStackView: UIStackView!
         let alertService = AlertService();
         
+        @IBOutlet weak var activeAgendaDept: UILabel!
+        @IBOutlet weak var agendaItemNumber: UILabel!
         var pickerViewDepartments = UIPickerView()
         var globalRoleID: String = ""
         var globalUserID: String = ""
@@ -61,6 +65,9 @@
             slideView.pageIndicator = pageControl
             
             
+            agendaStackView.visibility = .gone
+            slideView.visibility = .visible
+            
             slideView.activityIndicator = DefaultActivityIndicator()
             slideView.delegate = self
             
@@ -80,7 +87,7 @@
             pickerViewDepartments.dataSource = self
             selectDepartment.inputView = pickerViewDepartments
             selectDepartment.contentInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5);
-            collectionView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0);
+           // collectionView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0);  earlier working
             
             
             
@@ -154,6 +161,99 @@
                 })
             }
             
+            
+            /**
+                        Check the active agenda after 2 seconds
+             */
+            let timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { (timer) in
+                print("I am called every 5 seconds")
+                
+                //Get Active Agenda TODO
+                if Reachability.isConnectedToNetwork(){
+                    let objectMenu = GetPojo();
+                    objectMenu.url = Constants.url
+                    objectMenu.methord = Constants.methordGetOnlineCabinetIDMeetingStatus
+                    objectMenu.methordHash = (Constants.methordGetOnlineCabinetIDMeetingToken! + Constants.seperator! + self.appUtilities.getDate()).base64Encoded!
+                    objectMenu.taskType = TaskType.GET_ACTIVE_AGENDA
+                    objectMenu.timeStamp = self.appUtilities.getDate()
+                    
+                    objectMenu.activityIndicator = self.view
+                    
+                    self.networkUtility.getDataDialog(GetDataPojo: objectMenu) { response in
+                        if let response = response {
+                            print(response.respnse!)
+                            
+                            let agenda:ActiveAgenda =   try! JSONDecoder().decode(ActiveAgenda.self, from: response.respnse!)
+                            print(agenda.AgendaItemNo)
+                            print(agenda.StatusMessage.base64Decoded!)
+         
+                            
+                            if(agenda.AgendaItemNo.count>0){
+                                //Open Active Agenda Pop Up
+                                
+                                DispatchQueue.main.async(execute: {
+                                    //Earlier Working
+//                                    let alertVC = self.alertService.alert(title: "Active Agenda Message", body: agenda.Subject.base64Decoded!, buttonTitle: "OK")
+//                                    { [weak self] in
+//                                        //Go to the Next Story Board
+//
+//                                    }
+//                                    self.present(alertVC, animated: true)
+                                    
+                                    //Hide the SLider
+                                   /**
+                                     let viewHeight:CGFloat = switchbutton.isOn ? 100 : 0.0
+                                         self.testView?.visiblity(gone: !switchbutton.isOn, dimension: viewHeight)
+
+                                         // set visibility for width constraint
+                                         //let viewWidth:CGFloat = switchbutton.isOn ? 300 : 0.0
+                                         //self.testView?.visiblity(gone: !switchbutton.isOn, dimension: viewWidth, attribute: .width)
+                                     */
+                                    
+                                    self.slideView.visibility = .gone
+                                    self.agendaStackView.visibility = .visible
+                                    
+                                        
+                                  
+                                    print(agenda.Subject.base64Decoded!)
+                                    print(agenda.AgendaItemNo.base64Decoded!)
+                                    //Show the StackView
+                                    self.agendaItemNumber.text  = agenda.AgendaItemNo.base64Decoded!
+                                    
+                                    self.activeAgendaDept.text = agenda.DeptName.base64Decoded!
+                                    
+                                    self.subject.text =
+                                        agenda.Subject.base64Decoded!
+                                })
+                                
+                                
+                                
+                            }else{
+                               // Hide the StackView and Show the Slider
+                                self.slideView.visibility = .visible
+                                self.agendaStackView.visibility = .gone
+                            }
+                            
+                            
+                            
+                        }
+                    }
+                    
+                }
+                else{
+                    DispatchQueue.main.async(execute: {
+                        let alertVC = self.alertService.alert(title: "Network Message", body: Constants.internetNotAvailable!, buttonTitle: "OK")
+                        { [weak self] in
+                            //Go to the Next Story Board
+                            
+                        }
+                        self.present(alertVC, animated: true)
+                        
+                    })
+                }
+                
+                
+            }
             
             
             if Reachability.isConnectedToNetwork(){
@@ -251,6 +351,7 @@
         @IBAction func tappedOnHamburgerbackView(_ sender: Any) {
             self.hideHamburgerView()
         }
+        
         
         @IBAction func showHamburgerMenu(_ sender: Any) {
             
@@ -639,15 +740,6 @@
                 })
                 
             }
-            
-            
-            
-            
-            
-            
-            
-            
-            
             
             
         }
