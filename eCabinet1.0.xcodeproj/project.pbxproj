@@ -76,6 +76,8 @@
 		BD6AC88125BD943800DA5BCC /* ImageSlideshow in Frameworks */ = {isa = PBXBuildFile; productRef = BD6AC88025BD943800DA5BCC /* ImageSlideshow */; };
 		BD74746025BF230300B62B98 /* ImageView+Insets.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD74745F25BF230300B62B98 /* ImageView+Insets.swift */; };
 		BD7D3492262977A300FAC9C4 /* UIView+Gone.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7D3491262977A300FAC9C4 /* UIView+Gone.swift */; };
+		BD7D34AB2629A10500FAC9C4 /* ActiveAgendaItem.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD7D34AA2629A10500FAC9C4 /* ActiveAgendaItem.storyboard */; };
+		BD7D34B02629A11F00FAC9C4 /* ActiveAgendaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7D34AF2629A11F00FAC9C4 /* ActiveAgendaItem.swift */; };
 		BD831F5F25147B7E00AD3206 /* CabinetMemoDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD831F5E25147B7E00AD3206 /* CabinetMemoDetailsController.swift */; };
 		BD831F6125147BAD00AD3206 /* CabinetMemoDetailsStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD831F6025147BAD00AD3206 /* CabinetMemoDetailsStoryBoard.storyboard */; };
 		BD853329251F399000156C5B /* FileDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD853328251F399000156C5B /* FileDownloader.swift */; };
@@ -196,6 +198,8 @@
 		BD671FF3250B8EE5002A9639 /* AlertStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AlertStoryboard.storyboard; sourceTree = "<group>"; };
 		BD74745F25BF230300B62B98 /* ImageView+Insets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageView+Insets.swift"; sourceTree = "<group>"; };
 		BD7D3491262977A300FAC9C4 /* UIView+Gone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Gone.swift"; sourceTree = "<group>"; };
+		BD7D34AA2629A10500FAC9C4 /* ActiveAgendaItem.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ActiveAgendaItem.storyboard; sourceTree = "<group>"; };
+		BD7D34AF2629A11F00FAC9C4 /* ActiveAgendaItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveAgendaItem.swift; sourceTree = "<group>"; };
 		BD831F5E25147B7E00AD3206 /* CabinetMemoDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinetMemoDetailsController.swift; sourceTree = "<group>"; };
 		BD831F6025147BAD00AD3206 /* CabinetMemoDetailsStoryBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CabinetMemoDetailsStoryBoard.storyboard; sourceTree = "<group>"; };
 		BD853328251F399000156C5B /* FileDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDownloader.swift; sourceTree = "<group>"; };
@@ -335,6 +339,7 @@
 		BD671F7F250B893B002A9639 /* eCabinet1.0 */ = {
 			isa = PBXGroup;
 			children = (
+				BD7D349626299D0A00FAC9C4 /* activeAgendaItem */,
 				BD3F69F9261DAEFE00F4B10A /* agendaList */,
 				BDFC178A25CA99AB00E9781C /* NoInternet */,
 				BD9FA9CA252026CA00A11A25 /* DownloadManager */,
@@ -516,6 +521,15 @@
 			path = views;
 			sourceTree = "<group>";
 		};
+		BD7D349626299D0A00FAC9C4 /* activeAgendaItem */ = {
+			isa = PBXGroup;
+			children = (
+				BD7D34AA2629A10500FAC9C4 /* ActiveAgendaItem.storyboard */,
+				BD7D34AF2629A11F00FAC9C4 /* ActiveAgendaItem.swift */,
+			);
+			path = activeAgendaItem;
+			sourceTree = "<group>";
+		};
 		BD831F5D25147B4800AD3206 /* cabinetMemoDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -678,6 +692,7 @@
 				BD0123F0251DBE7500C79B06 /* CustomCabinetDecisionTableCell.xib in Resources */,
 				BDA05107251B001500FA5F51 /* MemoAttachments.storyboard in Resources */,
 				BD671FC5250B8C04002A9639 /* LaunchScreen.storyboard in Resources */,
+				BD7D34AB2629A10500FAC9C4 /* ActiveAgendaItem.storyboard in Resources */,
 				BDA05102251A26A700FA5F51 /* CabinetHistoryTableViewCell.xib in Resources */,
 				BDFC17AE25CABB1A00E9781C /* ActiveAgendaStoryBoard.storyboard in Resources */,
 				BDFB3427250CE73A0044BE8D /* CollectionViewCell.xib in Resources */,
@@ -727,6 +742,7 @@
 				BD671FEA250B8E8E002A9639 /* AlertService.swift in Sources */,
 				BD671FC0250B8B87002A9639 /* MainViewController.swift in Sources */,
 				BD41D2FE25189B9B007B4EE6 /* CabinetMemoDetailsObject.swift in Sources */,
+				BD7D34B02629A11F00FAC9C4 /* ActiveAgendaItem.swift in Sources */,
 				BD9FA9C1252021EB00A11A25 /* URL+Validation.swift in Sources */,
 				BDADE127250DDC34006244FB /* Menu.swift in Sources */,
 				BD671FE4250B8E30002A9639 /* UserViaRoles.swift in Sources */,

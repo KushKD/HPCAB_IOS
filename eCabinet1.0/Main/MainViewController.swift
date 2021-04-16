@@ -66,6 +66,18 @@
             
             
             agendaStackView.visibility = .gone
+            
+            
+            self.agendaItemNumber.isUserInteractionEnabled = true
+            let tapgesture = UITapGestureRecognizer(target: self, action: #selector(tappedOnLabel(_ :)))
+            tapgesture.numberOfTapsRequired = 1
+            self.agendaItemNumber.addGestureRecognizer(tapgesture)
+            
+            
+        
+            
+            
+            
             slideView.visibility = .visible
             
             slideView.activityIndicator = DefaultActivityIndicator()
@@ -335,6 +347,22 @@
         private var isHamburgerMenuShown:Bool = false
         private var beginPoint:CGFloat = 0.0
         private var difference:CGFloat = 0.0
+        
+        
+     //tappedOnLabel
+        @objc func tappedOnLabel(_ gesture: UITapGestureRecognizer) {
+              
+                   print("user tapped on terms and conditions text")
+            /**
+                            Go To Other Active Agenda Screen From Here
+             TODO
+             */
+            let storyBoard : UIStoryboard = UIStoryboard(name: "ActiveAgendaItem", bundle:nil)
+            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ActiveAgendaItem") as! ActiveAgendaItem
+          //  nextViewController.listToShow = listCabinetMemoTrackingHistoryLists
+            self.present(nextViewController, animated:true, completion:nil)
+              
+           }
         
         func hideHamburgerMenu() {
             //Logout

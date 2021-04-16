@@ -14,10 +14,10 @@ struct Constants{
     //static let  url:String? = "http://164.100.138.114/eCabinetService.svc";
     
     //URL Production
-   // static let url:String? = "http://ecabinetwcf.hp.gov.in/eCabinetService.svc";
+    static let url:String? = "http://ecabinetwcf.hp.gov.in/eCabinetService.svc";
     
     //URL new Staging   http://ecabinetwcftest.hp.gov.in/
-    static let url:String? = "http://ecabinetwcftest.hp.gov.in/eCabinetService.svc";
+    //static let url:String? = "http://ecabinetwcftest.hp.gov.in/eCabinetService.svc";
     
     
     static let usernameAdmin:String? = "ecabinetadmin";
